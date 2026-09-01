@@ -1,0 +1,74 @@
+/* ------------------------------------------------------------------
+   Gilroy is the typeface used in the Figma file (Medium 500 /
+   SemiBold 600). Drop the licensed woff2 files into
+   src/assets/fonts/ and uncomment the block below for exact fidelity;
+   until then the stack falls back to the closest geometric sans
+   available.
+------------------------------------------------------------------- */
+/*
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+*/
+
+:root {
+  --font-display: 'Gilroy', 'Poppins', 'Montserrat', system-ui, sans-serif;
+  /* The LemonAIde stepper labels are set in Inter Tight, the only
+     place in the file that departs from Gilroy. */
+  --font-ui: 'Inter Tight', 'Inter', system-ui, sans-serif;
+
+  /* Physical kiosk panel, in CSS px. The stage is authored at this
+     size and scaled to fit whatever viewport it is previewed in. */
+  --kiosk-w: 1080;
+  --kiosk-h: 1920;
+  --kiosk-scale: 1;
+
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #000;
+}
+
+body {
+  font-family: var(--font-display);
+  /* Kiosk hygiene: no selection, no tap flash, no long-press menus */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+img {
+  display: block;
+}
+
+#root {
+  height: 100%;
+}

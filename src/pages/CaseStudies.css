@@ -1,0 +1,428 @@
+/* =================================================================
+   Case Studies landing — Figma "Case study Landing" 237:96906
+   (1080 x 1920). All coordinates are the frame's absolute px values,
+   so the stage must be rendered at 1080x1920 (see App.css).
+
+   Figma's card layers are positioned with centre offsets ("left:
+   calc(50% - 4.36px)" plus a -50% translate). Those are resolved to
+   plain `left` / `top` here on purpose: a transform on a layer makes
+   it a stacking context, which isolates its children's blend group
+   and silently turns the artwork's mix-blend-mode into a no-op. Same
+   trap Home.css documents for the landing cards.
+   ================================================================= */
+
+.case {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  font-family: var(--font-display);
+  color: #fff;
+}
+
+/* ---------------------------------------------------- backdrop ---
+   237:96907 — a 3088x4019 render centred 150px above the frame
+   centre, dimmed by a 60% black scrim. The cards blend against this
+   composite, so it must stay a plain sibling (no isolation).
+   ------------------------------------------------------------- */
+.case__bg {
+  position: absolute;
+  left: -1004px;
+  top: -1199.5px;
+  width: 3088px;
+  height: 4019px;
+  pointer-events: none;
+}
+
+.case__bg-crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.case__bg-crop img {
+  position: absolute;
+  left: 0.02%;
+  top: 0.02%;
+  width: 99.97%;
+  height: 99.97%;
+  max-width: none;
+}
+
+.case__bg-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* The header and footer are the shared interior-screen chrome; see
+   src/components/ScreenChrome.{jsx,css}. */
+
+.cs-card:focus-visible {
+  outline: 3px solid #ffd600;
+  outline-offset: 6px;
+}
+
+/* --------------------------------------------------- card well ---
+   237:96922 — 3 columns (x 0 / 294.9 / 589.8) by 4 rows
+   (y 0 / 331.26 / 662.53 / 993.79). Wide cards span two columns.
+   ------------------------------------------------------------- */
+.case__cards {
+  position: absolute;
+  left: 119.998px;
+  top: 359.005px;
+  width: 856.705px;
+  height: 1297.051px;
+}
+
+.cs-card {
+  position: absolute;
+  height: 303.263px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  overflow: visible;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Figma nudges a few cards' whole artwork stack by a couple of px
+     against the grid slot. One offset pair per card keeps the layers
+     below sharing a single set of coordinates. */
+  --nx: 0px;
+  --ny: 0px;
+}
+
+.cs-card--narrow {
+  width: 266.902px;
+}
+
+.cs-card--wide {
+  width: 561.803px;
+}
+
+.cs-card--personal-finance { left: 0; top: 0; }
+.cs-card--lending { left: 589.8px; top: 0; --nx: 4.36px; --ny: 5.31px; }
+.cs-card--securities { left: 0; top: 331.26px; }
+.cs-card--investment { left: 294.9px; top: 331.26px; --ny: 4.36px; }
+.cs-card--insurance { left: 589.8px; top: 331.26px; }
+.cs-card--risk-audit { left: 0; top: 662.53px; }
+.cs-card--banking { left: 294.9px; top: 662.53px; --ny: 4.36px; }
+.cs-card--nps { left: 589.8px; top: 662.53px; }
+.cs-card--venture-capital { left: 0; top: 993.79px; }
+.cs-card--payments { left: 294.9px; top: 993.79px; }
+
+/* No `display` here: abspos already blockifies the spans, and setting
+   it would outrank .cs-card__label's `display: flex` (this selector is
+   the more specific of the two) and break the label's centring. */
+.cs-card > span {
+  position: absolute;
+}
+
+/* The card frame's 10.876px background blur. Shares the glass box's
+   geometry so it never spills past the rounded frame. */
+.cs-card__blur {
+  border-radius: 16.631px;
+  backdrop-filter: blur(10.876px);
+}
+
+/* ------------------------------------------------- card layers ---
+   Figma paints each card as: hero (screen) -> frame texture
+   (hard-light, 70%) -> sheen (lighten) -> glass clip -> hero again
+   -> light glow (overlay) -> label. The artwork blends against the
+   dimmed room, so nothing between .case and these layers may create
+   a stacking context.
+   ------------------------------------------------------------- */
+/* Figma insets the artwork 7.79% / 4.88% / 6.49% / 6.1% inside the
+   hero box. Written as left/top/width/height rather than `inset`
+   because an abspos *replaced* element resolves `width: auto` to the
+   image's intrinsic width (1254px here) and drops the over-constrained
+   offsets — the art escapes the card entirely. */
+.cs-card__hero img {
+  position: absolute;
+  left: 6.1%;
+  top: 7.79%;
+  width: 89.02%;
+  height: 85.72%;
+  max-width: none;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.cs-card__tint {
+  border-radius: 16.631px;
+  mix-blend-mode: hard-light;
+}
+
+.cs-card__tint-crop {
+  position: absolute;
+  inset: 0;
+  border-radius: 16.631px;
+  overflow: hidden;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cs-card__tint-crop img {
+  position: absolute;
+  left: -1.54%;
+  top: -0.74%;
+  width: 103.09%;
+  height: 101.84%;
+  max-width: none;
+}
+
+.cs-card__sheen {
+  mix-blend-mode: lighten;
+}
+
+.cs-card__sheen-crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cs-card__sheen-crop img {
+  position: absolute;
+  left: -26.16%;
+  top: -392.59%;
+  width: 383.87%;
+  height: 569.93%;
+  max-width: none;
+}
+
+.cs-card__glass {
+  border-radius: 16.631px;
+  overflow: clip;
+}
+
+/* rgba(255,255,255,0.1) painted at 40% opacity. */
+.cs-card__glass-fill {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0.4;
+}
+
+.cs-card__light {
+  mix-blend-mode: overlay;
+}
+
+/* The glow SVGs carry a Gaussian blur, so Figma draws them well
+   outside the layer box. */
+.cs-card__light-crop {
+  position: absolute;
+  pointer-events: none;
+}
+
+.cs-card__light-crop img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Each label is drawn twice: a 60% copy clipped inside the glass and
+   a full-strength copy on top. `bottom` plus translateY(50%) centres
+   the text block on the Figma baseline offset. */
+.cs-card__label {
+  /* Declared here, not inherited from `.cs-card > span`: the --under
+     copy is nested inside .cs-card__glass. */
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 30.52px;
+  line-height: normal;
+  letter-spacing: -0.6714px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #fff;
+  overflow-wrap: break-word;
+  transform: translateY(50%);
+}
+
+.cs-card__label--under {
+  opacity: 0.6;
+}
+
+/* ------------------------------------------- narrow card layout ---
+   Canonical: 237:96925 / :96931 / :96924 / :96926 / :96927.
+   ------------------------------------------------------------- */
+.cs-card--narrow .cs-card__hero--back {
+  left: calc(30.797px + var(--nx));
+  top: calc(12.45px + var(--ny));
+  width: 195.688px;
+  height: 181.269px;
+}
+
+.cs-card--narrow .cs-card__hero--front {
+  left: calc(32.09px + var(--nx));
+  top: calc(14.31px + var(--ny));
+  width: 195.102px;
+  height: 180.933px;
+}
+
+.cs-card--narrow .cs-card__tint {
+  left: calc(2.656px + var(--nx));
+  top: calc(-5.8665px + var(--ny));
+  width: 252.87px;
+  height: 299.738px;
+}
+
+.cs-card--narrow .cs-card__sheen {
+  left: calc(-4.36px + var(--nx));
+  top: calc(-7.48px + var(--ny));
+  width: 261.59px;
+  height: 313.908px;
+}
+
+.cs-card--narrow .cs-card__blur,
+.cs-card--narrow .cs-card__glass {
+  left: calc(8.106px + var(--nx));
+  top: calc(-0.4125px + var(--ny));
+  width: 241.97px;
+  height: 289.928px;
+}
+
+.cs-card--narrow .cs-card__light {
+  left: calc(48.434px + var(--nx));
+  top: calc(14.17px + var(--ny));
+  width: 163.494px;
+  height: 167.853px;
+}
+
+.cs-card--narrow .cs-card__light-crop {
+  inset: -35.99% -36.95%;
+}
+
+.cs-card--narrow .cs-card__label {
+  width: 212.084px;
+  height: 85.196px;
+}
+
+.cs-card--narrow .cs-card__label--under {
+  left: 15.223px;
+  bottom: 63.13px;
+}
+
+.cs-card--narrow .cs-card__label--over {
+  left: calc(23.499px + var(--nx));
+  bottom: calc(75.12px - var(--ny));
+}
+
+/* --------------------------------------------- wide card layout ---
+   237:96928 and 237:96929. These two diverge by more than a uniform
+   nudge (different hero crops and sheen boxes), so the per-card
+   overrides below carry their own values rather than --nx / --ny.
+   ------------------------------------------------------------- */
+.cs-card--wide .cs-card__hero--back {
+  width: 185.293px;
+  height: 172.213px;
+}
+
+.cs-card--wide .cs-card__tint {
+  width: 544.978px;
+  height: 299.738px;
+}
+
+.cs-card--wide .cs-card__blur,
+.cs-card--wide .cs-card__glass {
+  width: 534.079px;
+  height: 288.839px;
+}
+
+.cs-card--wide .cs-card__light {
+  width: 141.694px;
+  height: 141.694px;
+}
+
+.cs-card--wide .cs-card__light-crop {
+  inset: -42.64%;
+}
+
+.cs-card--wide .cs-card__label {
+  width: 250.69px;
+  bottom: 138.42px;
+}
+
+/* Personal Finance Management — 237:96928 */
+.cs-card--personal-finance .cs-card__hero--back {
+  left: 37.845px;
+  top: 55.59px;
+}
+
+.cs-card--personal-finance .cs-card__hero--front {
+  left: 29.1255px;
+  top: 47.48px;
+  width: 202.732px;
+  height: 188.421px;
+}
+
+.cs-card--personal-finance .cs-card__tint {
+  left: -5.7575px;
+  top: -6.9575px;
+}
+
+.cs-card--personal-finance .cs-card__sheen {
+  left: -14.17px;
+  top: -8.72px;
+  width: 574.407px;
+  height: 316.087px;
+}
+
+.cs-card--personal-finance .cs-card__blur,
+.cs-card--personal-finance .cs-card__glass {
+  left: -0.308px;
+  top: -1.508px;
+}
+
+.cs-card--personal-finance .cs-card__light {
+  left: 54.1945px;
+  top: 70.85px;
+}
+
+.cs-card--personal-finance .cs-card__label {
+  left: 219.0845px;
+}
+
+/* Payments & Remittance — 237:96929 */
+.cs-card--payments .cs-card__hero--back {
+  left: 52.015px;
+  top: 63.22px;
+}
+
+.cs-card--payments .cs-card__hero--front {
+  left: 32.3965px;
+  top: 44.99px;
+  width: 224.53px;
+  height: 208.681px;
+}
+
+.cs-card--payments .cs-card__tint {
+  left: 8.4125px;
+  top: 0.6725px;
+}
+
+.cs-card--payments .cs-card__sheen {
+  left: -3.582px;
+  top: -5.8625px;
+  width: 570.047px;
+  height: 313.908px;
+}
+
+.cs-card--payments .cs-card__blur,
+.cs-card--payments .cs-card__glass {
+  left: 13.862px;
+  top: 6.122px;
+}
+
+.cs-card--payments .cs-card__light {
+  left: 68.3645px;
+  top: 78.48px;
+}
+
+.cs-card--payments .cs-card__label {
+  left: 223.4445px;
+}

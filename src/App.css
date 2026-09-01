@@ -1,0 +1,30 @@
+/* The kiosk viewport. The stage is always laid out at the panel's
+   native 1080x1920 so every value from Figma can be used verbatim;
+   --kiosk-scale (set in App.jsx) shrinks it to fit smaller screens
+   during development. On the real panel the scale resolves to 1. */
+
+.kiosk {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Centred by translate(-50%, -50%), NOT by a flex/grid `center`.
+   The stage's layout box is always the full 1920px tall, so on any
+   viewport shorter than that it overflows its track and a grid/flex
+   `center` leaves it pinned to the top — transform-origin then scales
+   about y=960 and drops the whole UI below the fold. Anchoring the
+   box's own centre to the viewport centre is independent of how far
+   the unscaled box overflows. */
+.kiosk__stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--kiosk-w) * 1px);
+  height: calc(var(--kiosk-h) * 1px);
+  overflow: hidden;
+  transform: translate(-50%, -50%) scale(var(--kiosk-scale));
+  transform-origin: center center;
+  will-change: transform;
+}

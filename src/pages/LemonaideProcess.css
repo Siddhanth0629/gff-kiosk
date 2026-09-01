@@ -1,0 +1,1003 @@
+/* =================================================================
+   The LemonAIde Process — Figma "lemonade process" 3:22661
+   (1080 x 1920). All coordinates are the frame's absolute px values,
+   so the stage must be rendered at 1080x1920 (see App.css).
+
+   This is the light screen: no blend modes and no room backdrop, so
+   none of the stacking-context care the dark screens need applies.
+   ================================================================= */
+
+.lem {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  font-family: var(--font-display);
+  color: #0a0a0a;
+}
+
+/* Graph paper: 1px rules on a 31px pitch, first column at x 29 and
+   first row at y 29.5. Sampled from Figma's own render at #eaeaea. */
+.lem__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right, #eaeaea 0 1px, transparent 1px 31px),
+    repeating-linear-gradient(to bottom, #eaeaea 0 1px, transparent 1px 31px);
+  background-position:
+    29px 0,
+    0 29.5px;
+  pointer-events: none;
+}
+
+/* cards (3:23054) — the opaque white sheet the grid stops at. */
+.lem__card {
+  position: absolute;
+  left: 60px;
+  top: 90px;
+  width: 960px;
+  height: 1707px;
+  border-radius: 12px;
+  background: #fff;
+  overflow: clip;
+}
+
+/* ----------------------------------------------------- masthead ---
+   Frame 2147226693 (3:23096). It overhangs the card by 1px each side,
+   as in Figma.
+   ------------------------------------------------------------- */
+.lem__head {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 963px;
+  height: 470px;
+  background: #fcf4ed;
+}
+
+.lem__nav {
+  position: absolute;
+  left: 0.19px;
+  top: 20.01px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 962px;
+  height: 60px;
+  padding: 0 20px;
+}
+
+.lem__back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.5;
+  color: #000;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Figma stacks rotate(180deg) on scaleY(-1) — a horizontal flip. */
+.lem__back-icon,
+.lem__back-icon img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.lem__back-icon {
+  transform: scaleX(-1);
+}
+
+.lem__home {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 2.5px solid #000;
+  border-radius: 225px;
+  background: none;
+  overflow: clip;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lem__home img {
+  width: 36px;
+  height: 36px;
+}
+
+.lem__back:focus-visible,
+.lem__home:focus-visible,
+.lem-step:focus-visible {
+  outline: 3px solid #f8df00;
+  outline-offset: 4px;
+}
+
+/* 3:23103 — title beside the mojito. */
+.lem__intro {
+  position: absolute;
+  left: 67.19px;
+  top: 80px;
+  width: 828px;
+  height: 180px;
+}
+
+.lem__intro-text {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+
+.lem__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1;
+  color: #000;
+}
+
+.lem__subtitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1;
+  color: #0a0a0a;
+}
+
+/* Glass-center (3:23104) — both glasses hang far below their clip. */
+.lem__glass {
+  position: absolute;
+  left: 435px;
+  top: -30px;
+  width: 393px;
+  height: 351.98px;
+  overflow: clip;
+}
+
+.lem__glass-real,
+.lem__glass-drawn {
+  position: absolute;
+}
+
+.lem__glass-real {
+  left: -28.395px;
+  top: -14.559px;
+  width: 446.37px;
+  height: 767.139px;
+}
+
+.lem__glass-drawn {
+  left: 196.86px;
+  top: -14.505px;
+  width: 221.993px;
+  height: 798.005px;
+}
+
+.lem__glass-crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.lem__glass-crop img {
+  position: absolute;
+  max-width: none;
+}
+
+.lem__glass-real .lem__glass-crop img {
+  left: -0.05%;
+  top: -0.02%;
+  width: 100.22%;
+  height: 104.05%;
+}
+
+.lem__glass-drawn .lem__glass-crop img {
+  left: -101.58%;
+  top: -0.06%;
+  width: 201.58%;
+  height: 100.11%;
+}
+
+/* ------------------------------------------------------ stepper ---
+   cards (3:23110) — white tray with rounded bottom corners.
+   ------------------------------------------------------------- */
+.lem__stepper {
+  position: absolute;
+  left: 0;
+  top: 260.104px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16.006px;
+  width: 961.776px;
+  padding: 12px 12.005px;
+  border-radius: 0 0 12.005px 12.005px;
+  background: #fff;
+  overflow: clip;
+}
+
+.lem__steps {
+  display: flex;
+  align-items: center;
+  gap: 8.003px;
+}
+
+.lem__stepper-rule {
+  display: block;
+  width: 912.366px;
+  height: 2px;
+}
+
+.lem-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 124.275px;
+  height: 151.792px;
+  padding: 7.833px;
+  border: 0.958px solid #fff;
+  border-radius: 7.305px;
+  background: #fff;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Steps other than Research have no content node yet; see README. */
+.lem-step:disabled {
+  cursor: default;
+}
+
+.lem-step--active {
+  width: 139.086px;
+  height: 169.883px;
+  padding: 8.766px;
+  border: 1.096px solid #f8df00;
+  border-radius: 8.175px;
+  background: rgba(248, 223, 0, 0.1);
+}
+
+.lem-step__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 0;
+  padding: 0.958px 0;
+}
+
+.lem-step--active .lem-step__body {
+  padding: 1.072px 0;
+}
+
+.lem-step__icon {
+  position: relative;
+  flex: none;
+  width: 107.225px;
+  height: 107.225px;
+}
+
+.lem-step--active .lem-step__icon {
+  width: 122.237px;
+  height: 122.237px;
+}
+
+.lem-step__icon img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* Strategy's active illustration is placed inside its box by explicit
+   percentages rather than cover-fitted; the inline style supplies them. */
+.lem-step__icon--inset {
+  overflow: hidden;
+}
+
+.lem-step__icon--inset img {
+  inset: auto;
+  object-fit: fill;
+}
+
+/* Figma sets these labels in Inter Tight, not Gilroy. */
+.lem-step__label {
+  flex: none;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 14.79px;
+  line-height: 1.5;
+  text-align: center;
+  color: #3a3a3a;
+}
+
+.lem-step--active .lem-step__label {
+  font-weight: 600;
+  font-size: 17.53px;
+  white-space: nowrap;
+}
+
+.lem-step__badge {
+  position: absolute;
+  left: 6.87px;
+  top: var(--badge-top, 6.87px);
+  display: block;
+  width: 23.498px;
+  height: 23.498px;
+}
+
+.lem-step--active .lem-step__badge {
+  left: 8.22px;
+  width: 26.298px;
+  height: 26.298px;
+}
+
+.lem-step__badge img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The hand-drawn ring behind the active step's illustration. */
+.lem-step__ring {
+  position: absolute;
+  left: 25.01px;
+  top: 40.2px;
+  width: 87.413px;
+  height: 87.413px;
+  pointer-events: none;
+}
+
+.lem-step__ring img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ------------------------------------------------------ content ---
+   3:23056 / 522:88407. Research exports its children at absolute
+   offsets and Strategy as a flex column, but they resolve to the same
+   thing — (15, 42) is px 15 / py 42, and the 32px gaps and the 886px
+   takeaway centred in 962 both fall out of it — so one column serves
+   both.
+   ------------------------------------------------------------- */
+.lem__content {
+  position: absolute;
+  left: -1px;
+  top: 462px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 962px;
+  padding: 42px 15px;
+  border-radius: 20px;
+  background: #fff;
+}
+
+/* 3:23057 */
+/* Height is pinned, not left to the content. Figma gives 339px in
+   both frames — measured back from where each one's media panel
+   starts (y=965 in both renders) — and pinning it keeps the media and
+   takeaway on their designed offsets instead of letting font-metric
+   drift in the headline and chips push them down the page. */
+.lem__lede {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 932px;
+  height: 339px;
+}
+
+.lem__lede-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  height: 65px;
+  width: 100%;
+}
+
+.lem__lede-badge,
+.lem__lede-badge img {
+  display: block;
+  width: 57px;
+  height: 57px;
+}
+
+.lem__lede-heading {
+  margin: 0;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1.36;
+  color: #000;
+  white-space: nowrap;
+}
+
+.lem__lede-copy {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 0.72px;
+  text-align: center;
+  color: #0a0a0a;
+}
+
+.lem__rule {
+  display: block;
+  width: 686px;
+  height: 2px;
+}
+
+.lem__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.lem__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 20px;
+  border: 1px solid #ccc;
+  border-radius: 48px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.9;
+  letter-spacing: 0.4px;
+  color: #0a0a0a;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------ evidence strip ---
+   Frame 2147228719 (1200:417172). A drag-scrolling row like the other
+   three steps: the composed slide first, the evidence slides side by
+   side after it.
+
+   Figma does not clip the composition — it sits 6.5px above the panel
+   and its right-hand screenshot runs ~14px past the right edge. So
+   this strip is 498px tall pulled 6.5px up: the overhang paints, the
+   image slides still centre on the designed 485px band, and the
+   column's flow height is unchanged.
+   -------------------------------------------------------------- */
+/* Doubled class on purpose: the base .lem-strip rule is declared
+   further down the file, so a single-class modifier here would lose on
+   source order and the strip would keep its 485px height. */
+.lem-strip.lem-strip--research {
+  height: 498px;
+  margin: -6.5px 0;
+}
+
+/* The composed slide (1200:417173). The row's 24px left padding is
+   the composition's own left inset in Figma, so this box starts at
+   x=0 and every offset below is the Figma one less 24px. */
+.lem-research {
+  position: relative;
+  flex: none;
+  width: 922.211px;
+  /* Explicit, not 100%: the row is centred rather than stretched, so a
+     percentage height would resolve against an auto-height parent. */
+  height: 498px;
+}
+
+.lem__media-shot,
+.lem__media-call {
+  position: absolute;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+}
+
+.lem__media-shot {
+  left: 0;
+  top: 0;
+  width: 510.211px;
+  height: 302.623px;
+}
+
+.lem__media-call {
+  left: 530.211px;
+  top: 0.109px;
+  width: 392px;
+  height: 497.783px;
+}
+
+/* 1200:417175 */
+.lem__quote {
+  position: absolute;
+  left: 53.622px;
+  top: 337.132px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.124px;
+  width: 402.966px;
+}
+
+.lem__quote-head {
+  display: flex;
+  align-items: center;
+  gap: 8.495px;
+  width: 100%;
+}
+
+.lem__quote-name {
+  font-weight: 500;
+  font-size: 12.742px;
+  line-height: 1.4;
+  color: #000;
+}
+
+/* Set at 3.38px in Figma, so it reads as a coloured pill rather than
+   as text. Kept verbatim. */
+.lem__quote-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 21.103px;
+  padding: 2.124px 6.902px;
+  border-radius: 4px;
+  background: #d3f7fd;
+  font-weight: 600;
+  font-size: 3.38px;
+  line-height: 1.5;
+  color: #1577e0;
+  white-space: nowrap;
+}
+
+.lem__quote-bubble {
+  width: 100%;
+  margin: 0;
+  padding: 10.618px;
+  border: 0.531px solid #f8df00;
+  border-radius: 0 10.618px 10.618px 10.618px;
+  background: #fffbda;
+  font-weight: 600;
+  font-size: 16.989px;
+  line-height: 1.4;
+  color: #1e1e1e;
+}
+
+/* ----------------------------------------------------- takeaway ---
+   Frame 2147226709 (3:23071)
+   ------------------------------------------------------------- */
+.lem__takeaway {
+  position: relative;
+  flex: none;
+  width: 886px;
+  height: 281px;
+}
+
+/* Paper (3:23080) — the yellow card is an SVG behind the copy. */
+.lem__paper {
+  position: absolute;
+  left: 2px;
+  top: -0.25px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 884px;
+  padding: 24px;
+  filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.05));
+}
+
+.lem__paper-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 884px;
+  height: 152px;
+  max-width: none;
+}
+
+.lem__paper-title,
+.lem__ai-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.36;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: #474747;
+  white-space: nowrap;
+}
+
+.lem__paper-icon,
+.lem__paper-icon img,
+.lem__ai-icon,
+.lem__ai-icon img {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+/* Research wraps its bullets inside 651px; Strategy sets them
+   nowrap and lets the list size to its own text. */
+.lem__paper-list {
+  position: relative;
+  width: 651px;
+  margin: 0;
+  padding-left: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #494949;
+}
+
+.lem__paper-list--nowrap {
+  width: auto;
+  white-space: nowrap;
+}
+
+.lem__paper-list--full {
+  width: 100%;
+}
+
+/* 3:23072 */
+.lem__ai {
+  position: absolute;
+  left: 2px;
+  top: 146.75px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 884px;
+  height: 135px;
+  padding: 16px 24px 23px;
+  background: rgba(167, 167, 167, 0.12);
+}
+
+.lem__ai-copy {
+  width: 100%;
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #494949;
+}
+
+/* ------------------------------------------- case-study strip ---
+   1324:71780 — four cards totalling 3089px inside an 884px window,
+   so it drags horizontally. Only the first card falls inside Figma's
+   visible clip, which is why the other three could not be rendered.
+   ------------------------------------------------------------- */
+.lem-strip {
+  flex: none;
+  display: flex;
+  align-items: center;
+  width: 932px;
+  height: 485px;
+  padding: 0 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  cursor: grab;
+}
+
+.lem-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.lem-strip:active {
+  cursor: grabbing;
+}
+
+.lem-strip__row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lem-case {
+  position: relative;
+  flex: none;
+  height: 486px;
+  border-radius: 12px;
+  background: #fff;
+  overflow: clip;
+}
+
+.lem-case--wide {
+  width: 864px;
+}
+
+.lem-case--narrow {
+  width: 437.4px;
+}
+
+/* The yellow plate behind each caption. Its size is per-card, so it
+   comes in as an inline style. */
+.lem-case__tag {
+  position: absolute;
+  left: 0;
+  top: 52.65px;
+  display: block;
+  background: #f8df00;
+}
+
+.lem-case__caption {
+  position: absolute;
+  left: 12.6px;
+  top: 57.15px;
+  margin: 0;
+  font-weight: 700;
+  font-size: 14.4px;
+  line-height: 1.5;
+  color: #000;
+  white-space: nowrap;
+}
+
+.lem-case__caption--tall {
+  top: 58.95px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1324:71783 / :71784 — two half-width photographs side by side. */
+.lem-case__half {
+  position: absolute;
+  top: 50%;
+  width: 432px;
+  height: 486px;
+  max-width: none;
+  object-fit: cover;
+  transform: translateY(-50%);
+}
+
+.lem-case__half--a {
+  left: 0;
+}
+
+.lem-case__half--b {
+  left: 50%;
+}
+
+.lem-case__badge {
+  position: absolute;
+  left: 36px;
+  bottom: 36px;
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.lem-case__badge img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 1324:71789 / :71790 — the whiteboard, over a 20% backdrop. */
+.lem-case__board-bg {
+  position: absolute;
+  left: -50px;
+  top: -168px;
+  width: 2020px;
+  height: 1415px;
+  max-width: none;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.lem-case__board {
+  position: absolute;
+  left: -49.95px;
+  top: 0;
+  width: 964.35px;
+  height: 486.45px;
+  max-width: none;
+  object-fit: cover;
+}
+
+.lem-case__bar {
+  position: absolute;
+  display: block;
+  height: 7.2px;
+  background: #d9d9d9;
+}
+
+.lem-case__bar--1 {
+  left: 166.05px;
+  top: 227.25px;
+  width: 22.05px;
+}
+
+.lem-case__bar--2 {
+  left: 139.95px;
+  top: 372.6px;
+  width: 25.65px;
+}
+
+.lem-case__bar--3 {
+  left: 337.5px;
+  top: 8.55px;
+  width: 195.3px;
+  background: #fff;
+}
+
+/* ------------------------------------------------ define slides ---
+   1324:71825 — seven full-bleed slides, 6597px of them in the same
+   884px window, so it drags like the strategy strip.
+   ------------------------------------------------------------- */
+.lem-slide {
+  position: relative;
+  flex: none;
+  height: 485px;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.lem-slide > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  border-radius: 12px;
+  /* Without this the browser starts a native image drag as soon as a
+     drag begins on a slide, which kills the pointer stream and strands
+     the strip part-scrolled. */
+  pointer-events: none;
+}
+
+.lem-slide--outlined {
+  border: 0.447px solid rgba(0, 0, 0, 0.5);
+}
+
+.lem-slide--outlined-dark {
+  border: 0.46px solid #000;
+}
+
+/* 1218:418616 sits on a grey plate and is contained, not cover-fit. */
+.lem-slide--plate {
+  background: #a2a2a2;
+}
+
+.lem-slide--plate > img {
+  object-fit: contain;
+}
+
+/* 1324:71831 is cropped taller than its frame rather than cover-fit. */
+.lem-slide--crop > img {
+  inset: auto;
+  left: 0;
+  top: -9.56%;
+  width: 100%;
+  height: 127.3%;
+  object-fit: fill;
+}
+
+/* The composite slide places its screenshots itself. */
+.lem-slide--plain {
+  background: none;
+}
+
+.lem-shot {
+  position: absolute;
+  top: 0;
+  max-width: none;
+  object-fit: cover;
+}
+
+.lem-shot--a {
+  left: 0;
+  width: 386.762px;
+  height: 485px;
+}
+
+.lem-shot--b {
+  left: 386.76px;
+  width: 378.285px;
+  height: 484.96px;
+}
+
+.lem-shot--c {
+  left: 762.7px;
+  width: 367.448px;
+  height: 484.969px;
+}
+
+.lem-shot__logo {
+  position: absolute;
+  left: 121.44px;
+  top: 32.5px;
+  display: block;
+  width: 47.19px;
+  height: 47.19px;
+}
+
+.lem-shot__logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ------------------------------------------------------- footer ---
+   Footer [Test] (3:23121) — the light variant of the brand bar.
+   ------------------------------------------------------------- */
+.lem__footer {
+  position: absolute;
+  left: 0;
+  top: 1828px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 1080px;
+  height: 92px;
+  padding: 0 60px;
+  border-top: 1px solid #ccc;
+  background: #fff;
+}
+
+.lem__footer-logo,
+.lem__footer-logo img {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.lem__footer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.lem__footer-name,
+.lem__footer-site {
+  margin: 0;
+  font-size: 18px;
+}
+
+.lem__footer-name {
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #232323;
+}
+
+.lem__footer-site {
+  font-weight: 400;
+  color: #474747;
+}

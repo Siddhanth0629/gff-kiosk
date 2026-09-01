@@ -1,0 +1,158 @@
+/* =================================================================
+   Shared interior-screen header and footer. See ScreenChrome.jsx.
+   Coordinates are the frame's absolute px values, so the stage must
+   be rendered at 1080x1920 (see App.css).
+   ================================================================= */
+
+/* ------------------------------------------------------ header ---
+   The scrim gradient's first stop sits at 11.434%.
+   ------------------------------------------------------------- */
+.chrome-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  width: 1080px;
+  padding: 112px 80px 70px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 11.434%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  overflow: clip;
+}
+
+.chrome-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.chrome-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.5;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.chrome-back__icon,
+.chrome-back__icon img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.chrome-back__icon {
+  transform: scaleX(-1);
+}
+
+.chrome-home {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 2.5px solid #fff;
+  border-radius: 225px;
+  background: none;
+  overflow: clip;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.chrome-home img {
+  width: 36px;
+  height: 36px;
+}
+
+.chrome-back:focus-visible,
+.chrome-home:focus-visible {
+  outline: 3px solid #ffd600;
+  outline-offset: 6px;
+}
+
+.chrome-title {
+  width: 100%;
+  margin: 0;
+  font-weight: 700;
+  font-size: 68px;
+  line-height: 1;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+/* ------------------------------------------------------ footer ---
+   95px bar pinned to the bottom of the frame.
+   ------------------------------------------------------------- */
+.chrome-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 1080px;
+  height: 95px;
+  padding: 0 60px;
+  border-top: 1px solid #ccc;
+  background: #000;
+  backdrop-filter: blur(2px);
+  overflow: clip;
+}
+
+.chrome-footer--translucent {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.chrome-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.chrome-brand__logo,
+.chrome-brand__logo img {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.chrome-brand__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.chrome-brand__name,
+.chrome-brand__site {
+  margin: 0;
+  font-size: 18px;
+}
+
+.chrome-brand__name {
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.chrome-brand__site {
+  font-weight: 400;
+}

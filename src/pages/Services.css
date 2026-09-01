@@ -1,0 +1,676 @@
+/* =================================================================
+   Our Services — Figma "service list" 194:58122 (1080 x 1920).
+   All coordinates are the frame's absolute px values, so the stage
+   must be rendered at 1080x1920 (see App.css).
+
+   As in CaseStudies.css, Figma's centre-offset positioning
+   ("left: calc(50% - 0.42px)" plus a -50% translate) is resolved to
+   plain left / top: a transform on a card layer makes it a stacking
+   context, isolating its children's blend group and turning the
+   artwork's mix-blend-mode into a no-op.
+
+   The file's 30s looping timeline is reproduced with @keyframes at the
+   bottom of this file.
+   ================================================================= */
+
+.svc {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  font-family: var(--font-display);
+  color: #fff;
+}
+
+/* ---------------------------------------------------- backdrop ---
+   I194:58122;1999:22024 — the landing's 3088x4019 render at the same
+   offset, but behind a 7px blur and a 70% scrim rather than 40%.
+   ------------------------------------------------------------- */
+.svc__bg {
+  position: absolute;
+  left: -1035px;
+  top: -1232px;
+  width: 3088px;
+  height: 4019px;
+  filter: blur(7px);
+  pointer-events: none;
+}
+
+.svc__bg-crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.svc__bg-crop img {
+  position: absolute;
+  left: 0.02%;
+  top: 0.02%;
+  width: 99.97%;
+  height: 99.97%;
+  max-width: none;
+}
+
+.svc__bg-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* I194:58122;2168:41259 — horizon band behind the hub. */
+.svc__band {
+  position: absolute;
+  left: -174px;
+  top: 829px;
+  width: 1427px;
+  height: 382px;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------- rings ---
+   I194:58122;2848:61034 — a 1032x470 well at (24, 783). All four
+   rings share the 30s loop and counter-rotate in pairs.
+   ------------------------------------------------------------- */
+.svc__rings {
+  position: absolute;
+  left: 24px;
+  top: 783px;
+  width: 1032px;
+  height: 470px;
+  pointer-events: none;
+}
+
+.svc__ring {
+  position: absolute;
+}
+
+.svc__ring-crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+.svc__ring-crop img {
+  position: absolute;
+  max-width: none;
+}
+
+/* The two 263px rings flanking the hub (;2848:61038 / ;2848:61042). */
+.svc__ring--left,
+.svc__ring--right {
+  top: 103.5px;
+  width: 263px;
+  height: 263px;
+}
+
+.svc__ring--left {
+  left: 0;
+  animation: svc-spin 30s linear infinite;
+}
+
+.svc__ring--right {
+  left: 769px;
+  animation: svc-spin-reverse 30s linear infinite;
+}
+
+.svc__ring--left .svc__ring-crop img,
+.svc__ring--right .svc__ring-crop img {
+  left: -1.12%;
+  top: -0.76%;
+  width: 101.87%;
+  height: 103.8%;
+}
+
+/* ;2848:61043 — the mask is an annulus stroke (57px band), so the
+   window stays put while the ring texture spins behind it. */
+.svc__ring-mask {
+  position: absolute;
+  left: 281px;
+  top: 0;
+  width: 470px;
+  height: 467px;
+  mask-repeat: no-repeat;
+  mask-size: 470px 467px;
+  mask-position: 0 0;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 470px 467px;
+  -webkit-mask-position: 0 0;
+}
+
+.svc__ring--halo {
+  left: -2.5px;
+  top: -4px;
+  width: 474px;
+  height: 474px;
+  animation: svc-spin-reverse 30s linear infinite;
+}
+
+.svc__ring--halo .svc__ring-crop img {
+  left: 0;
+  top: -0.11%;
+  width: 100%;
+  height: 103.29%;
+}
+
+/* ;2848:61052 — the bright core ring inside the hub. */
+.svc__ring--core {
+  left: 346px;
+  top: 63px;
+  width: 340px;
+  height: 343px;
+  border-radius: 1000px;
+  animation: svc-spin 30s linear infinite;
+}
+
+.svc__ring--core .svc__ring-crop {
+  border-radius: 1000px;
+}
+
+.svc__ring--core .svc__ring-crop img {
+  left: -22.7%;
+  top: -22.41%;
+  width: 145.4%;
+  height: 149.27%;
+}
+
+/* ---------------------------------------------------- carousel ---
+   I194:58122;1999:22069 — circles are 246px (290px focused) with a
+   constant 118px gap. The band is the focused circle's full height so
+   a drag can start anywhere across it.
+   ------------------------------------------------------------- */
+.svc__carousel {
+  position: absolute;
+  left: 0;
+  top: 875px;
+  width: 1080px;
+  height: 290px;
+  touch-action: none;
+}
+
+.svc-cat {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 246px;
+  height: 246px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate(-50%, -50%) translateX(var(--x, 0px));
+  transition:
+    transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    width 420ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* While a finger is down the track must track it exactly. */
+.svc__carousel--dragging .svc-cat {
+  transition: none;
+}
+
+.svc-cat--focused {
+  width: 290px;
+  height: 290px;
+}
+
+.svc-cat:focus-visible {
+  outline: 3px solid #ffd600;
+  outline-offset: 8px;
+  border-radius: 1000px;
+}
+
+.svc-cat__circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+  border: 1.696px solid #fff;
+  border-radius: 1000px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(40.224px);
+}
+
+/* Default focused chrome — the Experience Engineering spec
+   (194:58122 ;1999:22180). Categories whose frame specifies something
+   different override it below. */
+.svc-cat--focused .svc-cat__circle {
+  gap: 8px;
+  padding: 8px;
+  border-width: 2px;
+  backdrop-filter: blur(19.173px);
+  /* The focused circle breathes on the shared 30s loop. */
+  animation: svc-cat-pulse 30s linear infinite;
+}
+
+/* Research & Strategy focuses with its own chrome (194:58123
+   ;1999:21790): a hairline border, a heavier blur and SemiBold rather
+   than ExtraBold. */
+.svc-cat--research-strategy.svc-cat--focused .svc-cat__circle,
+.svc-cat--experience-design.svc-cat--focused .svc-cat__circle {
+  gap: 12px;
+  padding: 20px 0 0;
+  border-width: 1px;
+  backdrop-filter: blur(36.403px);
+}
+
+/* Figma's icon is a cropped window onto the artwork. The export also
+   carries two hard offset white shadows (0 blur, 0 spread) per icon,
+   but Figma's own render of this frame shows no such outline — the
+   exporter has flattened away their alpha — so they are dropped. */
+.svc-cat__icon {
+  position: relative;
+  flex: none;
+  transition:
+    width 420ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    height 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.svc-cat__icon-crop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.svc-cat__icon-crop img {
+  position: absolute;
+  max-width: none;
+}
+
+.svc-cat__label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: normal;
+  text-align: center;
+  text-transform: capitalize;
+  overflow-wrap: break-word;
+}
+
+.svc-cat--focused .svc-cat__label {
+  font-weight: 800;
+  font-size: 32px;
+  width: 270px;
+}
+
+/* Its two lines are explicit in the design, so the label sizes to its
+   own text instead of wrapping inside a fixed width. */
+.svc-cat--research-strategy.svc-cat--focused .svc-cat__label {
+  font-weight: 600;
+  width: auto;
+  white-space: nowrap;
+}
+
+/* Research & Strategy — ;1999:22070 */
+.svc-cat--research-strategy .svc-cat__icon {
+  width: 157px;
+  height: 64px;
+}
+
+.svc-cat--research-strategy.svc-cat--focused .svc-cat__icon {
+  width: 220.986px;
+  height: 90.031px;
+}
+
+/* The focused state uses its own goggles export, cropped 2% higher. */
+.svc-cat--research-strategy.svc-cat--focused .svc-cat__icon-crop img {
+  left: -19.25%;
+  top: -10.28%;
+}
+
+.svc-cat--research-strategy .svc-cat__icon-crop img {
+  left: -18.81%;
+  top: -8.45%;
+  width: 279.49%;
+  height: 387.09%;
+}
+
+.svc-cat--research-strategy .svc-cat__label {
+  width: 242.607px;
+}
+
+/* Experience Engineering — ;1999:22082 / ;1999:22180 */
+.svc-cat--experience-engineering .svc-cat__icon {
+  width: 142px;
+  height: 90px;
+}
+
+.svc-cat--experience-engineering.svc-cat--focused .svc-cat__icon {
+  width: 201px;
+  height: 126px;
+}
+
+.svc-cat--experience-engineering .svc-cat__icon-crop img {
+  left: -13.88%;
+  top: -145.89%;
+  width: 254.07%;
+  height: 271.94%;
+}
+
+.svc-cat--experience-engineering .svc-cat__label {
+  width: 242.607px;
+}
+
+/* Experience Design — ;1999:22094 */
+.svc-cat--experience-design .svc-cat__icon {
+  width: 152px;
+  height: 76px;
+}
+
+/* 194:58124 ;1999:21696 */
+.svc-cat--experience-design.svc-cat--focused .svc-cat__icon {
+  width: 225px;
+  height: 112px;
+}
+
+.svc-cat--experience-design.svc-cat--focused .svc-cat__label {
+  width: 225px;
+}
+
+.svc-cat--experience-design .svc-cat__icon-crop img {
+  left: -22.3%;
+  top: -75.58%;
+  width: 132.16%;
+  height: 183.39%;
+}
+
+.svc-cat--experience-design.svc-cat--focused .svc-cat__icon-crop img {
+  left: -22.66%;
+  top: -99.7%;
+  width: 138.33%;
+  height: 199.7%;
+}
+
+.svc-cat--experience-design .svc-cat__label {
+  width: 203.309px;
+}
+
+/* ----------------------------------------------- connector lines ---
+   Figma wraps each line vector in a rotated box. The final box is
+   pre-computed here and the quarter-turn applied about its centre.
+   -------------------------------------------------------------- */
+.svc-line {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+}
+
+.svc-line--left-top {
+  left: calc(219.16px + var(--dx, 0px));
+  top: calc(715.17px + var(--dy, 0px));
+  width: 156.18px;
+  height: 155.16px;
+  transform: rotate(-90deg) scaleY(-1);
+}
+
+.svc-line--right-top {
+  left: calc(705.92px + var(--dx, 0px));
+  top: calc(710.42px + var(--dy, 0px));
+  width: 150.16px;
+  height: 158.66px;
+  transform: rotate(-90deg);
+}
+
+.svc-line--top-center {
+  left: calc(460.165px + var(--dx, 0px));
+  top: calc(706.17px + var(--dy, 0px));
+  width: 159.67px;
+  height: 10.66px;
+  transform: rotate(90deg);
+}
+
+.svc-line--left-bottom {
+  left: calc(224.675px + var(--dx, 0px));
+  top: calc(1176.67px + var(--dy, 0px));
+  width: 148.65px;
+  height: 158.66px;
+  transform: rotate(90deg);
+}
+
+.svc-line--right-bottom {
+  left: calc(707.17px + var(--dx, 0px));
+  top: calc(1175.17px + var(--dy, 0px));
+  width: 147.66px;
+  height: 158.66px;
+  transform: rotate(90deg) scaleY(-1);
+}
+
+.svc-line--bottom-center {
+  left: calc(446.165px + var(--dx, 0px));
+  top: calc(1336.17px + var(--dy, 0px));
+  width: 189.67px;
+  height: 10.66px;
+  transform: rotate(90deg);
+}
+
+/* ------------------------------------------------ service cards ---
+   Each card is 232x275. Layers, back to front: hero (screen) ->
+   frame texture (hard-light, 70%) -> glass clip -> hero again ->
+   glow (overlay) -> label. Unlike the case-studies cards there is no
+   `lighten` sheen layer.
+   -------------------------------------------------------------- */
+.svc-card {
+  position: absolute;
+  width: 232px;
+  height: 275px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  overflow: visible;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.svc-card:focus-visible {
+  outline: 3px solid #ffd600;
+  outline-offset: 6px;
+}
+
+/* Six slots, shared by every category frame. Which of them are
+   filled is the category's business; --sx / --sy and --hero-inset
+   come from the card data. */
+.svc-card--left-top { left: calc(104px + var(--dx, 0px)); top: calc(445px + var(--dy, 0px)); }
+.svc-card--right-top { left: calc(745px + var(--dx, 0px)); top: calc(445px + var(--dy, 0px)); }
+.svc-card--top-center { left: calc(425px + var(--dx, 0px)); top: calc(362px + var(--dy, 0px)); }
+.svc-card--left-bottom { left: calc(104px + var(--dx, 0px)); top: calc(1321px + var(--dy, 0px)); }
+.svc-card--right-bottom { left: calc(745px + var(--dx, 0px)); top: calc(1321px + var(--dy, 0px)); }
+.svc-card--bottom-center { left: calc(425px + var(--dx, 0px)); top: calc(1431px + var(--dy, 0px)); }
+
+/* No `display` here: abspos already blockifies the spans, and setting
+   it would outrank .svc-card__label's `display: flex` (this selector
+   is the more specific of the two) and break the label's centring. */
+.svc-card > span {
+  position: absolute;
+}
+
+.svc-card__blur {
+  left: 5px;
+  top: 4.87px;
+  width: 222px;
+  height: 266px;
+  border-radius: 16.631px;
+  backdrop-filter: blur(9.978px);
+}
+
+/* Both hero copies read from one shared icon sheet; --sx / --sy is the
+   card's window onto it. The blend sits on the inset box, whose own
+   child does the cropping — matching Figma's node structure. */
+.svc-card__hero--back {
+  left: 25.81px;
+  top: 18.29px;
+  width: 179.537px;
+  height: 166.308px;
+}
+
+.svc-card__hero--front {
+  left: 26px;
+  top: 17.87px;
+  width: 179px;
+  height: 166px;
+}
+
+.svc-card__hero-clip {
+  position: absolute;
+  inset: var(--hero-inset, 7.79% 6.1% 6.49% 4.88%);
+  overflow: hidden;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.svc-card__hero-clip img {
+  position: absolute;
+  left: var(--sx);
+  top: var(--sy);
+  width: 556.96%;
+  height: 553.95%;
+  max-width: none;
+}
+
+.svc-card__tint {
+  left: 0;
+  top: -0.13px;
+  width: 232px;
+  height: 275px;
+  border-radius: 16.631px;
+  mix-blend-mode: hard-light;
+}
+
+.svc-card__tint-crop {
+  position: absolute;
+  inset: 0;
+  border-radius: 16.631px;
+  overflow: hidden;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.svc-card__tint-crop img {
+  position: absolute;
+  left: -1.54%;
+  top: -0.74%;
+  width: 103.09%;
+  height: 101.84%;
+  max-width: none;
+}
+
+.svc-card__glass {
+  left: 5px;
+  top: 4.87px;
+  width: 222px;
+  height: 266px;
+  border-radius: 16.631px;
+  overflow: clip;
+}
+
+/* rgba(255,255,255,0.1) painted at 40% opacity. */
+.svc-card__glass-fill {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0.4;
+}
+
+.svc-card__light {
+  left: 42px;
+  top: 19.87px;
+  width: 150px;
+  height: 154px;
+  mix-blend-mode: overlay;
+}
+
+/* The glow SVG carries a Gaussian blur, so Figma draws it well
+   outside the layer box. */
+.svc-card__light-crop {
+  position: absolute;
+  inset: -35.99% -36.95%;
+  pointer-events: none;
+}
+
+.svc-card__light-crop img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Each label is drawn twice: a 60% copy clipped inside the glass and
+   a full-strength copy on top. `bottom` plus translateY(50%) centres
+   the text block on the Figma baseline offset. */
+.svc-card__label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 194.581px;
+  height: 78.165px;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: normal;
+  letter-spacing: -0.616px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #fff;
+  overflow-wrap: break-word;
+  transform: translateY(50%);
+}
+
+.svc-card__label--under {
+  left: 13.97px;
+  bottom: 57.92px;
+  opacity: 0.6;
+}
+
+.svc-card__label--over {
+  left: 19.13px;
+  bottom: 62.05px;
+}
+
+/* --------------------------------------------------- timeline ---
+   One 30s loop, ported from the Figma motion tracks. The two ring
+   pairs counter-rotate; the focused circle breathes four times and
+   then holds until the loop restarts.
+   ------------------------------------------------------------- */
+@keyframes svc-spin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes svc-spin-reverse {
+  from { rotate: 0deg; }
+  to { rotate: -360deg; }
+}
+
+/* Each frame offsets this pulse's phase by a second or so — an
+   artefact of each being a separate copy of the same animated
+   component, not a designed difference — so one set of keyframes
+   serves all three. The cadence is identical. */
+@keyframes svc-cat-pulse {
+  0%, 7% { scale: 1; }
+  15.33% { scale: 1.06; }
+  23.67% { scale: 1; }
+  32% { scale: 1.06; }
+  40.33% { scale: 1; }
+  48.67% { scale: 1.06; }
+  57% { scale: 1; }
+  65.33%, 100% { scale: 1.06; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc__ring,
+  .svc-cat--focused .svc-cat__circle {
+    animation: none;
+  }
+}
