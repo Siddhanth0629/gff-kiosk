@@ -1,0 +1,604 @@
+/* =================================================================
+   Case studies — Figma "swipe" 881:63035 (1080 x 1920). All
+   coordinates are the frame's absolute px values, so the stage must
+   be rendered at 1080x1920 (see App.css).
+
+   Light-themed like the LemonAIde screen: no blend modes, so none of
+   the stacking-context care the dark screens need applies here.
+   ================================================================= */
+
+.csl {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  font-family: var(--font-display);
+  color: #232323;
+}
+
+/* Same graph paper as the LemonAIde screen: 1px rules on a 31px
+   pitch, first column at x 29 and first row at y 29.5. */
+.csl__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right, #eaeaea 0 1px, transparent 1px 31px),
+    repeating-linear-gradient(to bottom, #eaeaea 0 1px, transparent 1px 31px);
+  background-position:
+    29px 0,
+    0 29.5px;
+  pointer-events: none;
+}
+
+/* Frame 2147226709 (1188:345939) */
+.csl__card {
+  position: absolute;
+  left: 60px;
+  top: 66px;
+  width: 960px;
+  height: 1696px;
+  border-radius: 12px;
+  background: #fff;
+  overflow: clip;
+}
+
+/* --------------------------------------------------------- head ---
+   1188:346042 — nav, title, then the cream chip band.
+   ------------------------------------------------------------- */
+.csl__head {
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  width: 958px;
+  padding-top: 20px;
+  background: #fff;
+}
+
+.csl__head-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 915px;
+}
+
+.csl__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.csl__back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.5;
+  color: #000;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.csl__back-icon,
+.csl__back-icon img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.csl__back-icon {
+  transform: scaleX(-1);
+}
+
+.csl__home {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 2.5px solid #000;
+  border-radius: 225px;
+  background: none;
+  overflow: clip;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.csl__home img {
+  width: 36px;
+  height: 36px;
+}
+
+.csl__back:focus-visible,
+.csl__home:focus-visible,
+.csl__chip:focus-visible,
+.csl-card:focus-visible {
+  outline: 3px solid #f8df00;
+  outline-offset: 4px;
+}
+
+.csl__title {
+  width: 100%;
+  margin: 0;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1;
+  text-align: center;
+  color: #000;
+}
+
+/* 1188:346050 */
+.csl__chip-band {
+  position: relative;
+  width: 100%;
+  height: 185px;
+  background: #fcf4ed;
+}
+
+.csl__chips {
+  position: absolute;
+  left: 40px;
+  top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 16px;
+  width: 886px;
+}
+
+.csl__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  height: 52.702px;
+  padding: 11.712px 0;
+  border: 2px solid #888;
+  border-radius: 4px;
+  background: none;
+  font: inherit;
+  font-weight: 500;
+  font-size: 23.42px;
+  line-height: 1.5;
+  color: #565656;
+  white-space: nowrap;
+  overflow: clip;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ------------------------------------------------------- scroll ---
+   All Industries (1188:345940) — a 1290px window over ~9900px of
+   sections, 52px apart.
+   ------------------------------------------------------------- */
+.csl__scroll {
+  position: absolute;
+  left: 32px;
+  top: 379px;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  width: 896px;
+  height: 1290px;
+  padding-bottom: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+
+.csl__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.csl-ind {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 24px;
+  width: 894px;
+  margin-left: 1px;
+  scroll-margin-top: 0;
+}
+
+/* e.g. 1188:345942 */
+.csl-ind__head {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  padding: 20px 30px;
+  border: 2px solid #a1a1a1;
+  border-radius: 18.698px;
+  background: #fff;
+  overflow: clip;
+}
+
+.csl-ind__icon {
+  position: relative;
+  flex: none;
+  width: 111px;
+  height: 111px;
+}
+
+.csl-ind__icon > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.csl-ind__icon-v2 {
+  inset: auto;
+  left: 15.41px;
+  top: 68.91px;
+  width: 80.244px;
+  height: 41.553px;
+  object-fit: fill;
+}
+
+.csl-ind__icon-v1 {
+  inset: auto;
+  left: 43.95px;
+  top: 8.76px;
+  width: 29.266px;
+  height: 70.663px;
+  object-fit: fill;
+}
+
+.csl-ind__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+  text-transform: capitalize;
+  color: #232323;
+  white-space: nowrap;
+}
+
+.csl-ind__cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-content: flex-end;
+  gap: 20px;
+  width: 100%;
+}
+
+/* --------------------------------------------------------- card ---
+   CS card (287:59546 and friends). Inter, not Gilroy.
+   ------------------------------------------------------------- */
+.csl-card {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  width: 437px;
+  height: 280px;
+  padding: 16px 0;
+  border: 1px solid #dfdfdf;
+  border-radius: 0;
+  background: #fff;
+  font: inherit;
+  text-align: left;
+  overflow: clip;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.csl-card__inner {
+  position: relative;
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 397px;
+  min-height: 0;
+}
+
+.csl-card__body {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.csl-card__text {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.csl-card__desc {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #565656;
+  overflow-wrap: break-word;
+}
+
+.csl-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.csl-card__tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #232323;
+  white-space: nowrap;
+}
+
+.csl-card__dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+}
+
+.csl-card__cta {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 40px;
+  padding: 4px 16px;
+  border: 1px solid #232323;
+  border-radius: 80px;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: -0.42px;
+  text-transform: capitalize;
+  color: #232323;
+  white-space: nowrap;
+  overflow: clip;
+}
+
+.csl-card__cta img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+/* --------------------------------------------------------- logo ---
+   A 68px row; every brand is placed inside it differently.
+   ------------------------------------------------------------- */
+.csl-logo {
+  position: relative;
+  display: block;
+  flex: none;
+  width: 100%;
+  height: 68px;
+  overflow: clip;
+}
+
+.csl-logo__frame {
+  position: absolute;
+  display: block;
+}
+
+.csl-logo__frame > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.csl-logo__clip {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.csl-logo__clip img {
+  position: absolute;
+  max-width: none;
+}
+
+/* SnapWork (260:118437) is type, not artwork. */
+.csl-logo__wordmark {
+  position: absolute;
+  left: 10px;
+  top: 17px;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+/* Uncia x Lendingkart (1069:59674) */
+.csl-logo--row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.csl-logo__uncia {
+  flex: none;
+  width: 170.172px;
+  height: 47px;
+}
+
+.csl-logo__dot10 {
+  flex: none;
+  width: 10px;
+  height: 10px;
+}
+
+.csl-logo__lendingkart {
+  position: relative;
+  flex: none;
+  width: 187.683px;
+  height: 52.299px;
+  overflow: hidden;
+}
+
+.csl-logo__lendingkart img {
+  position: absolute;
+  left: 0;
+  top: -43.96%;
+  width: 100%;
+  height: 188.4%;
+  max-width: none;
+}
+
+/* SBI Securities (3:218) — two groups over one box. */
+.csl-logo__sbi {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 197.818px;
+  height: 51.887px;
+  transform: translate(-50%, -50%);
+}
+
+.csl-logo__sbi-a,
+.csl-logo__sbi-b {
+  position: absolute;
+  display: block;
+}
+
+.csl-logo__sbi-a {
+  left: 0;
+  top: 13.18%;
+  right: 3.62%;
+  bottom: 0;
+  width: auto;
+  height: auto;
+}
+
+.csl-logo__sbi-b {
+  left: 95.87%;
+  top: 0;
+  right: 0.01%;
+  bottom: 84.35%;
+  width: auto;
+  height: auto;
+}
+
+/* Awards badge — Fibe only (1140:308016). */
+.csl-card__award {
+  position: absolute;
+  left: 226px;
+  top: -17px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 203.237px;
+  height: 144px;
+  padding: 7.706px 0;
+  pointer-events: none;
+}
+
+.csl-card__award-icon {
+  display: block;
+  flex: none;
+  width: 69.01px;
+  height: 74.605px;
+  object-fit: contain;
+}
+
+.csl-card__award-title {
+  flex: none;
+  font-weight: 600;
+  font-size: 16.375px;
+  line-height: 1.5;
+  text-align: center;
+  color: #474747;
+}
+
+.csl-card__award-caption {
+  flex: none;
+  width: 100%;
+  font-weight: 500;
+  font-size: 10.595px;
+  line-height: 1.5;
+  text-align: center;
+  color: #a2a2a2;
+}
+
+/* ------------------------------------------------------- footer ---
+   881:63255 — the light brand bar.
+   ------------------------------------------------------------- */
+.csl__footer {
+  position: absolute;
+  left: 0;
+  top: 1828px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 1080px;
+  height: 92px;
+  padding: 0 60px;
+  border-top: 1px solid #ccc;
+  background: #fff;
+}
+
+.csl__footer-logo,
+.csl__footer-logo img {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.csl__footer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.csl__footer-name,
+.csl__footer-site {
+  margin: 0;
+  font-size: 18px;
+}
+
+.csl__footer-name {
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #232323;
+}
+
+.csl__footer-site {
+  font-weight: 400;
+  color: #474747;
+}

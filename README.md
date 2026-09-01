@@ -53,9 +53,8 @@ and `onHome` both return to the landing.
 
 The ten cards are data-driven from the `CASES` array. They sit in a
 856.705 × 1297.051 well on a 3-column × 4-row grid (28px gutters); two of them
-span two columns. `onSelect(key)` fires with the card's key — it is a no-op
-until the individual case-study screens exist, same as the homepage's
-`services` card.
+span two columns. Tapping any of them opens the case-study listing below,
+scrolled to that domain's section.
 
 Each card stacks seven layers that blend against the dimmed room behind them:
 hero art (`screen`) → frame texture (`hard-light`, 70%) → sheen (`lighten`) →
@@ -161,6 +160,36 @@ Each frame offsets the focused circle's pulse by a second or so. That is an
 artefact of each being a separate copy of the same animated component rather
 than a designed difference — the cadence is identical — so one set of keyframes
 serves all three.
+
+## Case study listing
+
+`src/pages/CaseStudyList.jsx` + `src/pages/CaseStudyList.css` implement Figma
+[`swipe` 881:63035](https://www.figma.com/design/5snNx9jd89wmcCfQdU6C25/GFF-proto-2026?node-id=881-63035),
+with all the content in `src/pages/caseStudyData.js`. Tapping any domain on the
+case-studies landing opens it scrolled to that domain.
+
+Ten industries and forty-seven cards sit in a 1290px window that scrolls
+vertically over ~9900px; the chip row jumps between sections. The rendered
+`scrollHeight` comes out at **9898px**, matching Figma's own total for the
+industries frame exactly, and opening on a domain lands on that section's
+Figma y-offset to the pixel (NPS → 7777).
+
+Like the LemonAIde screen this is light-themed on graph paper and does not use
+the dark `ScreenChrome`; its nav sits inside the white card, and its body text
+is Inter rather than Gilroy.
+
+### Two things worth knowing
+
+- **Every brand logo is placed differently.** The card component shares a 68px
+  logo row, but Figma positions and crops each of the 45 brand assets inside it
+  with its own box and its own oversized inner image. That is what `frame` and
+  `crop` are in `caseStudyData.js`. Three logos are not artwork at all and the
+  component draws them: SnapWork is set as type, Uncia × Lendingkart is a row of
+  three marks, and SBI Securities is two overlaid vector groups.
+- **`chipWidth` is pinned, not measured.** Figma gives each sector chip an
+  explicit width. Left to the text, the Gilroy fallback is wide enough to push
+  the chip row from two wraps to three and overflow the cream band — the same
+  class of problem as the LemonAIde lede height.
 
 ## The LemonAIde process
 
@@ -318,8 +347,8 @@ To fix: export node `3:22655`'s image fill manually from Figma, save it as
 ## Assets
 
 All artwork in `src/assets/landing/`, `src/assets/case-studies/`,
-`src/assets/services/` and `src/assets/lemonaide/` is exported from the Figma
-file. The MCP asset URLs
+`src/assets/services/`, `src/assets/lemonaide/` and `src/assets/cs-list/` is
+exported from the Figma file. The MCP asset URLs
 expire after ~7 days, so these are committed rather than fetched.
 
 The case-studies backdrop is byte-identical to the landing's
