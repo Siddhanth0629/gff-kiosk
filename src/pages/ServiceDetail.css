@@ -1,0 +1,540 @@
+/* =================================================================
+   Service detail — Figma "services-detail-workshop" 43:38737. All
+   coordinates are the frame's absolute px values, so the stage must
+   be rendered at 1080x1920 (see App.css).
+
+   Light-themed like the case-study list: no blend modes, so none of
+   the stacking-context care the dark screens need applies here.
+   ================================================================= */
+
+.svd {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  font-family: var(--font-display);
+  color: #232323;
+}
+
+/* Grids (43:38738) — 1px rules on a 31px pitch, first column at
+   x 29 and first row at y 29.5. */
+.svd__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right, #eaeaea 0 1px, transparent 1px 31px),
+    repeating-linear-gradient(to bottom, #eaeaea 0 1px, transparent 1px 31px);
+  background-position:
+    29px 0,
+    0 29.5px;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------- card ---
+   43:38836 — 1720px of window over 1982px of content: hero, the
+   accordion, the photo strip, then Figma's 224px "space" tail, which
+   is folded into padding-bottom along with the 70px stack gap.
+   ------------------------------------------------------------- */
+.svd__card {
+  position: absolute;
+  left: 60px;
+  top: 94px;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  width: 960px;
+  height: 1720px;
+  padding-bottom: 294px;
+  background: #fff;
+  overflow-x: clip;
+  overflow-y: auto;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+
+.svd__card::-webkit-scrollbar {
+  display: none;
+}
+
+/* --------------------------------------------------------- hero ---
+   43:38837
+   ------------------------------------------------------------- */
+.svd__hero {
+  position: relative;
+  flex: none;
+  width: 100%;
+  height: 586px;
+}
+
+/* title (43:38848) */
+.svd__title {
+  position: absolute;
+  left: 50%;
+  top: 291px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 20px;
+  text-align: center;
+  transform: translateX(-50%);
+  overflow: clip;
+}
+
+.svd__heading {
+  width: 509px;
+  margin: 0;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.36;
+  letter-spacing: 1.92px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.svd__lead {
+  width: 746px;
+  height: 48px;
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #000;
+}
+
+.svd__lead strong {
+  font-weight: 600;
+}
+
+/* images (43:38851) — five equal cards, 20px apart. */
+.svd__cases {
+  position: absolute;
+  left: 0;
+  top: 448px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 24px 20px;
+  width: 100%;
+  padding: 0 24px;
+}
+
+/* Usability Case (43:38857) */
+.svd-case {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 1px;
+  padding: 12px;
+  border: 1px solid #e7e7e7;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.svd-case__badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 90px;
+  background: #f8df00;
+  overflow: clip;
+}
+
+.svd-case__badge img {
+  width: 28px;
+  height: 28px;
+}
+
+.svd-case__text {
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: #000;
+  overflow-wrap: break-word;
+}
+
+/* ------------------------------------------------------ sticky ---
+   Container (223:59436) — spans the hero and pins the bar to the top
+   of the card while the hero is in view, so the bar rides out with
+   the hero rather than staying forever. The wrapper takes no pointer
+   events or it would eat taps meant for the title and the cards.
+   ------------------------------------------------------------- */
+.svd__sticky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.svd__bar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 100%;
+  padding: 20px 0;
+  background: #fff;
+  pointer-events: auto;
+}
+
+/* nav (43:38838) */
+.svd__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.svd__back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.5;
+  color: #000;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.svd__back-icon,
+.svd__back-icon img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.svd__back-icon {
+  transform: scaleX(-1);
+}
+
+.svd__home {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 2.5px solid #000;
+  border-radius: 225px;
+  background: none;
+  overflow: clip;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.svd__home img {
+  width: 36px;
+  height: 36px;
+}
+
+.svd__back:focus-visible,
+.svd__home:focus-visible,
+.svd__chip:focus-visible,
+.svd-acc__hit:focus-visible {
+  outline: 3px solid #f8df00;
+  outline-offset: 4px;
+}
+
+/* Header (43:38843) — the cream chip band. */
+.svd__chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: none;
+  width: 100%;
+  padding: 30px 0;
+  background: #fcf4ed;
+}
+
+.svd__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  height: 59px;
+  padding: 12px 16px;
+  border: 2px solid #888;
+  border-radius: 4px;
+  background: none;
+  font: inherit;
+  font-weight: 500;
+  font-size: 23.42px;
+  line-height: 1.5;
+  color: #565656;
+  white-space: nowrap;
+  overflow: clip;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The service being viewed (43:38844) — filled, and not a target. */
+.svd__chip--active {
+  border: 0;
+  background: #232323;
+  color: #fff;
+  cursor: default;
+}
+
+/* ---------------------------------------------------- accordion ---
+   43:38888 — four rows, closed at 90px. Opening one drops the fixed
+   height and lets the body out of the clip.
+   ------------------------------------------------------------- */
+.svd__accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: none;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.svd-acc {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: none;
+  width: 100%;
+  height: 90px;
+  padding: 3px 0;
+  border: 1px solid rgba(229, 229, 229, 0.51);
+  border-radius: 16px;
+  background: #fff;
+  text-align: left;
+  overflow: clip;
+}
+
+.svd-acc--open {
+  height: auto;
+}
+
+/* The row's tap target, over the whole card. */
+.svd-acc__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.svd-acc__shot {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 335px;
+  height: 100%;
+  padding: 8px;
+}
+
+.svd-acc__shot img {
+  flex: 1 0 0;
+  min-height: 1px;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.svd-acc__main {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 1px;
+  height: 100%;
+  padding: 24px 16px;
+}
+
+.svd-acc__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex: none;
+  width: 100%;
+}
+
+.svd-acc__title {
+  flex: 1 0 0;
+  min-width: 1px;
+  margin: 0;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.36;
+  color: #474747;
+}
+
+.svd-acc__toggle {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  transition: transform 200ms ease;
+}
+
+.svd-acc--open .svd-acc__toggle {
+  transform: rotate(180deg);
+}
+
+.svd-acc__body {
+  flex: none;
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6e6e6e;
+  overflow-wrap: break-word;
+}
+
+.svd-acc__strong {
+  font-weight: 600;
+}
+
+.svd-acc__para {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.svd-acc__list {
+  margin: 0;
+  padding-left: 24px;
+  list-style: decimal;
+}
+
+/* Figma sets its blank lines as zero-width-space paragraphs, which
+   come out as one empty 16px line. */
+.svd-acc__gap {
+  height: 24px;
+}
+
+/* ------------------------------------------------------ gallery ---
+   deliverables (1571:80694) — a 542px band that scrolls sideways;
+   each shot keeps the width it was cropped to in Figma.
+   ------------------------------------------------------------- */
+.svd__gallery {
+  display: flex;
+  gap: 20px;
+  flex: none;
+  width: 100%;
+  height: 542px;
+  padding: 0 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.svd__gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.svd-shot {
+  position: relative;
+  flex: none;
+  width: var(--w);
+  height: 100%;
+  margin: 0;
+  border-radius: 12px;
+  /* 1571:80711 alone has no fill in the file and shows the bare
+     plate; the rest cover it completely. */
+  background: #dcdcdc;
+  filter: drop-shadow(0 0 7.5px rgba(0, 0, 0, 0.1));
+  overflow: clip;
+}
+
+.svd-shot__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.svd-shot__img--top {
+  object-position: center top;
+}
+
+.svd-shot__caption {
+  position: absolute;
+  left: 0;
+  top: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: #f8df00;
+  font-weight: 700;
+  font-size: 14.756px;
+  line-height: 1.5;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------- footer ---
+   Footer [Test] (43:38902) — the light variant.
+   ------------------------------------------------------------- */
+.svd__footer {
+  position: absolute;
+  left: 0;
+  top: 1828px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 1080px;
+  height: 92px;
+  padding: 0 60px;
+  border-top: 1px solid #ccc;
+  background: #fff;
+}
+
+.svd__footer-logo,
+.svd__footer-logo img {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.svd__footer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.svd__footer-name,
+.svd__footer-site {
+  margin: 0;
+  font-size: 18px;
+}
+
+.svd__footer-name {
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #232323;
+}
+
+.svd__footer-site {
+  font-weight: 400;
+  color: #474747;
+}

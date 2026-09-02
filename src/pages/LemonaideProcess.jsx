@@ -1,15 +1,22 @@
 import { useCallback, useRef, useState } from 'react'
 import lyLogo from '../assets/case-studies/ly-logo.svg'
 import backArrow from '../assets/lemonaide/back-arrow.svg'
+import create1 from '../assets/lemonaide/create-1.png'
+import create2 from '../assets/lemonaide/create-2.png'
+import create3 from '../assets/lemonaide/create-3.png'
+import create5 from '../assets/lemonaide/create-5.png'
+import create7 from '../assets/lemonaide/create-7.png'
+import create8 from '../assets/lemonaide/create-8.png'
 import def1 from '../assets/lemonaide/def-1.png'
 import def6 from '../assets/lemonaide/def-6.png'
 import def7 from '../assets/lemonaide/def-7.png'
 import def8 from '../assets/lemonaide/def-8.png'
 import def9 from '../assets/lemonaide/def-9.png'
-import defShotA from '../assets/lemonaide/def-shot-a.png'
-import defShotB from '../assets/lemonaide/def-shot-b.png'
-import defShotC from '../assets/lemonaide/def-shot-c.png'
-import defShotLogo from '../assets/lemonaide/def-shot-logo.svg'
+import delight1 from '../assets/lemonaide/delight-1.png'
+import delightMac from '../assets/lemonaide/delight-3-macbook.png'
+import delightScreen from '../assets/lemonaide/delight-3-screen.png'
+import delight4 from '../assets/lemonaide/delight-4.png'
+import delight5 from '../assets/lemonaide/delight-5.png'
 import exp1 from '../assets/lemonaide/exp-1.png'
 import exp10 from '../assets/lemonaide/exp-10.png'
 import exp11 from '../assets/lemonaide/exp-11.png'
@@ -22,6 +29,8 @@ import iconAi from '../assets/lemonaide/icon-ai.svg'
 import iconGoal from '../assets/lemonaide/icon-goal.svg'
 import iconHome09 from '../assets/lemonaide/icon-home-09.svg'
 import iconHome from '../assets/lemonaide/icon-home.svg'
+import launch1 from '../assets/lemonaide/launch-1.png'
+import launch2 from '../assets/lemonaide/launch-2.png'
 import mediaCall from '../assets/lemonaide/media-call.png'
 import mediaQuoteShot from '../assets/lemonaide/media-quote-shot.png'
 import num1Idle from '../assets/lemonaide/num-1-idle.svg'
@@ -36,18 +45,30 @@ import num3 from '../assets/lemonaide/num-3.svg'
 import num4Active from '../assets/lemonaide/num-4-active.svg'
 import num4Large from '../assets/lemonaide/num-4-large.svg'
 import num4 from '../assets/lemonaide/num-4.svg'
+import num5Active from '../assets/lemonaide/num-5-active.svg'
+import num5Large from '../assets/lemonaide/num-5-large.svg'
 import num5 from '../assets/lemonaide/num-5.svg'
+import num6Active from '../assets/lemonaide/num-6-active.svg'
+import num6Large from '../assets/lemonaide/num-6-large.svg'
 import num6 from '../assets/lemonaide/num-6.svg'
+import num7Active from '../assets/lemonaide/num-7-active.svg'
+import num7Large from '../assets/lemonaide/num-7-large.svg'
 import num7 from '../assets/lemonaide/num-7.svg'
 import paper from '../assets/lemonaide/paper.svg'
 import researchFieldwork from '../assets/lemonaide/research-fieldwork.png'
 import researchHeuristics from '../assets/lemonaide/research-heuristics.png'
+import researchBasics from '../assets/lemonaide/research-basics.png'
+import researchReport from '../assets/lemonaide/research-report.png'
+import researchCompetitors from '../assets/lemonaide/research-competitors.png'
 import rule from '../assets/lemonaide/rule.svg'
 import stepActiveRing from '../assets/lemonaide/step-active-ring.svg'
+import stepCreateActive from '../assets/lemonaide/step-create-active.gif'
 import stepCreate from '../assets/lemonaide/step-create.png'
 import stepDefineActive from '../assets/lemonaide/step-define-active.gif'
 import stepDefine from '../assets/lemonaide/step-define.png'
+import stepDelightActive from '../assets/lemonaide/step-delight-active.gif'
 import stepDelight from '../assets/lemonaide/step-delight.png'
+import stepEvolveActive from '../assets/lemonaide/step-evolve-active.gif'
 import stepEvolve from '../assets/lemonaide/step-evolve.png'
 import stepExploreActive from '../assets/lemonaide/step-explore-active.gif'
 import stepExplore from '../assets/lemonaide/step-explore.png'
@@ -60,6 +81,15 @@ import stratBoardBg from '../assets/lemonaide/strat-board-bg.jpg'
 import stratBoard from '../assets/lemonaide/strat-board.png'
 import stratWorkshopA from '../assets/lemonaide/strat-workshop-a.png'
 import stratWorkshopB from '../assets/lemonaide/strat-workshop-b.png'
+import lemonadeStrategy3 from '../assets/lemonaide/lemonade-strategy3.png'
+import lemonadeStrategy4 from '../assets/lemonaide/lemonade-strategy4.png'
+import lemonadeDefine2 from '../assets/lemonaide/lemonade-define2.png'
+import lemonadeDefine7 from '../assets/lemonaide/lemonade-define7.png'
+import lemonadeCreate4 from '../assets/lemonaide/lemonade-create4.png'
+import lemonadeCreate6 from '../assets/lemonaide/lemonade-create6.png'
+import lemonadeDelight2 from '../assets/lemonaide/lemonade-delight2.png'
+import lemonadeDelight1 from '../assets/lemonaide/lemonade-delight1.mp4'
+
 import './LemonaideProcess.css'
 
 /* =================================================================
@@ -151,8 +181,8 @@ function ResearchMedia() {
         </div>
 
         {/* Each slide is sized to its own artwork's aspect ratio at
-            485px tall (3840x2152 and 1602x1080), so the shared
-            cover-fit crops nothing. */}
+            485px tall (3840x2152, 1602x1080, 510x498, 886x498 and
+            830x498), so the shared cover-fit crops nothing. */}
         <div className="lem-slide" style={{ width: '865.4px' }}>
           <img
             src={researchFieldwork}
@@ -163,6 +193,24 @@ function ResearchMedia() {
           <img
             src={researchHeuristics}
             alt="Heuristic evaluation against NN/g&rsquo;s ten usability principles"
+          />
+        </div>
+        <div className="lem-slide" style={{ width: '496.7px' }}>
+          <img
+            src={researchBasics}
+            alt="How each audit issue is structured: title, definition, categorisation, heuristic violated, complexity and proposed solution"
+          />
+        </div>
+        <div className="lem-slide" style={{ width: '862.9px' }}>
+          <img
+            src={researchReport}
+            alt="Pages from the audit report, annotating issues across the My Loans and Loan Calculator screens"
+          />
+        </div>
+        <div className="lem-slide" style={{ width: '808.3px' }}>
+          <img
+            src={researchCompetitors}
+            alt="Competitor teardown comparing five direct pension platforms on visual design, strengths, weaknesses and features"
           />
         </div>
       </div>
@@ -209,6 +257,7 @@ function StrategyMedia() {
         {/* 4 - Case study - 4 (1324:71796) — its book mockup exports
             as a fully transparent PNG and renders blank. */}
         <div className="lem-case lem-case--narrow">
+          <img className="lem-case__board" src={lemonadeStrategy3} alt="" />
           <span className="lem-case__tag" style={{ width: '176.85px', height: '30.6px' }} />
           <p className="lem-case__caption">Our workshop manual</p>
         </div>
@@ -216,6 +265,7 @@ function StrategyMedia() {
         {/* 4 - Case study - 9 (1324:71800) — its screen recording has
             no asset in the file. */}
         <div className="lem-case lem-case--wide">
+          <img className="lem-case__board" src={lemonadeStrategy4} alt="" />
           <span className="lem-case__tag" style={{ width: '209.7px', height: '54px' }} />
           <p className="lem-case__caption lem-case__caption--tall">
             <span>An Information Architecture </span>
@@ -241,7 +291,9 @@ function DefineMedia() {
           <img src={def1} alt="" />
         </div>
         {/* 1324:71828 — no asset in the file. */}
-        <div className="lem-slide" style={{ width: '806px' }} />
+        <div className="lem-slide" style={{ width: '806px' }} >
+          <img src={lemonadeDefine2} alt="" />
+        </div>
         <div className="lem-slide lem-slide--outlined" style={{ width: '807px' }}>
           <img src={def6} alt="" />
         </div>
@@ -255,15 +307,11 @@ function DefineMedia() {
         <div className="lem-slide" style={{ width: '916px' }}>
           <img src={def9} alt="" />
         </div>
-        {/* 1324:71833 — three screenshots side by side, logo on the first. */}
-        <div className="lem-slide lem-slide--plain" style={{ width: '1130px' }}>
-          <img className="lem-shot lem-shot--a" src={defShotA} alt="" />
-          <span className="lem-shot__logo">
-            <img src={defShotLogo} alt="" />
-          </span>
-          <img className="lem-shot lem-shot--b" src={defShotB} alt="" />
-          <img className="lem-shot lem-shot--c" src={defShotC} alt="" />
+        <div className="lem-slide" style={{ width: 'full' }}>
+          <img src={lemonadeDefine7} alt="" style={{objectFit:"contain"}}/>
         </div>
+        {/* 1324:71833 — three screenshots side by side, logo on the first. */}
+        
       </div>
     </div>
   )
@@ -305,11 +353,192 @@ function ExploreMedia() {
   )
 }
 
+/* Create (3:24507) is a fourth scrollable row, of eight slides. Its
+   first is the composed "screens" panel (1348:74681) — a red plate
+   carrying some thirty screenshot fills, a MacBook mockup and the
+   THE DESIGN label — which comes in as one render of the node rather
+   than rebuilt layer by layer. Slides 4 and 6 ("11" and "13",
+   1348:75035 / :75037) have no fill in the file and show as empty
+   plates, exactly as Figma renders them. Only the first two slides
+   are square; the rest carry the 12px radius. */
+function CreateMedia() {
+  const { ref, handlers } = useDragScroll()
+
+  return (
+    <div className="lem-strip" ref={ref} {...handlers}>
+      <div className="lem-strip__row">
+        {/* screens (1348:74681) */}
+        <div className="lem-slide lem-slide--square" style={{ width: '862px' }}>
+          <img src={create1} alt="The delivered design: app screens and the marketing site" />
+        </div>
+        <div className="lem-slide lem-slide--square" style={{ width: '905px' }}>
+          <img src={create2} alt="High-fidelity screens for the insurance app" />
+        </div>
+        {/* 1348:75034 — Figma shifts this fill up rather than centring it. */}
+        <div className="lem-slide lem-slide--crop-bottom" style={{ width: '928.7px' }}>
+          <img src={create3} alt="The onboarding and verification flow, screen by screen" />
+        </div>
+        {/* 1348:75035 — no asset in the file. */}
+        <div className="lem-slide" style={{ width: '928.7px' }} >
+          <img src={lemonadeCreate4} alt="" />
+        </div>
+        <div className="lem-slide" style={{ width: '928.7px' }}>
+          <img src={create5} alt="Screens mapped to their states across the build" />
+        </div>
+        {/* 1348:75037 — no asset in the file. */}
+        <div className="lem-slide" style={{ width: '928.7px' }} >
+          <img src={lemonadeCreate6} alt="" />
+        </div>
+        <div className="lem-slide" style={{ width: '815.5px' }}>
+          <img src={create7} alt="API collections and responses during integration" />
+        </div>
+        <div className="lem-slide" style={{ width: '818px' }}>
+          <img src={create8} alt="The front-end build running locally" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* Cycle Day Wise (1487:72066) — the motion-design workspace with its
+   five regions called out. Figma's renderer returns an empty 1x1 for
+   this whole subtree, so it is rebuilt from its geometry rather than
+   flattened: graph paper, the grey plate, the MacBook carrying the
+   After Effects screenshot, and five hairline outlines each with a
+   tabbed label. Every number below is Figma's, relative to the
+   627.938x387.897 plate (1487:72170).
+
+   `at` places the tab against the box it labels and `cap` says which
+   pair of its corners is rounded — Figma tucks each one inside a
+   different edge. */
+const ANATOMY = [
+  { label: 'Top Bar', box: [77.92, 75.17, 472.322, 18.933], at: { top: 0 }, cap: 'bottom', dx: 0 },
+  {
+    label: 'Left Panel',
+    box: [76.43, 95.09, 130.038, 131.034],
+    // The only region whose outline is inset from its own box.
+    outline: [1.5, 128.543],
+    at: { top: '120.07px' },
+    cap: 'top',
+    dx: -2.49,
+  },
+  { label: 'Center Area', box: [206.46, 95.09, 297.443, 131.034], at: { bottom: 0 }, cap: 'top', dx: 5.73 },
+  { label: 'Right Panel', box: [504.9, 95.09, 45.339, 223.705], at: { bottom: '1px' }, cap: 'bottom', dx: 0 },
+  { label: 'Bottom Panel', box: [77.92, 227.13, 427.98, 91.674], at: { bottom: 0 }, cap: 'top', dx: 22.17 },
+]
+
+function DelightAnatomy() {
+  return (
+    <div className="lem-anat">
+      {/* Grids (1487:72068) — the same 31px pitch as the page. */}
+      <div className="lem-anat__grid" aria-hidden="true" />
+
+      {/* Content (1487:72170) */}
+      <div className="lem-anat__plate">
+        {/* The mockup is 638.5px wide inside a 627.9px plate, and Figma
+            does not clip it: it overhangs both edges by ~5px. */}
+        <div className="lem-anat__mac">
+          <img src={delightMac} alt="" />
+          <span className="lem-anat__screen">
+            <img src={delightScreen} alt="The motion-design workspace for the Cycle Day Wise sequence" />
+          </span>
+        </div>
+
+        {ANATOMY.map((region) => (
+          <div
+            key={region.label}
+            className="lem-anat__region"
+            style={{
+              left: `${region.box[0]}px`,
+              top: `${region.box[1]}px`,
+              width: `${region.box[2]}px`,
+              height: `${region.box[3]}px`,
+            }}
+          >
+            <span
+              className="lem-anat__outline"
+              style={{
+                left: `${region.outline?.[0] ?? 0}px`,
+                width: `${region.outline?.[1] ?? region.box[2]}px`,
+              }}
+            />
+            <span
+              className={`lem-anat__tab lem-anat__tab--cap-${region.cap}`}
+              style={{ left: `calc(50% + ${region.dx}px)`, ...region.at }}
+            >
+              {region.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* Delight (3:24968) is the fifth scrollable row, of five slides. Its
+   third is the annotated workspace above; the second (1487:72065) has
+   no fill in the file and shows as a bordered empty plate, exactly as
+   Figma renders it. */
+function DelightMedia() {
+  const { ref, handlers } = useDragScroll()
+
+  return (
+    <div className="lem-strip" ref={ref} {...handlers}>
+      <div className="lem-strip__row">
+        {/* 1487:72064 — a screen recording whose fill is missing from
+            the export, so this is a render of the node itself. */}
+        <div className="lem-slide" style={{ width: '879px' }}>
+          <img src={delight1} alt="The Indian Tiffin site, mid-scroll" />
+          {/* <video src={lemonadeDelight1} autoPlay muted></video> */}
+        </div>
+        {/* 1487:72065 — no asset in the file. */}
+        <div className="lem-slide lem-slide--outlined-soft" style={{ width: '889px' }}>
+          <img src={lemonadeDelight2} alt="" />
+        </div>
+        {/* Cycle Day Wise (1487:72066) */}
+        <div className="lem-slide" style={{ width: '713px' }}>
+          <DelightAnatomy />
+        </div>
+        <div className="lem-slide" style={{ width: '862.2px' }}>
+          <img src={delight4} alt="Cia, the conversational-AI mascot, and its expression set" />
+        </div>
+        <div className="lem-slide" style={{ width: '780px' }}>
+          <img src={delight5} alt="Illustrated screens from the risk-profiling quiz" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* Launch & Grow (3:25431) is the last scrollable row, and the shortest:
+   two slides over the 884px window. Figma puts the assetless one first
+   (1200:418516) — its fill is missing from the export but the node
+   renders real artwork, so that slide is a node render, not the empty
+   plate the export suggests. The second is contained on a white plate
+   inside a hairline border rather than cover-fitted. */
+function LaunchMedia() {
+  const { ref, handlers } = useDragScroll()
+
+  return (
+    <div className="lem-strip" ref={ref} {...handlers}>
+      <div className="lem-strip__row">
+        {/* 1200:418516 — a render of the node itself. */}
+        <div className="lem-slide" style={{ width: '829px' }}>
+          <img src={launch1} alt="A post-launch usability session in progress, screen shared with the participants" />
+        </div>
+        {/* 1200:418515 */}
+        <div className="lem-slide lem-slide--sheet" style={{ width: '830px' }}>
+          <img src={launch2} alt="The findings tracker: each issue scored by area, type and impact" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ------------------------------------------------------- steps ---
-   The two designed steps carry their full content; the other five are
-   drawn exactly as Figma has them but disabled, because no frame for
-   them has been read yet. Each active illustration is an animated GIF
-   and each step number has separate idle and active hand-drawn rings.
+   All seven steps carry their full content now, one Figma frame each.
+   Every active illustration is an animated GIF and every step number
+   has separate idle and active hand-drawn rings.
    ------------------------------------------------------------- */
 const STEPS = [
   {
@@ -435,9 +664,96 @@ const STEPS = [
     takeawayList: 'full',
     ai: 'Designers shape and select creative directions. AI expands the possibilities and accelerates iteration, while designers make the final creative call.',
   },
-  { key: 'create', label: 'Create', idleIcon: stepCreate, badgeIdle: num5, badgeIdleTop: 6.87 },
-  { key: 'delight', label: 'Delight', idleIcon: stepDelight, badgeIdle: num6, badgeIdleTop: 6.87 },
-  { key: 'launch-grow', label: 'Launch & Grow', idleIcon: stepEvolve, badgeIdle: num7, badgeIdleTop: 6.87 },
+  {
+    key: 'create',
+    label: 'Create',
+    node: '3:24507',
+    ready: true,
+    idleIcon: stepCreate,
+    activeIcon: stepCreateActive,
+    badgeIdle: num5,
+    badgeActive: num5Active,
+    badgeIdleTop: 6.87,
+    badgeActiveTop: 8.22,
+    subtitle: 'How we craft the product experience.',
+    lede: num5Large,
+    headline: ['We build the real thing, design and ', 'development together.'],
+    chips: [
+      'High-Fidelity UI Design',
+      'Design System',
+      'UX & Content Writing',
+      'Full-stack Development',
+      'API Integrations',
+      'Developer Handoff',
+    ],
+    Media: CreateMedia,
+    takeaways: [
+      'Design System: A scalable design system built for consistency and growth.',
+      'Production-Ready UI: Polished UI designed and ready for production.',
+      'Developer-Ready Handoff: Complete, developer-ready designs and specifications.',
+    ],
+    takeawayList: 'full',
+    ai: 'Designers and developers own the work and quality. AI speeds up copy, asset creation and development, while human judgement keeps every output production-ready.',
+  },
+  {
+    key: 'delight',
+    label: 'Delight',
+    node: '3:24968',
+    ready: true,
+    idleIcon: stepDelight,
+    activeIcon: stepDelightActive,
+    badgeIdle: num6,
+    badgeActive: num6Active,
+    badgeIdleTop: 6.87,
+    badgeActiveTop: 8.22,
+    subtitle: 'How we elevate function into feeling.',
+    lede: num6Large,
+    headline: ['The details that turn a product into an ', 'experience people trust.'],
+    chips: [
+      'Illustration & Iconography',
+      'Motion Design',
+      'Error and Edge States',
+      'Cross-Device Testing',
+      'AI Personality Design',
+    ],
+    Media: DelightMedia,
+    takeaways: [
+      'Micro-interactions & Motion: Thoughtful micro-interactions and motion that bring the experience to life.',
+      'UX Copy: Clear, intuitive UX copy across key user journeys.',
+    ],
+    takeawayList: 'full',
+    ai: 'Designers set the tone and taste. AI helps prototype and iterate motion and copy faster, giving designers more time to refine the details that make the experience work.',
+  },
+  {
+    key: 'launch-grow',
+    label: 'Launch & Grow',
+    node: '3:25431',
+    ready: true,
+    idleIcon: stepEvolve,
+    activeIcon: stepEvolveActive,
+    badgeIdle: num7,
+    badgeActive: num7Active,
+    badgeIdleTop: 6.87,
+    badgeActiveTop: 8.22,
+    subtitle: 'How we ship, measure, and grow.',
+    lede: num7Large,
+    headline: ['Launch is the start of the next loop, ', 'not the end of the process.'],
+    chips: [
+      'Usability Testing Cycles',
+      'Behavior Analytics',
+      'A/B Testing',
+      'Product roadmapping',
+      'AMC',
+      'AI Output Review',
+    ],
+    Media: LaunchMedia,
+    takeaways: [
+      'Post-Launch Usability Testing: Usability testing to identify and address friction after launch.',
+      'Ongoing User Insights: Continuous insights that keep the experience relevant.',
+    ],
+    takeawayList: 'full',
+    ai: 'People own the final call on accuracy and quality. AI supports usability analysis and QA, helping teams spot more issues and turn findings into sharper insights.',
+  },
 ]
 
 function LemonaideProcess({ onBack = () => {}, onHome = onBack }) {

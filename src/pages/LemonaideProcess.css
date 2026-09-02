@@ -259,7 +259,8 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Steps other than Research have no content node yet; see README. */
+/* Every step has a frame now, so nothing is disabled in practice; the
+   rule stays for any step added ahead of its design. */
 .lem-step:disabled {
   cursor: default;
 }
@@ -865,7 +866,8 @@
   overflow: hidden;
 }
 
-.lem-slide > img {
+.lem-slide > img,
+.lem-slide > video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -879,6 +881,19 @@
   pointer-events: none;
 }
 
+/* The two Create slides Figma leaves unrounded: the composed screens
+   panel (1348:74681) and image 6345443 (1348:74680). */
+.lem-slide--square,
+.lem-slide--square > img {
+  border-radius: 0;
+}
+
+/* 1348:75034's fill sits 4.65% above its box rather than centred, so
+   what shows is the bottom of the artwork, not its middle. */
+.lem-slide--crop-bottom > img {
+  object-position: center bottom;
+}
+
 .lem-slide--outlined {
   border: 0.447px solid rgba(0, 0, 0, 0.5);
 }
@@ -886,6 +901,140 @@
 .lem-slide--outlined-dark {
   border: 0.46px solid #000;
 }
+/* 1487:72065 — an empty plate carrying only its hairline border. */
+.lem-slide--outlined-soft {
+  border: 1px solid rgba(208, 208, 208, 0.5);
+}
+
+/* 1200:418515 — contained on its white plate rather than cover-fitted,
+   inside a hairline border a shade darker than the one above. */
+.lem-slide--sheet {
+  border: 1px solid rgba(160, 160, 160, 0.5);
+}
+
+.lem-slide--sheet > img {
+  object-fit: contain;
+}
+
+/* ------------------------------------------------- delight anat ---
+   Cycle Day Wise (1487:72066), rebuilt at Figma's numbers because the
+   file will not render the subtree. The slide is 713x485; the grey
+   plate sits 40px in and everything inside is positioned against it.
+   ------------------------------------------------------------- */
+.lem-anat {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+}
+
+/* 1487:72068 — the grid stops 44px short of the slide's bottom. */
+.lem-anat__grid {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 713px;
+  height: 440.893px;
+  background-image:
+    repeating-linear-gradient(to right, #eaeaea 0 1px, transparent 1px 31px),
+    repeating-linear-gradient(to bottom, #eaeaea 0 1px, transparent 1px 31px);
+  background-position:
+    30px 0,
+    0 31px;
+}
+
+/* Content (1487:72170) */
+.lem-anat__plate {
+  position: absolute;
+  left: 40.081px;
+  top: 40.081px;
+  width: 627.939px;
+  height: 387.897px;
+  background: #f2f2f2;
+}
+
+/* Apple MacBook Air 13" Silver (1487:72172) */
+.lem-anat__mac {
+  position: absolute;
+  left: calc(50% + 0.2px);
+  top: 3.92px;
+  width: 638.503px;
+  height: 380.149px;
+  transform: translateX(-50%);
+  filter: drop-shadow(-12.535px -9.401px 14.102px rgba(0, 0, 0, 0.15));
+}
+
+.lem-anat__mac > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* image 153 — the screenshot, painted into the mockup's screen well
+   over a black backing. */
+.lem-anat__screen {
+  position: absolute;
+  left: 13.03%;
+  right: 13.01%;
+  top: 42.44px;
+  height: 295.262px;
+  background: #000;
+  overflow: clip;
+}
+
+.lem-anat__screen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.lem-anat__region {
+  position: absolute;
+  overflow: clip;
+}
+
+.lem-anat__outline {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border: 0.996px solid #f8df00;
+  border-radius: 3.986px;
+}
+
+/* Figma sets these tabs in plain Inter, not the Inter Tight the
+   stepper labels use. */
+.lem-anat__tab {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  padding: 0.996px 3.986px;
+  background: #f8df00;
+  font-family: 'Inter', var(--font-ui);
+  font-weight: 600;
+  font-size: 6.477px;
+  line-height: normal;
+  color: #2c2c2c;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  overflow: clip;
+}
+
+.lem-anat__tab--cap-top {
+  border-radius: 1.993px 1.993px 0 0;
+}
+
+.lem-anat__tab--cap-bottom {
+  border-radius: 0 0 1.993px 1.993px;
+}
+
+
 
 /* 1218:418616 sits on a grey plate and is contained, not cover-fit. */
 .lem-slide--plate {

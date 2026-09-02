@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="compass">
+<g id="primary">
+<path d="M25.6667 14C25.6667 20.4433 20.4433 25.6667 14 25.6667C7.55668 25.6667 2.33333 20.4433 2.33333 14C2.33333 7.55668 7.55668 2.33333 14 2.33333C20.4433 2.33333 25.6667 7.55668 25.6667 14Z" stroke="#3A3A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.6483 12.069L18.6667 9.33333L15.931 15.3517C15.8143 15.6085 15.6085 15.8143 15.3517 15.931L9.33333 18.6667L12.069 12.6483C12.1857 12.3915 12.3915 12.1857 12.6483 12.069Z" stroke="#3A3A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

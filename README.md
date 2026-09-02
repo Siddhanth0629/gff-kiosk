@@ -200,9 +200,16 @@ Figma's per-step frames:
 [522:88012](https://www.figma.com/design/5snNx9jd89wmcCfQdU6C25/GFF-proto-2026?node-id=522-88012)
 (Strategy),
 [3:23583](https://www.figma.com/design/5snNx9jd89wmcCfQdU6C25/GFF-proto-2026?node-id=3-23583)
-(Define) and
+(Define),
 [522:88550](https://www.figma.com/design/5snNx9jd89wmcCfQdU6C25/GFF-proto-2026?node-id=522-88550)
-(Explore). Tapping the homepage's **The LemonAIde Process** card routes here;
+(Explore),
+[3:24507](https://www.figma.com/design/5snNx9jd89wmcCfQdU6C25/GFF-proto-2026?node-id=3-24507)
+(Create),
+[3:24968](https://www.figma.com/design/5snNx9jd89wmcCfQdU6C25/GFF-proto-2026?node-id=3-24968)
+(Delight) and
+[3:25431](https://www.figma.com/design/5snNx9jd89wmcCfQdU6C25/GFF-proto-2026?node-id=3-25431)
+(Launch & Grow) — all seven steps. Tapping the homepage's
+**The LemonAIde Process** card routes here;
 tapping a step in the stepper swaps the masthead subtitle and the whole content
 column.
 
@@ -210,10 +217,11 @@ Each step owns its content — chips, takeaways, the "where AI helps" copy, both
 of its stepper illustrations and both of its hand-drawn number rings. Its media
 comes in as a component, because the frames are genuinely different shapes:
 Research places two slides at fixed offsets, Strategy is a drag-scrollable row
-of captioned case-study cards, and Define and Explore drag-scrollable rows of
-full-bleed slides — with Define's last slide a composite of three screenshots
-and a logo, and one of Explore's contained on a grey plate rather than
-cover-fitted.
+of captioned case-study cards, and the rest are drag-scrollable rows of
+full-bleed slides — with one of Explore's contained on a grey plate rather than
+cover-fitted, Create's first slide a flattened render of a thirty-fill
+composition, Delight's third slide a rebuilt annotation diagram, and Launch &
+Grow's second contained on a white plate inside a hairline border.
 
 This is the light half of the kiosk — cream and white on graph paper, where the
 other three screens are the dark room. It deliberately does **not** use the
@@ -227,11 +235,13 @@ drawn full-bleed and the opaque white card is what hides the middle — so one
 background on the root reproduces it. The colour (`#eaeaea`) and the cream
 (`#fcf4ed`) were sampled from Figma's own render of the frame.
 
-### Five things worth knowing
+### Things worth knowing
 
-- **The active step illustrations are animated GIFs.** Figma serves them from
-  `.png` URLs, but `Research` is a 562×396 GIF89a, `Strategy` a 452×276 one and
-  `Define` a 514×288 one, all with NETSCAPE loop blocks. They are committed as `.gif` so they animate.
+- **The active step illustrations are animated GIFs.** Figma serves every one of
+  them from a `.png` URL, but they are GIF89a with NETSCAPE loop blocks:
+  `Research` 562×396, `Strategy` 452×276, `Define` 514×288, `Create` 490×432,
+  `Delight` 526×366 and `Launch & Grow` 458×372. They are committed as `.gif` so
+  they animate. Check the magic bytes, not the URL's extension.
   Each step also has a *separate* idle illustration and separate idle/active
   number rings — the same step is a different asset in each state.
 - **One asset is a JPEG behind a `.png` URL.** The whiteboard backdrop on the
@@ -264,6 +274,20 @@ background on the root reproduces it. The colour (`#eaeaea`) and the cream
   not — Figma renders real artwork for it, so that one is a node render. Always
   check the reference before accepting a missing fill as an empty slide; that
   one cost a 33.1 mean difference until it was caught.
+- **Two composites needed opposite treatments.** Create's first slide
+  (1348:74681) is a red plate holding some thirty screenshot fills, a MacBook
+  mockup and a label — the node renders fine, so it is committed as one flat
+  render rather than rebuilt layer by layer. Delight's third (1487:72066) is the
+  reverse: its whole subtree comes back 1×1 no matter how it is asked for, but
+  the export hands over both of its images and the metadata all of its geometry,
+  so it *is* rebuilt — plate, mockup, screenshot and five outlined regions with
+  tabbed labels (`.lem-anat`). Which way to go depends on which half the file
+  will actually give you.
+- **The stepper's active geometry is shared, not per frame.** Create and Delight
+  report a 114px illustration, a 16.35px label and a 7.66px badge offset where
+  the other five report 122.237 / 14.79 / 8.22 — Figma drift between duplicated
+  instances of one component. Matching each frame would make the stepper resize
+  as you switch tabs, so `.lem-step--active` keeps the majority values.
 - **Figma only renders what is inside a clip.** That is why both strips could
   only be captured up to their visible window, and why the off-screen cards
   come back 1×1. It is not a failed export.

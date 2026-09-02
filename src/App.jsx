@@ -3,7 +3,9 @@ import CaseStudies from './pages/CaseStudies.jsx'
 import CaseStudyList from './pages/CaseStudyList.jsx'
 import Home from './pages/Home.jsx'
 import LemonaideProcess from './pages/LemonaideProcess.jsx'
+import ServiceDetail from './pages/ServiceDetail.jsx'
 import Services from './pages/Services.jsx'
+import { SERVICE_DETAILS } from './pages/serviceDetailData.js'
 import './App.css'
 
 const KIOSK_W = 1080
@@ -30,6 +32,15 @@ const DOMAIN_TO_INDUSTRY = {
 function App() {
   const [screen, setScreen] = useState('home')
   const [industry, setIndustry] = useState('pfm')
+  const [service, setService] = useState('ux-workshop')
+
+  // Tapping a service card on the hub opens its detail screen, for
+  // the services that have one built (serviceDetailData.js).
+  const openService = (key) => {
+    if (!SERVICE_DETAILS[key]) return
+    setService(key)
+    setScreen('service-detail')
+  }
 
   // Scale the 1080x1920 stage down to fit whatever viewport we're in.
   // Resolves to exactly 1 on the kiosk panel itself.
@@ -76,7 +87,15 @@ function App() {
           />
         )}
         {screen === 'services' && (
-          <Services onBack={() => setScreen('home')} />
+          <Services onBack={() => setScreen('home')} onSelect={openService} />
+        )}
+        {screen === 'service-detail' && (
+          <ServiceDetail
+            service={service}
+            onBack={() => setScreen('services')}
+            onHome={() => setScreen('home')}
+            onSelect={openService}
+          />
         )}
         {screen === 'lemonaide-process' && (
           <LemonaideProcess onBack={() => setScreen('home')} />
