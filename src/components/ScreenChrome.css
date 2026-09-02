@@ -119,6 +119,14 @@
   backdrop-filter: blur(12px);
 }
 
+/* The case-study detail's footer (3:27484): the plum ground with no
+   blur behind it, and 90px where the other two report 95. */
+.chrome-footer--plum {
+  height: 90px;
+  background: #531233;
+  backdrop-filter: none;
+}
+
 .chrome-brand {
   display: flex;
   align-items: center;

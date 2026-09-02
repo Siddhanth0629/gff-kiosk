@@ -43,12 +43,14 @@ export function ScreenHeader({ title, onBack = () => {}, onHome = onBack }) {
   )
 }
 
-/* `translucent` is the services variant: rgba(0,0,0,0.5) behind a
-   12px backdrop blur, where case studies uses solid black at 2px. */
-export function ScreenFooter({ translucent = false }) {
+/* One Figma component, three fills. `dark` is the case-studies
+   footer (solid black behind a 2px blur), `translucent` the services
+   one (rgba(0,0,0,0.5) behind 12px), and `plum` the case-study
+   detail's (#531233, no blur, and 90px tall rather than 95). */
+export function ScreenFooter({ variant = 'dark' }) {
   return (
     <div
-      className={`chrome-footer${translucent ? ' chrome-footer--translucent' : ''}`}
+      className={`chrome-footer${variant === 'dark' ? '' : ` chrome-footer--${variant}`}`}
     >
       <div className="chrome-brand">
         <span className="chrome-brand__logo">

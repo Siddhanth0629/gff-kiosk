@@ -1,6 +1,8 @@
 import { useLayoutEffect, useState } from 'react'
 import CaseStudies from './pages/CaseStudies.jsx'
+import CaseStudyDetail from './pages/CaseStudyDetail.jsx'
 import CaseStudyList from './pages/CaseStudyList.jsx'
+import { CASE_STUDY_DETAILS } from './pages/caseStudyDetailData.js'
 import Home from './pages/Home.jsx'
 import LemonaideProcess from './pages/LemonaideProcess.jsx'
 import ServiceDetail from './pages/ServiceDetail.jsx'
@@ -33,6 +35,7 @@ function App() {
   const [screen, setScreen] = useState('home')
   const [industry, setIndustry] = useState('pfm')
   const [service, setService] = useState('ux-workshop')
+  const [brand, setBrand] = useState('ArthaOne')
 
   // Tapping a service card on the hub opens its detail screen, for
   // the services that have one built (serviceDetailData.js).
@@ -40,6 +43,14 @@ function App() {
     if (!SERVICE_DETAILS[key]) return
     setService(key)
     setScreen('service-detail')
+  }
+
+  // Tapping a brand card in the listing opens its walkthrough, for
+  // the case studies that have one built (caseStudyDetailData.js).
+  const openCaseStudy = (key) => {
+    if (!CASE_STUDY_DETAILS[key]) return
+    setBrand(key)
+    setScreen('case-study-detail')
   }
 
   // Scale the 1080x1920 stage down to fit whatever viewport we're in.
@@ -83,6 +94,17 @@ function App() {
           <CaseStudyList
             industry={industry}
             onBack={() => setScreen('case-studies')}
+            onHome={() => setScreen('home')}
+            onOpen={openCaseStudy}
+          />
+        )}
+        {screen === 'case-study-detail' && (
+          // Keyed on the brand so switching case studies remounts the
+          // walkthrough rather than leaving it mid-strip.
+          <CaseStudyDetail
+            key={brand}
+            brand={brand}
+            onBack={() => setScreen('case-study-list')}
             onHome={() => setScreen('home')}
           />
         )}

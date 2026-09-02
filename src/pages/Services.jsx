@@ -338,7 +338,7 @@ function Services({ onBack = () => {}, onHome = onBack, onSelect = () => {} }) {
         </div>
       </div>
 
-      <ScreenFooter translucent />
+      <ScreenFooter variant="translucent" />
 
       {/* Category carousel (I194:58122;1999:22069) */}
       <div

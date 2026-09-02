@@ -191,6 +191,89 @@ is Inter rather than Gilroy.
   the chip row from two wraps to three and overflow the cream band — the same
   class of problem as the LemonAIde lede height.
 
+## Case study detail
+
+`src/pages/CaseStudyDetail.jsx` + `src/pages/CaseStudyDetail.css` implement
+Figma's section
+[`Artha One` 3:27384](https://www.figma.com/design/5snNx9jd89wmcCfQdU6C25/GFF-proto-2026?node-id=3-27384),
+with its content in `src/pages/caseStudyDetailData.js`. Tapping the **ArthaOne**
+card in the case-study listing routes here; `onBack` returns to the listing and
+`onHome` to the landing.
+
+Figma draws the walkthrough as **thirty-three separate 1080 x 1920 frames** —
+`ArthaOne 1` through `ArthaOne 59`, with gaps in the numbering — that are
+identical apart from the phone screen in the middle. Played in canvas order
+they are one continuous product flow, splash through login and the five-element
+behaviour quiz to the score and the Space dashboard. So the chrome is drawn
+once and only the 562.5 x 1218 screen changes; that is what makes it read as a
+video rather than as thirty-three screens.
+
+The chrome is `ArthaOne 1` (3:27385): the plum ground, the graph paper, the
+`For Mobile Phone` panel, the nav, the brand row, the lede, the chips and the
+footer. It was verified against Figma's own render of the section — panel edges,
+both nav circles, the 272px logo box, the chip row and the phone all land within
+half a pixel, and the graph paper matches rule for rule.
+
+### Things worth knowing
+
+- **Each screen export arrives with the phone already around it.** Figma strokes
+  the screen frame 24px *outside* its 562.5 x 1218 box, so the exports are
+  611 x 1266 and the bezel comes in with the artwork. Nothing in the CSS draws
+  a device; `.csd__phone` is just a 611 x 1266 box at (234, 451).
+- **Export the screens with `contentsOnly`.** `download_assets` composites the
+  panel's `#500f30` into the frame's rounded corners, which then paints as four
+  little plum tabs over the bezel. The isolated render leaves them transparent.
+  Same node, same renderer, different corners — check them.
+- **The grid needs an explicit `background-size`.** Left to default, a
+  `repeating-linear-gradient`'s tile is the whole 1080 x 1920 box, the 31px
+  pitch doesn't divide it, and the tile repeating *backwards* off the top and
+  left strands its own last rule on screen: a stray vertical at x=2 and a
+  half-strength horizontal along y=0, neither of which Figma draws. One pitch
+  per tile has no remainder to strand. `CaseStudyList.css` has the same latent
+  artefact, hidden there because its card covers the middle and its rules are
+  light grey on white.
+- **Frames are cut, not crossfaded.** A fade puts two 50%-opaque copies over the
+  panel and lets a quarter of `#500f30` bleed through the bezel for the length
+  of the transition. A recording cuts anyway, and half of these frames differ
+  only by a keystroke.
+- **Only a window of four frames is mounted.** Thirty-three 611 x 1266 bitmaps
+  decoded at once is ~100MB of texture. The whole strip is primed into cache on
+  mount, but the DOM holds the current frame plus two ahead and one behind, so
+  the next frame is always decoded before it is shown and the cut never
+  flashes.
+- **Frame 1 disagrees with the other thirty-two** on its panel y (61 rather than
+  60.5) and its lede box width (921 rather than 960). The majority values are
+  used, which is also what Figma's own render measures at. The screen frames
+  likewise sit at y=414.5 on twenty-four of them and 403.5 on nine; the phone is
+  pinned at the majority, because the bezel is part of the export and an 11px
+  jump mid-playback reads as a bug.
+
+### Two additions, and one thing left disabled
+
+- **Playback timing is authored, not designed.** Figma has no timeline here, and
+  an even cadence reads as a slide deck. Each screen carries its own `ms` in
+  `caseStudyDetailData.js`: continuation states — a number being typed, a
+  consent box being ticked — flick past at 850ms, and the screens that carry new
+  content hold for up to 2.6s. The loop comes to about 47 seconds.
+- **Tapping the phone pauses.** Not in the design, but a kiosk visitor needs to
+  be able to hold a screen still and read it, and Figma does mark the screen
+  itself as the interactive layer (732:64192 is a link). A play triangle in a
+  scrim shows while paused. Under `prefers-reduced-motion` the strip opens
+  paused rather than auto-playing.
+- **The arrows flanking the brand are disabled.** They step between case
+  studies, and ArthaOne is the only one with a detail page in the file. They
+  render exactly as designed — the same treatment the LemonAIde stepper gives
+  its undesigned steps — and `onPrev` / `onNext` are already wired through, so a
+  second case study is a `caseStudyDetailData.js` entry and nothing else.
+
+The footer is the third fill of the shared `Footer [Test]` component, so
+`ScreenFooter` grew a `variant` prop (`dark` / `translucent` / `plum`) in place
+of its `translucent` boolean. The nav is *not* the shared `ScreenHeader`: it
+sits inside the panel, carries no page title, and its back button is a circled
+`humbleicons:arrow-go-back` rather than the flipped `arrow.forward` the other
+interior screens use.
+
+
 ## The LemonAIde process
 
 `src/pages/LemonaideProcess.jsx` + `src/pages/LemonaideProcess.css` implement
@@ -371,8 +454,8 @@ To fix: export node `3:22655`'s image fill manually from Figma, save it as
 ## Assets
 
 All artwork in `src/assets/landing/`, `src/assets/case-studies/`,
-`src/assets/services/`, `src/assets/lemonaide/` and `src/assets/cs-list/` is
-exported from the Figma file. The MCP asset URLs
+`src/assets/services/`, `src/assets/lemonaide/`, `src/assets/cs-list/` and
+`src/assets/cs-detail/` is exported from the Figma file. The MCP asset URLs
 expire after ~7 days, so these are committed rather than fetched.
 
 The case-studies backdrop is byte-identical to the landing's
@@ -386,3 +469,10 @@ icons are all byte-identical to files already committed. Its six service-card
 icons come from two shared sheets (a glow copy and a crisp copy) that every
 card windows into, and the three category icons use the 2x exports where Figma
 offered both.
+
+The case-study detail's thirty-three walkthrough screens live in
+`src/assets/cs-detail/arthaone/`, numbered in playback order — 2.8MB of PNG at
+1:1, which the kiosk bundler re-encodes down to a fraction of that. Its footer
+logo and home icon are byte-identical to the `case-studies/` copies and are
+imported from there rather than shipped twice; the circled back arrow, the
+brand arrow and the two ArthaOne logo groups are new.

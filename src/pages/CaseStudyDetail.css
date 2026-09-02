@@ -1,0 +1,336 @@
+/* =================================================================
+   Case-study detail. See CaseStudyDetail.jsx.
+
+   Figma section "Artha One" 3:27384; the chrome is ArthaOne 1
+   (3:27385). Every value is the frame's absolute px, so the stage
+   must be rendered at 1080x1920 (see App.css).
+
+   Frame 1 disagrees with the other thirty-two on a couple of
+   sub-pixel values (its panel sits at y=61 rather than 60.5, its
+   lede box is 921 wide rather than 960). The majority values are
+   used, which is also what Figma's own render of the section
+   measures at.
+   ================================================================= */
+
+.csd {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #531233;
+  color: #fff;
+  font-family: var(--font-display);
+}
+
+/* Grids (3:27386) — Frame 64 is the verticals from x=28, Frame 65
+   the horizontals from y=29.5, both 1px #931f5a on a 31px pitch.
+   Figma draws them full bleed and lets the opaque panel cover the
+   middle, so one background on the root reproduces both.
+
+   `background-size` is what keeps that honest. Left to default, each
+   gradient's tile is the whole 1080 x 1920 box, so the 31px pitch
+   doesn't divide it and the tile repeating *backwards* off the top
+   and left leaves its own last rule stranded on screen — a stray
+   vertical at x=2 and a half-strength horizontal along y=0, neither
+   of which Figma draws. One pitch per tile has no remainder to
+   strand. */
+.csd__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, #931f5a 0 1px, transparent 1px),
+    linear-gradient(to bottom, #931f5a 0 1px, transparent 1px);
+  background-size:
+    31px 100%,
+    100% 31px;
+  background-position:
+    28px 0,
+    0 29.5px;
+  pointer-events: none;
+}
+
+/* For Mobile Phone (732:64117) */
+.csd__panel {
+  position: absolute;
+  left: 59px;
+  top: 60.5px;
+  width: 961px;
+  height: 1706px;
+  border: 1px solid #931f5a;
+  background: #500f30;
+}
+
+/* ------------------------------------------------------- phone ---
+   The screen frame is 562.5 x 1218 at (258, 475) on the page, and
+   Figma strokes it 24px *outside*, so the exports are 611 x 1266 and
+   sit 24px up and to the left of it. The bezel therefore comes in
+   with the artwork; nothing here draws it.
+   ------------------------------------------------------------- */
+.csd__phone {
+  position: absolute;
+  left: 234px;
+  top: 451px;
+  width: 611px;
+  height: 1266px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.csd__phone:focus-visible {
+  outline: 3px solid #ffd600;
+  outline-offset: 8px;
+  border-radius: 60px;
+}
+
+/* Frames are cut, not crossfaded. A fade would put two 50%-opaque
+   copies over the panel and let a quarter of #500f30 bleed through
+   the bezel for the length of the transition; a recording cuts
+   anyway, and half of these frames differ only by a keystroke. */
+.csd__screen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 611px;
+  height: 1266px;
+  opacity: 0;
+}
+
+.csd__screen.is-on {
+  opacity: 1;
+}
+
+/* The stills are exported with the device around them; the
+   recordings are the bare screen, so the bezel is drawn here and
+   they are inset into it. Measured off the artwork rather than
+   guessed: the frame is a flat #3a3a3a ring exactly 24px thick, with
+   a 52px outer and 36px inner radius (Figma's outside stroke grows
+   the radius by less than the stroke width, so the two are not 24
+   apart). It sits under the stills, whose own bezel covers it
+   pixel for pixel. */
+.csd__bezel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 611px;
+  height: 1266px;
+  border-radius: 52px;
+  background: #3a3a3a;
+}
+
+/* Inset into that ring. The recordings are 0.4606 where the screen
+   is 0.4622, a ~4px difference over the full height, so cover trims
+   it rather than letterboxing. */
+.csd__screen--video {
+  left: 24px;
+  top: 24px;
+  width: 563px;
+  height: 1218px;
+  border-radius: 36px;
+  object-fit: cover;
+}
+
+/* Not in the design — but nothing else says the phone is tappable,
+   and on a kiosk an unread affordance means the flow is never seen
+   past its first screen. Shown until the first tap, then gone. */
+.csd__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 64px;
+  transform: translateX(-50%);
+  padding: 14px 30px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: csd-hint 2.4s ease-in-out infinite;
+}
+
+@keyframes csd-hint {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .csd__hint {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------- head ---
+   Frame 2147228694 (732:64212): a 921-wide centred column at
+   (78.5, 89.5) on the page, gap 12.
+   ------------------------------------------------------------- */
+.csd__head {
+  position: absolute;
+  left: 78.5px;
+  top: 89.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 921px;
+}
+
+/* Frame 2147226735 — Figma's gap of 801 across a 921 row with two
+   60px buttons is space-between. */
+.csd__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.csd__back,
+.csd__home {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 2.5px solid #fff;
+  border-radius: 225px;
+  background: none;
+  overflow: clip;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The glyph is humbleicons:arrow-go-back, not the arrow.forward the
+   other interior screens flip — a different icon, and 32px where the
+   home icon is 36px. */
+.csd__back img {
+  width: 32px;
+  height: 32px;
+}
+
+.csd__home img {
+  width: 36px;
+  height: 36px;
+}
+
+.csd__back:focus-visible,
+.csd__home:focus-visible,
+.csd__arrow:focus-visible {
+  outline: 3px solid #ffd600;
+  outline-offset: 6px;
+}
+
+/* Frame 2147226739 — 60 + 8 + 282 + 8 + 60 = 418 */
+.csd__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.csd__arrow {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 39px;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.csd__arrow img {
+  width: 22px;
+  height: 44px;
+}
+
+/* Figma stacks rotate(180deg) on scaleY(-1) — a horizontal flip. */
+.csd__arrow--prev img {
+  transform: scaleX(-1);
+}
+
+/* Only ArthaOne has a detail page, so both arrows are disabled.
+   They keep their designed appearance rather than dimming, which is
+   how the LemonAIde stepper renders its undesigned steps. */
+.csd__arrow:disabled {
+  cursor: default;
+}
+
+/* Personal Finance (3:2622), variant ArthaOne: a 272 x 35 pair of
+   exported groups centred in a 282 x 110 box. */
+.csd__logo {
+  position: relative;
+  display: block;
+  width: 282px;
+  height: 110px;
+  overflow: clip;
+}
+
+.csd__logo-art {
+  position: absolute;
+  left: 5px;
+  top: 37px;
+  display: block;
+  width: 272px;
+  height: 35px;
+}
+
+.csd__logo-art img {
+  position: absolute;
+}
+
+/* The brand name is artwork, so it is only here for screen readers. */
+.csd__logo-name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* 732:64227 — Figma's "Subtext 1": SF Pro Text Regular 32/40,
+   -0.255 tracking, hard-wrapped onto two lines. Set in the kiosk's
+   display face like every other screen, since SF Pro is not bundled
+   and would not resolve on the panel. */
+.csd__lede {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.255px;
+  text-align: center;
+}
+
+/* Chip Container (732:64228) — 521 wide, gap 16 */
+.csd__chips {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.csd__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 4px 20px;
+  border: 1px solid #fff;
+  border-radius: 48px;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}

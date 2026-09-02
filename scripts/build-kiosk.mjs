@@ -27,6 +27,8 @@ const mime = {
   '.gif': 'image/gif',
   '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
 }
 
 const kb = (n) => `${(n / 1024).toFixed(0)} KB`
@@ -44,6 +46,13 @@ async function toDataUri(file) {
 
   let out = buf
   let type = mime[ext] ?? 'application/octet-stream'
+
+  // Video is embedded as-is. sharp cannot read it, and re-encoding would
+  // need ffmpeg, which the build does not depend on.
+  if (type.startsWith('video/')) {
+    return `data:${type};base64,${buf.toString('base64')}`
+  }
+
   try {
     const animated = ext === '.gif'
     const img = sharp(buf, { animated })
