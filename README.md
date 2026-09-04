@@ -28,6 +28,31 @@ CSS `@keyframes` at the bottom of `Home.css` — no animation library needed.
 `services`, or `lemonaide-process` when a card is tapped. `App.jsx` routes all
 three.
 
+Top to bottom: the brand lockup (`1783:72657`), a four-column stat row
+(`1783:72674`, the last column ruled off from the three to its left), the three
+cards, then the bottom gradient block (`3:22626`) carrying the headline, the
+**Awards & Recognition** heading and the awards strip. The brand lockup and the
+stat row are the frame's last two children, so they paint *above* the cards.
+
+### The awards strip scrolls
+
+`awards` (`1902:82908`) is a 1080px window over a row of eight badges that
+measures 1948.654px, so two thirds of it can never be on screen at rest. Figma
+lays the first five badges down a second time starting at x=2013.65 — the seam
+of a loop that the file has no motion track for. `Home.jsx` repeats the whole
+set instead and slides the track by one **2013.654px** stride
+(1948.654px of badges + the 65px gap to the next set), which is exactly that
+offset, so the repeat lands where the original started.
+
+Badge widths differ (148.846–214.615px); the mark and the caption inside each
+one are placed at the percentage insets Figma gave them, so they stay pinned to
+their own box. Captions are vector text exports (Gilroy outlined), which is how
+the file draws them — the `alt` on each carries the caption as text, and the
+marquee's second pass is `aria-hidden` so it is not announced twice.
+
+Under `prefers-reduced-motion` the strip stops with the first five badges
+showing, along with the rest of the page's animation.
+
 ### Two implementation notes worth knowing
 
 Both of these look like bugs if you change them back, so they are commented in
@@ -457,6 +482,14 @@ All artwork in `src/assets/landing/`, `src/assets/case-studies/`,
 `src/assets/services/`, `src/assets/lemonaide/`, `src/assets/cs-list/` and
 `src/assets/cs-detail/` is exported from the Figma file. The MCP asset URLs
 expire after ~7 days, so these are committed rather than fetched.
+
+The landing's award badges are in `src/assets/landing/awards/` — a `logo-*` mark
+and a `text-*` caption per award, named for the award rather than for its Figma
+node. The Kyoorius badge additionally carries its year as four `kyoorius-v*.svg`
+glyph vectors, which is how Figma layers it. Everything else the landing draws
+(`bg-room.png`, `card-frames.png`, the three hero renders, both flag bitmaps)
+was re-exported when the awards strip was added and came back byte-identical, so
+none of it was re-committed.
 
 The case-studies backdrop is byte-identical to the landing's
 (`landing/bg-room.png`, md5 `e232ad5b474563cbcc4ca66e56617a4a`), so that screen
