@@ -27,6 +27,15 @@
   /* The LemonAIde stepper labels are set in Inter Tight, the only
      place in the file that departs from Gilroy. */
   --font-ui: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  /* The Product Roadmap deliverable shown in the service detail's
+     strip is a client document with its own typeface. */
+  --font-doc: 'Space Grotesk', 'Inter Tight', system-ui, sans-serif;
+  /* Nanum Pen Script sets the handwritten "Scroll" hints. */
+  --font-hand: 'Nanum Pen Script', 'Bradley Hand', 'Segoe Print', cursive;
+  /* The user-research report in the User Interview strip is set in
+     Departure Mono over Satoshi, again its own document faces. */
+  --font-mono-doc: 'Departure Mono', 'Space Mono', ui-monospace, monospace;
+  --font-sans-doc: 'Satoshi', 'Inter Tight', system-ui, sans-serif;
 
   /* Physical kiosk panel, in CSS px. The stage is authored at this
      size and scaled to fit whatever viewport it is previewed in. */

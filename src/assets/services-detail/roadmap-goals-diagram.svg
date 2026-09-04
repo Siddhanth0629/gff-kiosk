@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="448.154" height="447.15" viewBox="0 0 448.154 447.15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 1">
+<path id="Polygon 1" d="M224.077 0L418.133 335.362H30.0206L224.077 0Z" fill="url(#paint0_linear_0_5)"/>
+<line id="Line 1" x1="105.891" y1="110.156" x2="359.828" y2="110.156" stroke="white" stroke-width="5.52037"/>
+<line id="Line 3" x1="36.1333" y1="224.579" x2="414.53" y2="224.579" stroke="white" stroke-width="5.52037"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_5" x1="224.328" y1="333.982" x2="224.384" y2="-4.76758" gradientUnits="userSpaceOnUse">
+<stop offset="0.0464845" stop-color="#00B8A9"/>
+<stop offset="0.477981" stop-color="#2C64F4"/>
+<stop offset="0.78347" stop-color="#A366CE"/>
+</linearGradient>
+</defs>
+</svg>

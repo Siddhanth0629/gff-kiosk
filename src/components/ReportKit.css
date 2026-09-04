@@ -1,0 +1,445 @@
+/* =================================================================
+   Shared shell for the client-deliverable decks in the service
+   detail strips — the UX Audit report and the Usability Testing
+   report, which Figma builds from the same components.
+
+   Every page is a 963.556 x 542 spread drawn at the document's own
+   scale, so the sizes are Figma's fractional px rather than the
+   round numbers the kiosk screens use.
+   ================================================================= */
+
+.rk-page {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  font-family: var(--font-display);
+  color: #222;
+}
+
+/* ---------------------------------------------------------- grid ---
+   Grids (…) — #EBEBEB hairlines on a 15.056px pitch, the verticals
+   inset 15.056 from the left and the horizontals 15.56 from the top.
+   Figma ships this as two SVGs per page, the same drawing every
+   time, so it is painted here instead.
+   ------------------------------------------------------------- */
+.rk-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      #ebebeb 0 0.502px,
+      transparent 0.502px 15.0556px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      #ebebeb 0 0.502px,
+      transparent 0.502px 15.0556px
+    );
+  background-position:
+    15.056px 0,
+    0 15.56px;
+  background-size:
+    933.446px 542px,
+    963.556px 511.889px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* Some pages crop the full 1920 artboard grid instead, whose pitch
+   is 30px and which bleeds past the page on every side. */
+.rk-grid--board {
+  background-image:
+    repeating-linear-gradient(to right, #ebebeb 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(to bottom, #ebebeb 0 1px, transparent 1px 30px);
+  background-position:
+    30.5px 0,
+    0 31.5px;
+  background-size: auto, auto;
+  background-repeat: repeat;
+}
+
+/* The screen pages hold the grid back behind their artwork. */
+.rk-grid--faint {
+  opacity: 0.4;
+}
+
+/* -------------------------------------------------------- footer ---
+   Footer - Dark (…) — the byline strip, washed over the page.
+   ------------------------------------------------------------- */
+.rk-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 963.556px;
+  height: 56.207px;
+  background: rgba(255, 255, 255, 0.4);
+  font-size: 10.04px;
+  line-height: 1.4;
+  color: #222;
+}
+
+.rk-footer__kicker,
+.rk-footer__label,
+.rk-footer__name {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.rk-footer__kicker,
+.rk-footer__label {
+  top: 13.05px;
+  font-weight: 500;
+  letter-spacing: 0.753px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.rk-footer__kicker {
+  left: 50.19px;
+}
+
+.rk-footer__label {
+  left: 743.25px;
+}
+
+.rk-footer__name {
+  left: 743.25px;
+  top: 29.11px;
+  letter-spacing: 0.502px;
+}
+
+/* Figma nests the roundel three groups deep; the outermost carries
+   the real inset, so it sits 50.19 from the edge, not the 24.96 the
+   innermost group reports. */
+.rk-footer__logo {
+  position: absolute;
+  right: 50.19px;
+  top: 4.03px;
+  width: 40.148px;
+  height: 40.148px;
+}
+
+/* --------------------------------------------------------- title ---
+   Title (…) — flow name over module name, with the severity key.
+   ------------------------------------------------------------- */
+.rk-title {
+  position: absolute;
+  left: 50.19px;
+  top: var(--top, 43.16px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8.03px;
+  width: 422.559px;
+}
+
+.rk-title__flow,
+.rk-title__module {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.rk-title__flow {
+  font-size: 10.04px;
+}
+
+.rk-title__module {
+  font-weight: 600;
+  font-size: 36.13px;
+  color: #000;
+}
+
+.rk-title__tags {
+  display: flex;
+  gap: 5.186px;
+}
+
+/* Tags (…) — the four severities the report grades findings on. */
+.rk-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 5.186px 10.372px;
+  border-radius: 64.583px;
+  font-weight: 600;
+  font-size: 7.78px;
+  line-height: 1.5;
+  letter-spacing: 0.5446px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rk-tag--critical {
+  background: #ffd0d0;
+  color: red;
+}
+
+.rk-tag--major {
+  background: #ffedca;
+  color: #ec5c14;
+}
+
+.rk-tag--minor {
+  background: #fffbe2;
+  color: #f2a900;
+}
+
+.rk-tag--improvement {
+  background: #eaf0fc;
+  color: #0057ff;
+}
+
+/* On the legend page the key is drawn at a fraction of the size.
+   Figma sets three of the four at 1.52px and the fourth at 4.85px;
+   the odd trio reads as an empty pill, so all four take 4.85. */
+.rk-tag--xs {
+  padding: 3.235px 6.47px;
+  font-size: 4.85px;
+  letter-spacing: 0.3395px;
+}
+
+/* Impact (…) — the category a finding falls under. */
+.rk-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 3.011px 6.022px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 6.02px;
+  line-height: 1.5;
+  letter-spacing: 0.4214px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rk-badge--content {
+  background: #f1cbfe;
+  color: #530092;
+}
+
+.rk-badge--presentation {
+  background: #e9f5ce;
+  color: #436f00;
+}
+
+.rk-badge--navigation {
+  background: #d9f5fd;
+  color: #00468b;
+}
+
+.rk-badge--interaction {
+  background: #ffd1e8;
+  color: #f608bb;
+}
+
+.rk-badge--grey {
+  background: #ececec;
+  color: #3c3c3c;
+}
+
+.rk-badge--xs {
+  padding: 1.878px 3.757px;
+  font-size: 3.76px;
+  letter-spacing: 0.2632px;
+}
+
+/* --------------------------------------------------- impact card ---
+   Legends on Impact (…) — one annotated finding. The severity owns
+   the border, the heuristic tab and the headings; --fs and its
+   siblings carry the three scales Figma draws the card at.
+   ------------------------------------------------------------- */
+.rk-impact {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap);
+  width: var(--w);
+  padding: var(--pad);
+  border: var(--bw) solid var(--tone);
+  border-radius: 16px;
+  background: #fff;
+  overflow: clip;
+}
+
+/* The tab hangs off the card's top edge, clipped by its radius. */
+.rk-impact__tab {
+  position: absolute;
+  left: var(--tab-x);
+  top: var(--tab-y);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: var(--tab-w);
+  padding: var(--tab-pad);
+  border-radius: 0 0 var(--tab-r) var(--tab-r);
+  background: var(--tab-bg);
+}
+
+.rk-impact__tab-label,
+.rk-impact__tab-name {
+  width: 100%;
+  margin: 0;
+  font-size: var(--tab-fs);
+  line-height: 1.5;
+  color: var(--tone);
+}
+
+.rk-impact__tab-name {
+  font-weight: 700;
+}
+
+.rk-impact__context {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ctx-gap);
+  flex: none;
+  width: var(--ctx-w);
+}
+
+.rk-impact__head {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.rk-impact__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--fs);
+  line-height: 1.5;
+  color: var(--tone);
+  white-space: nowrap;
+}
+
+.rk-impact__body {
+  width: var(--body-w);
+  margin: 0;
+  font-size: var(--fs);
+  line-height: 1.5;
+  color: #000;
+  opacity: 0.8;
+}
+
+/* Line 226 (…) — a dashed hairline at half strength. */
+.rk-impact__rule {
+  flex: none;
+  width: 100%;
+  height: 0;
+  border-top: 0.502px dashed rgba(0, 0, 0, 0.5);
+}
+
+.rk-impact__solution {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ctx-gap);
+}
+
+.rk-impact__solution-label,
+.rk-impact__solution-body {
+  margin: 0;
+  font-size: var(--fs);
+  line-height: 1.5;
+}
+
+.rk-impact__solution-label {
+  font-weight: 700;
+  color: var(--tone);
+  white-space: nowrap;
+}
+
+.rk-impact__solution-body {
+  width: var(--sol-w);
+  color: #000;
+  opacity: 0.8;
+}
+
+/* The three scales. */
+.rk-impact--lg {
+  --w: 347.281px;
+  --pad: 10.037px 12.044px;
+  --gap: 6.022px;
+  --bw: 1.004px;
+  --tab-x: 256.45px;
+  --tab-y: -0.5px;
+  --tab-w: 78.289px;
+  --tab-pad: 6.022px 8.03px 4.015px;
+  --tab-r: 4.015px;
+  --tab-fs: 6.02px;
+  --ctx-w: 245.406px;
+  --ctx-gap: 2.007px;
+  --fs: 8.03px;
+  --body-w: 235.87px;
+  --sol-w: 324.698px;
+}
+
+.rk-impact--md {
+  --w: 267.99px;
+  --pad: 7.57px 9.084px;
+  --gap: 4.542px;
+  --bw: 0.757px;
+  --tab-x: 193.42px;
+  --tab-y: -0.38px;
+  --tab-w: 59.049px;
+  --tab-pad: 4.542px 6.056px 3.028px;
+  --tab-r: 3.028px;
+  --tab-fs: 4.54px;
+  --ctx-w: 185.095px;
+  --ctx-gap: 1.514px;
+  --fs: 6.06px;
+  --body-w: 177.903px;
+  --sol-w: 244.901px;
+}
+
+/* The legend cards take their width from the grid that lays them
+   out. Figma sets their tab type at 1.38px — kept as drawn, which
+   is why it reads as a smudge rather than a line of text. */
+.rk-impact--sm {
+  --w: 100%;
+  --pad: 6.792px 8.15px;
+  --gap: 4.075px;
+  --bw: 0.679px;
+  --tab-x: 173.53px;
+  --tab-y: -0.34px;
+  --tab-w: 52.977px;
+  --tab-pad: 4.075px 5.434px 2.717px;
+  --tab-r: 2.717px;
+  --tab-fs: 1.38px;
+  --ctx-w: 166.062px;
+  --ctx-gap: 1.358px;
+  --fs: 5.43px;
+  --body-w: 159.609px;
+  --sol-w: 219.718px;
+}
+
+.rk-impact--sm .rk-impact__tab-name {
+  font-weight: 500;
+}
+
+/* The severity palettes. */
+.rk-impact--critical {
+  --tone: red;
+  --tab-bg: #ffe3e3;
+}
+
+.rk-impact--major {
+  --tone: #ec5c14;
+  --tab-bg: #fff4dd;
+}
+
+.rk-impact--minor {
+  --tone: #f2a900;
+  --tab-bg: rgba(242, 169, 0, 0.1);
+}
+
+.rk-impact--improvement {
+  --tone: #0057ff;
+  --tab-bg: #e1faff;
+}
+

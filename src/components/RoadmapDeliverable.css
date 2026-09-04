@@ -1,0 +1,496 @@
+/* =================================================================
+   Product Roadmap deliverable — Figma "PR 11" 1804:73545, "PR 12"
+   1804:73940 and "Product Roadmap - Goals" 1804:74333, the three
+   document cards in the service detail's deliverables strip.
+
+   Both files are drawn at the deliverable's own scale, so the sizes
+   here are Figma's fractional px rather than the round numbers the
+   kiosk screens use. Each card is a 542px-tall clip; .rmd is the
+   document sliding under it and .rmg a page that fits exactly.
+   ================================================================= */
+
+/* ------------------------------------------------------ document ---
+   PR 11 / PR 12. --rmd-top is how far the window has slid down the
+   document; Figma's plate runs 3544.58px but neither window reaches
+   past 1011px, so the document is built to the end of its first
+   section and no further.
+   ------------------------------------------------------------- */
+.rmd {
+  position: absolute;
+  left: 0;
+  top: var(--rmd-top, 0);
+  width: 963.556px;
+  height: 1148.74px;
+  background: #fff;
+  font-family: var(--font-doc);
+  color: #000;
+}
+
+/* bkg (1804:73546 / 1804:74334) — a tiled paper grain, held right
+   back so the page still reads as white. */
+.rmd__paper {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/services-detail/roadmap-paper.png');
+  background-position: left top;
+  background-size: 513.896px 513.896px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.rmd__em {
+  font-weight: 500;
+}
+
+/* header (1804:73547 / 1804:73942) */
+.rmd__header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 66.746px;
+  padding: 0 32.119px;
+}
+
+/* PR 11 keeps only the byline, and moves it across. */
+.rmd__header--right {
+  justify-content: flex-end;
+  padding-right: 49.92px;
+}
+
+.rmd__header-label {
+  order: 2;
+  margin-right: 18.14px;
+  font-weight: 500;
+  font-size: 16.059px;
+  line-height: 0.981;
+  letter-spacing: 0.3212px;
+  opacity: 0.3;
+  white-space: nowrap;
+}
+
+.rmd__header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12.045px;
+  font-weight: 500;
+  font-size: 12.044px;
+  line-height: normal;
+  letter-spacing: -0.7227px;
+  white-space: nowrap;
+}
+
+.rmd__header-brand img {
+  width: 40.148px;
+  height: 40.148px;
+}
+
+/* Business Vision (1804:73866) */
+.rmd__vision {
+  position: absolute;
+  left: 32.119px;
+  top: 90.333px;
+  display: flex;
+  flex-direction: column;
+  gap: 20.074px;
+  width: 881.754px;
+}
+
+/* Business Goals (1804:73867) — the three tinted phase panels. */
+.rmd__goals {
+  display: flex;
+  align-items: flex-start;
+  gap: 32.119px;
+  height: 191.707px;
+}
+
+.rmd__goal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: none;
+  width: 272.004px;
+  height: 100%;
+}
+
+.rmd__goal:last-child {
+  width: 273.509px;
+}
+
+/* The label overhangs the panel: Figma pulls the panel up over its
+   lower half rather than spacing them apart. */
+.rmd__goal-label {
+  flex: none;
+  margin-bottom: -15.056px;
+  font-weight: 700;
+  font-size: 28.104px;
+  line-height: 1;
+  letter-spacing: 1.6862px;
+  text-transform: uppercase;
+}
+
+.rmd__goal-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 0;
+  min-height: 1px;
+  width: 100%;
+  padding: 10.037px;
+  border-radius: 6.022px;
+}
+
+.rmd__goal-text {
+  margin: 0;
+  font-weight: 300;
+  font-size: 12.044px;
+  line-height: 1.6;
+  letter-spacing: 0.2409px;
+}
+
+.rmd__goal--now .rmd__goal-label {
+  color: #00b8a9;
+}
+
+.rmd__goal--now .rmd__goal-panel {
+  background: rgba(0, 184, 169, 0.2);
+}
+
+.rmd__goal--next .rmd__goal-label {
+  color: #022ebe;
+}
+
+.rmd__goal--next .rmd__goal-panel {
+  background: rgba(2, 46, 190, 0.2);
+}
+
+.rmd__goal--future .rmd__goal-label {
+  color: #c661c8;
+}
+
+.rmd__goal--future .rmd__goal-panel {
+  background: rgba(198, 97, 200, 0.2);
+}
+
+/* Values (1804:73880) */
+.rmd__values {
+  display: flex;
+  flex-direction: column;
+  gap: 10.539px;
+}
+
+.rmd__values-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 12.044px;
+  line-height: 1.2;
+  letter-spacing: -0.4818px;
+  text-transform: uppercase;
+}
+
+.rmd__values-cols {
+  display: flex;
+  align-items: flex-start;
+  gap: 32.119px;
+}
+
+.rmd__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  gap: 8.03px;
+  flex: none;
+  width: 272.004px;
+}
+
+.rmd__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 5.019px 15.056px;
+  border: 1.506px solid;
+  border-radius: 15.056px;
+  font-weight: 500;
+  font-size: 8.03px;
+  line-height: 1.5;
+  letter-spacing: 0.1606px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+}
+
+.rmd__chips--now .rmd__chip {
+  border-color: #00b8a9;
+}
+
+.rmd__chips--next .rmd__chip {
+  border-color: #022ebe;
+}
+
+.rmd__chips--future .rmd__chip {
+  border-color: #c661c8;
+}
+
+/* Worldbuilding (1804:73557) — Main Content opens 499.844px down
+   the document, and this is its first section. */
+.rmd__section {
+  position: absolute;
+  left: 32.119px;
+  top: 499.844px;
+  display: flex;
+  flex-direction: column;
+  gap: 20.074px;
+  width: 899.319px;
+}
+
+.rmd__section-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 20.074px;
+  line-height: 1.2;
+  letter-spacing: -0.803px;
+  text-transform: uppercase;
+}
+
+/* Frame 36 (1804:73560) — one column per phase, each hung off a
+   tinted rule. */
+.rmd__tracks {
+  display: flex;
+  align-items: flex-end;
+  height: 592.687px;
+}
+
+.rmd__track {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 12.044px;
+  min-width: 1px;
+  height: 100%;
+  padding: 0 16.059px 0 12.044px;
+  border-left: 1.004px solid;
+}
+
+.rmd__track--now {
+  border-left-color: rgba(21, 193, 179, 0.4);
+}
+
+.rmd__track--next {
+  border-left-color: rgba(2, 46, 190, 0.4);
+}
+
+.rmd__track--future {
+  border-left-color: rgba(198, 97, 200, 0.4);
+}
+
+.rmd__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12.044px;
+  flex: none;
+  width: 100%;
+  padding: 12.044px;
+  border-radius: 4.015px;
+  background: #f3f3f3;
+}
+
+.rmd__card-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 12.044px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.rmd__track--now .rmd__card-title {
+  color: #00b8a9;
+}
+
+.rmd__track--next .rmd__card-title {
+  color: #022ebe;
+}
+
+.rmd__track--future .rmd__card-title {
+  color: #c661c8;
+}
+
+.rmd__card-text {
+  width: 100%;
+  margin: 0;
+  font-weight: 400;
+  font-size: 10.037px;
+  line-height: 1.5;
+  letter-spacing: 0.2007px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* --------------------------------------------------- goals page ---
+   1804:74333 — a page of its own rather than a window, so it fills
+   the card exactly.
+   ------------------------------------------------------------- */
+.rmg {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  font-family: var(--font-doc);
+  color: #000;
+}
+
+/* header+footer (1804:74335) — text only here, no roundel. */
+.rmg__brand,
+.rmg__label {
+  position: absolute;
+  top: 32.119px;
+  font-size: 12.044px;
+  line-height: normal;
+  letter-spacing: -0.7227px;
+  white-space: nowrap;
+}
+
+.rmg__brand {
+  left: 32.119px;
+  font-weight: 500;
+}
+
+.rmg__label {
+  right: 31.47px;
+  font-weight: 400;
+}
+
+/* The heading is a gradient wash rather than a flat colour. */
+.rmg__title {
+  position: absolute;
+  left: 58.215px;
+  top: 111.913px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 20.074px;
+  line-height: 0.981;
+  letter-spacing: -1.2044px;
+  white-space: nowrap;
+  background-image: linear-gradient(
+    90deg,
+    #81d2e3 12.141%,
+    #279cb6 14.879%,
+    #2c64f4 45.628%,
+    #a366ce 101.93%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* step (1804:74343) */
+.rmg__step {
+  position: absolute;
+  left: calc(50% - 0.25px);
+  top: 31.617px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12.044px;
+  transform: translateX(-50%);
+  font-weight: 500;
+  font-size: 16.059px;
+  line-height: 0.981;
+  letter-spacing: -0.9636px;
+  white-space: nowrap;
+}
+
+.rmg__step > span:not(.rmg__step-rule) {
+  opacity: 0.3;
+}
+
+/* The connector is a dumbbell wider than the gap it bridges, so it
+   overhangs its box on both sides the way Figma draws it. */
+.rmg__step-rule {
+  position: relative;
+  flex: none;
+  width: 24.591px;
+  height: 2.677px;
+}
+
+.rmg__step-rule img {
+  position: absolute;
+  left: -1.338px;
+  top: 0;
+  width: 27.267px;
+  height: 2.677px;
+}
+
+/* Group 1 (1804:74339) — the banded triangle. */
+.rmg__diagram {
+  position: absolute;
+  left: 478.265px;
+  top: 146.54px;
+  width: 448.154px;
+  height: 447.15px;
+}
+
+/* Frame 30 (1804:74349) — the same three paragraphs as the phase
+   panels, stacked Future first and tagged down the side. */
+.rmg__rows {
+  position: absolute;
+  left: 58.215px;
+  top: 176.652px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15.056px;
+  width: 468.228px;
+}
+
+.rmg__row {
+  display: flex;
+  align-items: center;
+  gap: 16.059px;
+  flex: none;
+  width: 100%;
+}
+
+.rmg__divider {
+  flex: none;
+  width: 100%;
+  height: 0.502px;
+  background: #eee;
+}
+
+/* The phase reads up the side of its paragraph, in a 10px-wide slot
+   the turned label overflows. */
+.rmg__tab {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 10px;
+  height: var(--tab);
+  opacity: 0.4;
+}
+
+.rmg__tab-text {
+  grid-area: 1 / 1;
+  font-weight: 700;
+  font-size: 10.037px;
+  line-height: 1;
+  letter-spacing: 0.6022px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+}
+
+.rmg__text {
+  flex: none;
+  width: var(--measure);
+  margin: 0;
+  font-weight: 300;
+  font-size: 13.048px;
+  line-height: 1.6;
+  letter-spacing: -0.7829px;
+}

@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="13.55" height="13.55" viewBox="0 0 13.55 13.55" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="density_small">
+<mask id="mask0_0_32" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="14" height="14">
+<rect id="Bounding box" width="13.55" height="13.55" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_0_32)">
+<path id="density_small_2" d="M1.97552 12.1389V11.292H11.5734V12.1389H1.97552ZM1.97552 8.84368V7.9968H11.5734V8.84368H1.97552ZM1.97552 5.55385V4.70698H11.5734V5.55385H1.97552ZM1.97552 2.25866V1.41179H11.5734V2.25866H1.97552Z" fill="#1C1B1F"/>
+</g>
+</g>
+</svg>

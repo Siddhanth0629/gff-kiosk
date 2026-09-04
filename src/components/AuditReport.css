@@ -1,0 +1,557 @@
+/* =================================================================
+   "UX Audit report" pages — Figma 1804:77271, 1804:77421,
+   1804:77570, 1804:77690, 1804:77805 and 1804:77979, the six cards
+   in the UX Audit screen's deliverables strip.
+
+   Each page is a 963.556 x 542 spread of one client deliverable
+   (the last is a narrower 562), drawn at the document's own scale —
+   hence Figma's fractional px rather than the round numbers the
+   kiosk screens use. The strip card clips them; nothing scrolls.
+   ================================================================= */
+
+/* ============================================= intro (1804:77271) === */
+
+.aud-intro__head {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 963.556px;
+  height: 256.446px;
+  background: #fff;
+  box-shadow: 2.007px 2.007px 4.115px -1.506px rgba(0, 0, 0, 0.11);
+  overflow: clip;
+}
+
+.aud-intro__head-inner {
+  position: absolute;
+  left: 50.19px;
+  top: 70.15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20.074px;
+  width: 532.967px;
+}
+
+.aud-intro__head-inner h3 {
+  width: 508.376px;
+  margin: 0;
+  font-weight: 600;
+  font-size: 32.119px;
+  line-height: 1.5;
+}
+
+.aud-intro__head-inner p {
+  margin: 0;
+  font-size: 16.059px;
+  line-height: 1.5;
+}
+
+.aud-intro__impacts {
+  position: absolute;
+  left: 50.19px;
+  top: 271px;
+  display: flex;
+  flex-direction: column;
+  gap: 10.037px;
+  width: 863.185px;
+}
+
+.aud-intro__ask {
+  margin: 0;
+  font-style: italic;
+  font-size: 16.059px;
+  line-height: 1.5;
+}
+
+.aud-intro__cards {
+  display: flex;
+  align-items: center;
+  gap: 15.056px;
+  width: 100%;
+}
+
+/* Impact Card (…) — one reason to run an audit. */
+.aud-impact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15.056px;
+  flex: none;
+  width: 160.593px;
+  padding: 12.044px 15.056px;
+  border: 0.502px solid #000;
+  border-radius: 6.022px;
+  background: #fff;
+  box-shadow: 2.007px 2.007px 10.037px 0 rgba(0, 0, 0, 0.1);
+  overflow: clip;
+}
+
+/* Figma lets the first card hug its content and fixes the rest. */
+.aud-impact-card--tall {
+  height: 165.611px;
+}
+
+.aud-impact-card__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30.111px;
+  height: 30.111px;
+  border-radius: 4.015px;
+  background: #f8df00;
+}
+
+.aud-impact-card__icon img {
+  width: 20.074px;
+  height: 20.074px;
+}
+
+.aud-impact-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6.022px;
+  width: 100%;
+}
+
+.aud-impact-card__title,
+.aud-impact-card__body {
+  margin: 0;
+  font-size: 12.044px;
+  line-height: 1.5;
+}
+
+.aud-impact-card__title {
+  font-weight: 600;
+  letter-spacing: 0.2409px;
+  text-transform: capitalize;
+}
+
+/* ========================================== journeys (1804:77421) === */
+
+.aud-journeys__title,
+.aud-journeys__blurb {
+  position: absolute;
+  left: 50.18px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.aud-journeys__title {
+  top: 40.15px;
+  width: 508.376px;
+  font-weight: 600;
+  font-size: 32.119px;
+}
+
+.aud-journeys__blurb {
+  top: 108.4px;
+  width: 330.72px;
+  font-family: var(--font-ui);
+  font-size: 16.059px;
+}
+
+.aud-journeys__panel {
+  position: absolute;
+  left: 447.15px;
+  top: 0;
+  width: 459.194px;
+  height: 383.415px;
+  background: #f9e320;
+  box-shadow: -2.007px 2.007px 4.115px -1.506px rgba(0, 0, 0, 0.11);
+  overflow: clip;
+}
+
+.aud-journeys__cols {
+  position: absolute;
+  left: 44.16px;
+  top: 46.17px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 376.389px;
+}
+
+.aud-journeys__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12.044px;
+  flex: none;
+  width: 170.63px;
+}
+
+.aud-journeys__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12.044px;
+  flex: none;
+  width: 100%;
+  border-bottom: 0.502px solid #999;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.aud-journeys__row--last {
+  border-bottom: 0;
+}
+
+.aud-journeys__num {
+  flex: none;
+  width: 30.111px;
+  font-size: 16.059px;
+}
+
+.aud-journeys__label {
+  flex: 1 0 0;
+  min-width: 1px;
+  font-size: 14.052px;
+}
+
+/* =============== screen findings (1804:77570 / 1804:77690) === */
+
+/* The white sheet the annotations are written on. */
+.aud-screen__sheet {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 572.111px;
+  height: 542px;
+  background: #fff;
+  box-shadow: 2.007px 2.007px 4.115px -1.506px rgba(0, 0, 0, 0.11);
+}
+
+/* Module (…) — the wide shot the phone is lifted out of. */
+.aud-screen__module {
+  position: absolute;
+  left: 601.22px;
+  top: var(--top);
+  width: 310.646px;
+  height: var(--h);
+  border-radius: 5.019px;
+  filter: drop-shadow(1.506px 2.007px 4.165px rgba(0, 0, 0, 0.16));
+  overflow: clip;
+}
+
+.aud-screen__module img {
+  position: absolute;
+  left: 0;
+  top: var(--img-top);
+  width: var(--img-w);
+  height: var(--img-h);
+  max-width: none;
+  object-fit: cover;
+  filter: blur(2.509px);
+}
+
+.aud-screen__plate {
+  position: absolute;
+  left: 642.87px;
+  top: 24.59px;
+  width: 227.339px;
+  height: 457.689px;
+  border-radius: 5.598px;
+  background: #fff;
+}
+
+.aud-screen__phone {
+  position: absolute;
+  left: 646.88px;
+  top: 30.11px;
+  width: 218.306px;
+  height: 447.652px;
+  border-radius: 5.598px;
+  overflow: clip;
+}
+
+.aud-screen__page {
+  position: absolute;
+  left: calc(50% + 3.06px);
+  top: var(--top);
+  width: 229.081px;
+  height: var(--h);
+  border: 1.294px solid #313131;
+  border-radius: 13.805px;
+  background: rgba(1, 1, 1, 0.67);
+  opacity: 0.4;
+  transform: translateX(-50%);
+  overflow: clip;
+}
+
+.aud-screen__page img {
+  position: absolute;
+  left: 0;
+  top: var(--img-top);
+  width: 100%;
+  height: var(--img-h);
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+  filter: blur(2.509px);
+}
+
+/* The card that floats off the phone on the homepage spread. */
+.aud-screen__float {
+  position: absolute;
+  left: -16.56px;
+  top: var(--top);
+  width: 256.26px;
+  height: var(--h);
+  border-radius: 12.942px;
+  box-shadow: 0 0 22.74px 4.314px rgba(31, 31, 31, 0.15);
+  filter: blur(2.509px);
+  overflow: clip;
+}
+
+.aud-screen__float img {
+  position: absolute;
+  left: 0;
+  top: var(--img-top);
+  width: 100%;
+  height: var(--img-h);
+  max-width: none;
+}
+
+.aud-screen__title {
+  left: 50.18px;
+}
+
+.aud-screen__finding {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+}
+
+/* The leader lines from each card out to the screen. */
+.aud-screen__lead {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: var(--h);
+}
+
+/* =================================== recommendations (1804:77805) === */
+
+.aud-recs__title {
+  top: 43.16px;
+}
+
+.aud-recs__blurb {
+  position: absolute;
+  right: 50.19px;
+  top: 71.76px;
+  width: 296.093px;
+  margin: 0;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 12.044px;
+  line-height: 1.4;
+  text-align: right;
+  color: #000;
+}
+
+.aud-recs__grid {
+  position: absolute;
+  left: 50.19px;
+  top: 151.06px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 25px 12.546px;
+  width: 863.687px;
+}
+
+/* Parameter (…) — one recommendation. */
+.aud-rec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: none;
+  width: 279.531px;
+  height: 150.556px;
+  padding: 12.546px;
+  border: 0.502px solid #000;
+  border-radius: 5.019px;
+  background: #fff;
+  overflow: clip;
+}
+
+.aud-rec__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  width: 100%;
+}
+
+.aud-rec__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22.583px;
+  height: 22.583px;
+}
+
+.aud-rec__icon img {
+  width: 17.063px;
+  height: 17.063px;
+}
+
+/* Page Title chips (…) — the priority stamp. */
+.aud-rec__chip {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6.022px;
+  flex: none;
+  padding: 6.022px 8.03px;
+  border-radius: 40px;
+  background: #f8df00;
+  font-weight: 700;
+  font-size: 7.03px;
+  line-height: 1.5;
+  letter-spacing: 1.406px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.aud-rec__chip img {
+  flex: none;
+  width: 12.044px;
+  height: 12.044px;
+}
+
+.aud-rec__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4.015px;
+  flex: none;
+  width: 100%;
+  margin-top: 10.037px;
+}
+
+.aud-rec__title,
+.aud-rec__body {
+  margin: 0;
+  line-height: 1.4;
+  color: #000;
+}
+
+.aud-rec__title {
+  font-weight: 600;
+  font-size: 12.044px;
+}
+
+.aud-rec__body {
+  font-size: 10.037px;
+}
+
+/* ======================================== the basics (1804:77979) === */
+
+.aud-basics__panel {
+  position: absolute;
+  left: 0;
+  background: #fff;
+  overflow: clip;
+}
+
+.aud-basics__panel--anatomy {
+  top: 52.39px;
+  width: 551.008px;
+  height: 273.625px;
+}
+
+.aud-basics__panel--legend {
+  top: 326.01px;
+  width: 550.811px;
+  height: 216.662px;
+}
+
+/* These panels crop the full 1920-wide artboard grid, whose pitch is
+   30px rather than the 15.056px the report pages use. */
+.aud-basics__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right, #ebebeb 0 1px, transparent 1px 30px),
+    repeating-linear-gradient(to bottom, #ebebeb 0 1px, transparent 1px 30px);
+  background-position:
+    -19.5px 0,
+    0 -12px;
+  pointer-events: none;
+}
+
+.aud-basics__example {
+  position: absolute;
+  left: 126.17px;
+  top: 72.95px;
+}
+
+.aud-basics__note {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.505px;
+  padding: 2.505px 0;
+}
+
+.aud-basics__note-title,
+.aud-basics__note-text {
+  margin: 0;
+  line-height: 1.5;
+  color: #000;
+  opacity: 0.8;
+}
+
+.aud-basics__note-title {
+  padding-bottom: 2.505px;
+  border-bottom: 0.313px solid #023535;
+  font-weight: 600;
+  font-size: 7.514px;
+  white-space: nowrap;
+}
+
+.aud-basics__note-text {
+  width: var(--w);
+  font-size: 6.261px;
+}
+
+.aud-basics__note-badges {
+  display: flex;
+  gap: 2.505px;
+}
+
+.aud-basics__note-tags {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 3.131px 3.235px;
+}
+
+.aud-basics__arrow {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  display: grid;
+  place-items: center;
+  width: var(--w);
+  height: var(--h);
+}
+
+.aud-basics__arrow img {
+  width: var(--iw);
+  height: var(--ih);
+  transform: rotate(var(--deg));
+}
+
+.aud-basics__legend {
+  position: absolute;
+  left: 10.25px;
+  top: 19.36px;
+  display: grid;
+  grid-template-columns: 234.999px 240.433px;
+  align-items: start;
+  gap: 14.603px 28.481px;
+  width: 537.918px;
+}

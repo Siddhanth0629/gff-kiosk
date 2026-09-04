@@ -30,9 +30,10 @@
 }
 
 /* --------------------------------------------------------- card ---
-   43:38836 — 1720px of window over 1982px of content: hero, the
-   accordion, the photo strip, then Figma's 224px "space" tail, which
-   is folded into padding-bottom along with the 70px stack gap.
+   43:38836 — 1720px of window over 2027px of content: hero, the
+   deliverables plate, the accordion, then Figma's 154px "space"
+   tail, which is folded into padding-bottom along with the 70px
+   stack gap.
    ------------------------------------------------------------- */
 .svd__card {
   position: absolute;
@@ -43,7 +44,7 @@
   gap: 70px;
   width: 960px;
   height: 1720px;
-  padding-bottom: 294px;
+  padding-bottom: 224px;
   background: #fff;
   overflow-x: clip;
   overflow-y: auto;
@@ -92,14 +93,17 @@
   color: #000;
 }
 
+/* Each service sets its own measure (43:38850 / 43:39182 / 43:39016),
+   and the audit's lead is broken over two lines rather than wrapped. */
 .svd__lead {
-  width: 746px;
+  width: var(--lead-w, 746px);
   height: 48px;
   margin: 0;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
   color: #000;
+  white-space: pre-line;
 }
 
 .svd__lead strong {
@@ -292,8 +296,13 @@
 }
 
 /* ---------------------------------------------------- accordion ---
-   43:38888 — four rows, closed at 90px. Opening one drops the fixed
-   height and lets the body out of the clip.
+   43:38888 — four rows, closed at 90px.
+
+   The row grows out of its own content rather than being pinned to a
+   height, so opening one is a single transition on the body's grid
+   track: 0fr to 1fr. The thumbnail column only stretches to the row,
+   so it grows with it on the same curve for free — no second
+   animation to keep in step.
    ------------------------------------------------------------- */
 .svd__accordion {
   display: flex;
@@ -307,20 +316,16 @@
 .svd-acc {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   flex: none;
   width: 100%;
-  height: 90px;
+  min-height: 90px;
   padding: 3px 0;
   border: 1px solid rgba(229, 229, 229, 0.51);
   border-radius: 16px;
   background: #fff;
   text-align: left;
   overflow: clip;
-}
-
-.svd-acc--open {
-  height: auto;
 }
 
 /* The row's tap target, over the whole card. */
@@ -337,13 +342,26 @@
 }
 
 .svd-acc__shot {
+  position: relative;
   display: flex;
   flex: none;
   flex-direction: column;
   align-items: flex-start;
   width: 335px;
-  height: 100%;
   padding: 8px;
+}
+
+/* An absolutely positioned <img> sizes itself from its intrinsic
+   dimensions, not from its insets, so the box has to be stated for
+   object-fit to have anything to fit to. */
+.svd-acc__shot-over {
+  position: absolute;
+  inset: 8px;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  border-radius: 10px;
+  object-fit: cover;
+  pointer-events: none;
 }
 
 .svd-acc__shot img {
@@ -355,14 +373,20 @@
   pointer-events: none;
 }
 
+/* The title keeps its own row and the body gets a collapsible one.
+   Figma's 24px gap lives inside the body instead of on the grid, or
+   it would hold the row open by 24px while closed. */
 .svd-acc__main {
-  display: flex;
+  display: grid;
+  grid-template-rows: auto 0fr;
   flex: 1 0 0;
-  flex-direction: column;
-  gap: 24px;
   min-width: 1px;
-  height: 100%;
   padding: 24px 16px;
+  transition: grid-template-rows 340ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.svd-acc--open .svd-acc__main {
+  grid-template-rows: auto 1fr;
 }
 
 .svd-acc__head {
@@ -370,8 +394,14 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  flex: none;
   width: 100%;
+}
+
+/* min-height: 0 or the track refuses to go below the body's
+   min-content height and there is nothing to animate. */
+.svd-acc__reveal {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .svd-acc__title {
@@ -388,7 +418,7 @@
   flex: none;
   width: 32px;
   height: 32px;
-  transition: transform 200ms ease;
+  transition: transform 340ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .svd-acc--open .svd-acc__toggle {
@@ -396,8 +426,8 @@
 }
 
 .svd-acc__body {
-  flex: none;
   width: 100%;
+  padding-top: 24px;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
@@ -420,31 +450,87 @@
   list-style: decimal;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .svd-acc__main,
+  .svd-acc__toggle {
+    transition: none;
+  }
+}
+
 /* Figma sets its blank lines as zero-width-space paragraphs, which
    come out as one empty 16px line. */
 .svd-acc__gap {
   height: 24px;
 }
 
-/* ------------------------------------------------------ gallery ---
-   deliverables (1571:80694) — a 542px band that scrolls sideways;
-   each shot keeps the width it was cropped to in Figma.
+/* ------------------------------------------------- deliverables ---
+   1804:73544 — a 657px grey plate. The strip inside is inset 24px
+   on the left only: Figma lets it run past the plate's right edge
+   and be cut there, so the card that is scrolled to sits flush with
+   the plate rather than a card-width short of it.
    ------------------------------------------------------------- */
-.svd__gallery {
+.svd__deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: none;
+  width: 914px;
+  margin: 0 23px;
+  padding: 36px 0 24px 24px;
+  border-radius: 12px;
+  background: #f2f2f2;
+  overflow: clip;
+}
+
+/* scroll (1804:74378) — the 542px band. */
+.svd__strip {
   display: flex;
   gap: 20px;
   flex: none;
-  width: 100%;
   height: 542px;
-  padding: 0 24px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
   overscroll-behavior-x: contain;
 }
 
-.svd__gallery::-webkit-scrollbar {
+.svd__strip::-webkit-scrollbar {
   display: none;
+}
+
+/* hint text (1804:74374) — right-aligned in the plate's foot. */
+.svd__hint {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex: none;
+  height: 35px;
+  padding-right: 24px;
+}
+
+.svd__hint-text {
+  font-family: var(--font-hand);
+  font-size: 28px;
+  line-height: normal;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* The arrow is drawn upright and Figma turns it a quarter turn to
+   point along the strip, so the box and the leaf swap dimensions. */
+.svd__hint-arrow {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 55px;
+  height: 26px;
+}
+
+.svd__hint-arrow img {
+  width: 26px;
+  height: 55px;
+  transform: rotate(90deg);
 }
 
 .svd-shot {
@@ -454,22 +540,24 @@
   height: 100%;
   margin: 0;
   border-radius: 12px;
-  /* 1571:80711 alone has no fill in the file and shows the bare
-     plate; the rest cover it completely. */
   background: #dcdcdc;
   filter: drop-shadow(0 0 7.5px rgba(0, 0, 0, 0.1));
   overflow: clip;
 }
 
-.svd-shot__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
+/* The roadmap cards paint their own page, and are windows onto a
+   document taller than the card. */
+.svd-shot--doc {
+  background: #fff;
 }
 
-.svd-shot__img--top {
-  object-position: center top;
+/* --fw / --fh are the fill size Figma draws the photo at; the card
+   crops it from the top left. */
+.svd-shot__img {
+  width: var(--fw, 100%);
+  height: var(--fh, 100%);
+  object-fit: cover;
+  pointer-events: none;
 }
 
 .svd-shot__caption {

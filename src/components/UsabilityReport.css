@@ -1,0 +1,850 @@
+/* =================================================================
+   "Usability testing" report pages — Figma 1804:78553, 1804:78667,
+   1804:78801, 1804:78934, 1804:79078, 1804:79210 and 1804:79326,
+   the seven cards in the Usability Testing screen's deliverables
+   strip.
+
+   The shell (grid, footer, title, severity key) is in ReportKit,
+   shared with the UX Audit deck. Each page is a 963.556 x 542
+   spread at the document's own scale, so the sizes below are
+   Figma's fractional px.
+   ================================================================= */
+
+/* ====================================== session board (1804:78553) === */
+
+.ust-board__sheet {
+  position: absolute;
+  left: 30px;
+  top: 31px;
+  width: 906px;
+  height: 443px;
+  background: #fff;
+  overflow: clip;
+}
+
+/* Top slideshow (1804:78656) */
+.ust-board__tiles {
+  position: absolute;
+  left: calc(50% - 0.56px);
+  top: calc(50% + 18px);
+  width: 822px;
+  height: 381px;
+  transform: translate(-50%, -50%);
+}
+
+.ust-board__tile {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: var(--h);
+  border-radius: 10.703px;
+  overflow: clip;
+}
+
+/* Every tile is a window onto one contact sheet, so the photo is
+   sized and offset per tile rather than fitted. */
+.ust-board__tile img {
+  position: absolute;
+  left: var(--ix);
+  top: var(--iy);
+  width: var(--iw);
+  height: var(--ih);
+  max-width: none;
+  pointer-events: none;
+}
+
+/* ================================ research objectives (1804:78667) === */
+
+.ust-obj__sheet {
+  position: absolute;
+  left: 38.44px;
+  top: 36px;
+  width: 892px;
+  height: 434px;
+  background: #fff;
+  overflow: clip;
+}
+
+.ust-obj__title {
+  position: absolute;
+  left: 11.74px;
+  top: 4.15px;
+  width: 508.376px;
+  margin: 0;
+  font-weight: 600;
+  font-size: 32.119px;
+  line-height: 1.5;
+}
+
+.ust-obj__cards {
+  position: absolute;
+  left: 11.74px;
+  top: 103.01px;
+  display: flex;
+  align-items: center;
+  gap: 10.037px;
+}
+
+/* Impact Card (1804:78774) — the objective's number over its text,
+   both pushed to the foot of the card. */
+.ust-obj__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 15.056px;
+  flex: none;
+  width: 281.037px;
+  height: 264.978px;
+  padding: 25.093px 20.074px;
+  border: 0.502px solid #000;
+  border-radius: 6.022px;
+  background: #fff;
+  box-shadow: 2.007px 0 3.513px 2.509px rgba(0, 0, 0, 0.1);
+  overflow: clip;
+}
+
+.ust-obj__num {
+  margin: 0;
+  font-weight: 300;
+  font-size: 24.089px;
+  line-height: 1.5;
+  letter-spacing: 0.4818px;
+  color: #000;
+}
+
+.ust-obj__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20.074px;
+}
+
+.ust-obj__card-title,
+.ust-obj__card-text {
+  margin: 0;
+  color: #000;
+}
+
+.ust-obj__card-title {
+  height: 48.178px;
+  font-weight: 600;
+  font-size: 16.059px;
+  line-height: 1.5;
+  letter-spacing: 0.3212px;
+  text-transform: capitalize;
+}
+
+.ust-obj__card-text {
+  height: 57.713px;
+  font-size: 12.044px;
+  line-height: normal;
+}
+
+/* ==================================== tasks assessed (1804:78801) === */
+
+.ust-tasks__sheet {
+  position: absolute;
+  left: 29.89px;
+  top: 42px;
+  width: 903px;
+  height: 422px;
+  background: #fff;
+  overflow: clip;
+}
+
+.ust-tasks__title,
+.ust-tasks__blurb {
+  position: absolute;
+  left: 20.3px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ust-tasks__title {
+  top: 38.15px;
+  width: 371.37px;
+  font-weight: 600;
+  font-size: 32.119px;
+}
+
+.ust-tasks__blurb {
+  top: 106.4px;
+  width: 330.72px;
+  font-family: var(--font-ui);
+  font-size: 16.059px;
+}
+
+.ust-tasks__panel {
+  position: absolute;
+  left: 447.15px;
+  top: 0;
+  width: 459.194px;
+  height: 383.415px;
+  background: #f9e320;
+  box-shadow: -2.007px 2.007px 4.115px -1.506px rgba(0, 0, 0, 0.11);
+  overflow: clip;
+}
+
+.ust-tasks__list {
+  position: absolute;
+  left: calc(50% + 2.76px);
+  top: 44.67px;
+  display: flex;
+  flex-direction: column;
+  gap: 15.056px;
+  width: 355.311px;
+  transform: translateX(-50%);
+}
+
+.ust-tasks__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 15.056px;
+  flex: none;
+  width: 100%;
+  border-bottom: 0.502px solid #999;
+  font-weight: 600;
+  font-size: 20.074px;
+  line-height: 1.5;
+}
+
+.ust-tasks__row--last {
+  border-bottom: 0;
+}
+
+.ust-tasks__num {
+  flex: none;
+  width: 30.111px;
+}
+
+.ust-tasks__label {
+  flex: 1 0 0;
+  min-width: 1px;
+}
+
+/* ========================================== persona (1804:78934) === */
+
+.ust-persona__portrait {
+  position: absolute;
+  left: 660.94px;
+  top: 40.15px;
+  width: 302.625px;
+  height: 539.978px;
+  object-fit: cover;
+  filter: blur(5.019px);
+}
+
+.ust-persona__sheet {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 660.939px;
+  height: 542px;
+  background: #fff;
+  box-shadow: 2.007px 2.007px 4.115px -1.506px rgba(0, 0, 0, 0.11);
+  transform: translateY(-50%);
+}
+
+.ust-persona__title {
+  top: 70.15px;
+}
+
+.ust-persona__title .rk-title__module {
+  text-transform: capitalize;
+}
+
+.ust-persona__bio {
+  position: absolute;
+  left: 50.19px;
+  top: 125.46px;
+  width: 532.967px;
+}
+
+.ust-persona__bio p {
+  margin: 0;
+  font-size: 16.059px;
+  line-height: 1.5;
+}
+
+/* The name is written in by hand beside the portrait. */
+.ust-persona__who {
+  position: absolute;
+  left: 681.02px;
+  top: 33.12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4.015px;
+  width: 262.97px;
+}
+
+.ust-persona__who p {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 20.074px;
+  line-height: 1;
+  color: #000;
+}
+
+/* Impact Card (1804:79040 / 1804:79049) */
+.ust-persona__card {
+  position: absolute;
+  top: 259.46px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15.056px;
+  width: 254.941px;
+  height: 222.822px;
+  padding: 12.044px 15.056px;
+  border: 0.502px solid #000;
+  border-radius: 6.022px;
+  background: #fff;
+  box-shadow: 1.004px 1.004px 10.037px 0 rgba(0, 0, 0, 0.1);
+  overflow: clip;
+}
+
+.ust-persona__card--challenges {
+  left: 50.19px;
+}
+
+.ust-persona__card--wants {
+  left: 327.71px;
+}
+
+.ust-persona__card-head {
+  display: flex;
+  align-items: center;
+  gap: 8.03px;
+  flex: none;
+  width: 100%;
+}
+
+.ust-persona__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20.074px;
+  height: 20.074px;
+  border-radius: 4.015px;
+  background: #f8df00;
+}
+
+.ust-persona__icon--dark {
+  background: #474747;
+}
+
+.ust-persona__icon img {
+  width: 15.056px;
+  height: 15.056px;
+}
+
+.ust-persona__label {
+  flex: 1 0 0;
+  min-width: 1px;
+  margin: 0;
+  font-weight: 600;
+  font-size: 12.044px;
+  line-height: 1.5;
+  letter-spacing: 0.2409px;
+  text-transform: capitalize;
+}
+
+.ust-persona__card ul {
+  width: var(--w);
+  margin: 0;
+  padding-left: 18.066px;
+  font-size: 12.044px;
+  line-height: 1.5;
+  list-style: disc;
+}
+
+/* =================================== task completion (1804:79078) === */
+
+/* Both findings pages sit on one big sheet that covers the spread. */
+.ust-task__sheet {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1140px;
+  height: 1080px;
+  background: #fff;
+  box-shadow: 4px 4px 8.2px -3px rgba(0, 0, 0, 0.11);
+}
+
+.ust-task__phone {
+  position: absolute;
+  left: calc(87.5% - 77.28px);
+  top: 65.74px;
+  width: 184.681px;
+  height: 411.519px;
+  border: 4.517px solid #313131;
+  border-radius: 13.775px;
+  background: #010101;
+  transform: translateX(-50%);
+  overflow: clip;
+}
+
+.ust-task__phone img {
+  position: absolute;
+  left: -1.01px;
+  top: 0.5px;
+  width: 184.819px;
+  height: 410.71px;
+  max-width: none;
+  object-fit: cover;
+  filter: blur(5.019px);
+}
+
+/* The task page's mockup carries no fill in the file. */
+.ust-task__phone--empty {
+  left: calc(81.25% - 23.59px);
+  top: 65.24px;
+}
+
+.ust-task__title {
+  position: absolute;
+  left: 50.18px;
+  top: 80.15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8.03px;
+  width: 422.559px;
+}
+
+.ust-task__flow,
+.ust-task__question {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ust-task__flow {
+  font-size: 10.037px;
+  text-transform: uppercase;
+}
+
+.ust-task__question {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 18.067px;
+  color: #000;
+}
+
+/* The handwritten label on the mockup. */
+.ust-task__note,
+.ust-find__note {
+  position: absolute;
+  top: 30.62px;
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 16.059px;
+  line-height: 1.4;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.ust-task__note {
+  left: 708.68px;
+}
+
+.ust-find__note {
+  left: 732.28px;
+}
+
+.ust-task__legend {
+  position: absolute;
+  left: 50.18px;
+  top: 178.01px;
+  margin: 0;
+  font-style: italic;
+  font-size: 10.037px;
+  line-height: 1.4;
+  letter-spacing: -0.1004px;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* Pie chart (1804:79189) — three arcs, each drawn in a box far
+   larger than the chart and turned a quarter of the way round. */
+.ust-task__pie {
+  position: absolute;
+  left: 50.69px;
+  top: 208.62px;
+  width: 253.937px;
+  height: 253.937px;
+}
+
+.ust-task__arc {
+  position: absolute;
+  top: -47.67px;
+  display: grid;
+  place-items: center;
+  width: 351.798px;
+  height: 351.798px;
+}
+
+/* The turned circle every arc is measured inside. */
+.ust-task__arc-dial {
+  position: relative;
+  display: block;
+  width: 248.759px;
+  height: 248.759px;
+  transform: rotate(45deg);
+}
+
+.ust-task__arc-dial img {
+  position: absolute;
+}
+
+.ust-task__arc--a {
+  left: -49.18px;
+}
+
+.ust-task__arc--a .ust-task__arc-dial img {
+  left: -0.5px;
+  top: -0.5px;
+  width: 249.763px;
+  height: 249.763px;
+}
+
+.ust-task__arc--b {
+  left: -48.18px;
+}
+
+.ust-task__arc--b .ust-task__arc-dial img {
+  left: 193.79px;
+  top: 40.15px;
+  width: 32.851px;
+  height: 30.688px;
+}
+
+.ust-task__arc--c {
+  left: -49.18px;
+}
+
+.ust-task__arc--c .ust-task__arc-dial img {
+  left: 168.9px;
+  top: 14.63px;
+  width: 42.925px;
+  height: 42.11px;
+}
+
+.ust-task__total {
+  position: absolute;
+  left: 129.48px;
+  top: 111.41px;
+  width: 65.241px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 12.044px;
+  line-height: 1.4;
+  letter-spacing: -0.265px;
+  text-align: center;
+  color: #6e6e6e;
+  transform: translateX(-50%);
+}
+
+.ust-task__total strong {
+  font-weight: 700;
+}
+
+.ust-task__stats {
+  position: absolute;
+  left: 442.63px;
+  top: 225.18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8.03px;
+}
+
+.ust-task__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2.007px;
+  flex: none;
+  width: 84.311px;
+  padding: 5.019px;
+  border-radius: 4.015px;
+}
+
+.ust-task__stat-count,
+.ust-task__stat-label {
+  margin: 0;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.ust-task__stat-count {
+  font-weight: 600;
+  font-size: 25.093px;
+}
+
+.ust-task__stat-label {
+  font-weight: 500;
+  font-size: 15.056px;
+}
+
+.ust-task__stat--success {
+  background: #fff9e9;
+  color: #eaac00;
+}
+
+.ust-task__stat--failed {
+  background: #e7e7e7;
+  color: #474747;
+}
+
+.ust-task__stat--prompted {
+  background: #ffecee;
+  color: #e31836;
+}
+
+/* The leader lines from the pie and the tiles out to the screen. */
+.ust-task__lead {
+  position: absolute;
+}
+
+.ust-task__lead--a {
+  left: 301.12px;
+  top: 322.54px;
+  width: 141.522px;
+  height: 0.502px;
+}
+
+.ust-task__lead--b {
+  left: 301.12px;
+  top: 353.66px;
+  width: 141.522px;
+  height: 55.706px;
+}
+
+.ust-task__lead--c {
+  left: 195.72px;
+  top: 213.64px;
+  width: 246.911px;
+  height: 37.639px;
+}
+
+/* ===================================== screen finding (1804:79210) === */
+
+.ust-find__title {
+  top: 40.15px;
+}
+
+.ust-find__title .rk-title__flow {
+  text-transform: uppercase;
+}
+
+.ust-find__title .rk-title__module {
+  font-size: 32.119px;
+}
+
+/* Issues Updated (1804:79322) — graded positive, so the whole card
+   takes the good-news green. */
+.ust-find__card {
+  position: absolute;
+  left: 50.19px;
+  top: 117.43px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6.022px;
+  width: 692px;
+  padding: 10.037px 12.044px;
+  border: 1.004px solid #0c8703;
+  border-radius: 16px;
+  background: #fff;
+  overflow: clip;
+}
+
+/* The grade hangs off the card's top edge. */
+.ust-find__grade {
+  position: absolute;
+  left: 286.56px;
+  top: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48.178px;
+  height: 15.056px;
+  border-radius: 0 0 2.007px 2.007px;
+  background: #0c8703;
+  font-weight: 600;
+  font-size: 3.02px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.ust-find__users {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5.019px;
+  flex: none;
+  padding: 2.007px 10.037px;
+  border-radius: 18px;
+  background: #dbedd9;
+  font-size: 6.02px;
+  line-height: 1.5;
+  color: #0c8703;
+  white-space: nowrap;
+}
+
+.ust-find__users strong {
+  font-weight: 800;
+  font-size: 5.04px;
+}
+
+.ust-find__heading,
+.ust-find__body {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ust-find__heading {
+  font-weight: 700;
+  font-size: 10.04px;
+  color: #0c8703;
+  white-space: nowrap;
+}
+
+.ust-find__body {
+  width: 100%;
+  font-size: 8.03px;
+  color: #000;
+  opacity: 0.8;
+}
+
+.ust-find__seen {
+  display: flex;
+  align-items: center;
+  gap: 7.528px;
+  margin-top: 3.011px;
+}
+
+.ust-find__seen-label {
+  margin: 0 -1.506px 0 0;
+  font-weight: 600;
+  font-size: 3.02px;
+  line-height: 1.5;
+  color: #1e1e1e;
+  white-space: nowrap;
+}
+
+.ust-find__type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  height: 13.048px;
+  padding: 2.007px 6.524px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 3.02px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.ust-find__type--first {
+  background: #fdd3f7;
+  color: #d212bf;
+}
+
+.ust-find__type--standard {
+  background: #d3f7fd;
+  color: #1577e0;
+}
+
+.ust-find__type--advanced {
+  background: #d3fdd8;
+  color: #268c32;
+}
+
+.ust-find__lead {
+  position: absolute;
+  left: 397.46px;
+  top: 187.69px;
+  width: 269.494px;
+  height: 113.92px;
+}
+
+/* ==================================== recommendations (1804:79326) === */
+
+.ust-recs {
+  background: #f2f2f2;
+}
+
+.ust-recs__grid {
+  position: absolute;
+  left: 50.19px;
+  top: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 16.561px;
+  width: 863.185px;
+  transform: translateY(-50%);
+}
+
+/* Impact Card (1804:79329) */
+.ust-recs__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6.022px;
+  flex: none;
+  width: 276.019px;
+  height: 160.593px;
+  padding: 15.056px;
+  border: 0.502px solid #000;
+  border-radius: 6.022px;
+  background: #fff;
+  box-shadow: 1.004px 1.004px 10.037px 0 rgba(0, 0, 0, 0.1);
+  overflow: clip;
+}
+
+.ust-recs__head {
+  display: flex;
+  align-items: center;
+  gap: 8.03px;
+  flex: none;
+  width: 100%;
+}
+
+.ust-recs__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20.074px;
+  height: 20.074px;
+  border-radius: 4.015px;
+  background: #f8df00;
+}
+
+.ust-recs__icon img {
+  width: 13.55px;
+  height: 13.55px;
+}
+
+.ust-recs__icon--flip {
+  transform: scaleY(-1);
+}
+
+.ust-recs__title,
+.ust-recs__body {
+  margin: 0;
+  font-size: 12.044px;
+  line-height: 1.5;
+}
+
+.ust-recs__title {
+  flex: 1 0 0;
+  min-width: 1px;
+  font-weight: 600;
+  letter-spacing: 0.2409px;
+  text-transform: uppercase;
+}
+
+.ust-recs__body {
+  width: 100%;
+}

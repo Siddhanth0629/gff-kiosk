@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="eye">
+<g id="primary">
+<path d="M25.5229 13.2944C25.7149 13.7503 25.7149 14.2497 25.5229 14.7056C24.6067 16.8802 21.2749 23.3333 13.9971 23.3333C6.71808 23.3333 3.39024 16.878 2.47606 14.7045C2.28459 14.2493 2.28459 13.7507 2.47606 13.2955C3.39024 11.122 6.71808 4.66667 13.9971 4.66667C21.2749 4.66667 24.6067 11.1198 25.5229 13.2944Z" stroke="#3A3A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.6667 14C18.6667 16.5773 16.5773 18.6667 14 18.6667C11.4227 18.6667 9.33334 16.5773 9.33334 14C9.33334 11.4227 11.4227 9.33333 14 9.33333C16.5773 9.33333 18.6667 11.4227 18.6667 14Z" stroke="#3A3A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

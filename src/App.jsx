@@ -112,7 +112,11 @@ function App() {
           <Services onBack={() => setScreen('home')} onSelect={openService} />
         )}
         {screen === 'service-detail' && (
+          // Keyed on the service so switching chips remounts the
+          // screen rather than leaving the last one's strip scrolled
+          // and its accordion open.
           <ServiceDetail
+            key={service}
             service={service}
             onBack={() => setScreen('services')}
             onHome={() => setScreen('home')}

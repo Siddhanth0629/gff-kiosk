@@ -1,0 +1,1052 @@
+/* =================================================================
+   "User interview insights" report pages — Figma 1804:75216,
+   1804:75275, 1804:75365, 1804:75419, 1804:75465, 1804:75549 and
+   1804:75699, the seven cards in the User Interview screen's
+   deliverables strip.
+
+   Each page is a 963.556 x 542 spread of one client deliverable,
+   drawn at the document's own scale — hence Figma's fractional px
+   rather than the round numbers the kiosk screens use. The strip
+   card clips them to 542 tall; nothing here scrolls.
+   ================================================================= */
+
+.irp {
+  position: absolute;
+  inset: 0;
+  background: var(--irp-ground, #eaeef6);
+  font-family: var(--font-sans-doc);
+  color: #1a1a1a;
+}
+
+.irp-em {
+  font-weight: 700;
+}
+
+.irp-em--italic {
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* --------------------------------------------------------- paper ---
+   Left-strip / Main-content / Right-strip. The holes are the page
+   ground showing through, so they take their colour from the page.
+   ------------------------------------------------------------- */
+.irp-paper {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.004px;
+}
+
+.irp-paper__strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  width: 36.133px;
+  height: 100%;
+  padding: 0 12.044px;
+  background: #fff;
+}
+
+.irp-paper__hole {
+  flex: none;
+  width: 12.044px;
+  height: 12.044px;
+  border-radius: 50%;
+  background: var(--irp-ground, #eaeef6);
+}
+
+.irp-paper__cap {
+  flex: none;
+  width: 12.044px;
+  height: 6.022px;
+  border-radius: 0 0 12.044px 12.044px;
+  background: var(--irp-ground, #eaeef6);
+}
+
+.irp-paper__cap--end {
+  border-radius: 12.044px 12.044px 0 0;
+}
+
+.irp-paper__main {
+  position: relative;
+  flex: 1 0 0;
+  min-width: 1px;
+  height: 100%;
+  background: #fff;
+  overflow: clip;
+}
+
+/* Title (…) — the report's green marker highlight. */
+.irp-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4.015px;
+  background: #c4d2c3;
+  font-family: var(--font-mono-doc);
+  font-size: 12.044px;
+  line-height: 1.5;
+  letter-spacing: -0.5902px;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+
+/* The page heading, three times the size of a section label. */
+.irp-chip--head {
+  position: absolute;
+  font-size: 32.119px;
+  letter-spacing: -1.5738px;
+}
+
+/* Sticky-note — the torn sheet plus its type. */
+.irp-sticky {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 158.585px;
+  height: 120.444px;
+  padding: 8.03px;
+}
+
+.irp-sticky__sheet {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.irp-sticky__body {
+  position: relative;
+  flex: 1 0 0;
+  min-width: 1px;
+  align-self: stretch;
+}
+
+.irp-sticky__body p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 9.03px;
+  line-height: 1.5;
+  letter-spacing: -0.0903px;
+  color: #3f3e3e;
+}
+
+/* -------------------------------------------------------- footer ---
+   The byline strip every page carries (56.207px tall).
+   ------------------------------------------------------------- */
+.irp-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 963.556px;
+  height: 56.207px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 10.04px;
+  line-height: 1.4;
+  overflow: clip;
+}
+
+/* Charts lays the strip over artwork, so Figma washes it out and
+   blurs what shows through. */
+.irp-footer--wash {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 75.26%,
+    rgba(153, 153, 153, 0.1) 100%
+  );
+  backdrop-filter: blur(1.004px);
+}
+
+.irp-footer__kicker,
+.irp-footer__label,
+.irp-footer__name {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.irp-footer__kicker,
+.irp-footer__label {
+  top: 13.05px;
+  letter-spacing: 0.753px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.irp-footer__kicker {
+  left: 40.15px;
+  color: #1a1a1a;
+}
+
+.irp-footer__label,
+.irp-footer__name {
+  left: 753.28px;
+  color: #062b3f;
+}
+
+.irp-footer__name {
+  top: 29.11px;
+}
+
+.irp-footer--light .irp-footer__kicker,
+.irp-footer--light .irp-footer__label,
+.irp-footer--light .irp-footer__name {
+  color: #fff;
+}
+
+/* Figma nests the roundel three groups deep; the outermost carries
+   the real inset, so it sits 40.15 from the edge, not the 19.93 the
+   innermost group reports. */
+.irp-footer__logo {
+  position: absolute;
+  right: 40.15px;
+  top: 4.03px;
+  width: 40.148px;
+  height: 40.148px;
+}
+
+/* ================================================= Charts (1804:75216) === */
+
+/* image (1804:75217) — the collage runs off the bottom of the page,
+   every piece softened to sit behind the sheet. */
+.irp-collage > * {
+  position: absolute;
+  filter: blur(5.019px);
+  overflow: clip;
+}
+
+.irp-collage img {
+  position: absolute;
+  max-width: none;
+}
+
+.irp-collage__wide {
+  left: -6.524px;
+  top: 320.033px;
+  width: 398.717px;
+  height: 265.981px;
+}
+
+.irp-collage__wide img {
+  left: -32.1%;
+  top: -24.79%;
+  width: 195.23%;
+  height: 164.75%;
+}
+
+.irp-collage__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    193deg,
+    rgba(0, 0, 0, 0) 25.452%,
+    rgba(0, 0, 0, 0.2) 91.143%
+  );
+}
+
+.irp-collage__shot img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.irp-collage__shot--a {
+  left: 391.947px;
+  top: 444.994px;
+  width: 294.587px;
+  height: 141.02px;
+}
+
+.irp-collage__shot--a img {
+  left: -0.11%;
+  width: 100.22%;
+  height: 104.18%;
+}
+
+.irp-collage__shot--b {
+  left: 675.493px;
+  top: 444.994px;
+  width: 287.738px;
+  height: 138.009px;
+}
+
+.irp-collage__shot--c {
+  left: 392.087px;
+  top: 320.033px;
+  width: 285.53px;
+  height: 124.919px;
+}
+
+/* The one screen shot on a dark plate, inset from its own edges. */
+.irp-collage__shot--d {
+  left: 677.5px;
+  top: 320.033px;
+  width: 286.056px;
+  height: 124.961px;
+  background: #131313;
+}
+
+.irp-collage__shot--d img {
+  left: 10.62%;
+  top: -0.1%;
+  width: 78.76%;
+  height: 100.2%;
+}
+
+.irp-paper--charts {
+  left: calc(50% - 0.1px);
+  top: 0;
+  width: 907.348px;
+  height: 313.657px;
+  transform: translateX(-50%);
+}
+
+.irp-chip--charts {
+  left: 32.119px;
+  top: 83.307px;
+}
+
+.irp-charts__body {
+  position: absolute;
+  left: 32.119px;
+  top: 176.15px;
+  width: 355.813px;
+}
+
+.irp-charts__body p {
+  margin: 0;
+  font-size: 10.037px;
+  line-height: 1.5;
+  color: #606060;
+}
+
+.irp-sticky--charts {
+  position: absolute;
+  left: 628.319px;
+  top: 146.039px;
+}
+
+.irp-charts__note {
+  margin: 0;
+  font-weight: 500;
+  font-size: 10.037px;
+  line-height: 1.5;
+  color: #3f3e3e;
+}
+
+/* ====================================== Research Objectives (1804:75275) === */
+
+/* The sheet has all but scrolled off the top: only its heading and
+   the punched foot of the strips are still on the page. */
+.irp-paper--objectives {
+  left: 24.09px;
+  top: -187.19px;
+  width: 907.348px;
+  height: 313.657px;
+}
+
+.irp-chip--objectives {
+  left: 32.119px;
+  top: 223.324px;
+}
+
+.irp-obj {
+  position: absolute;
+  left: 50.44px;
+  top: 158px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 15px 40.148px;
+  width: 863px;
+  height: 318px;
+}
+
+.irp-obj__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10.037px;
+  flex: none;
+  width: 255px;
+}
+
+/* Container (…) — the number sits over its blurred blob. */
+.irp-obj__badge {
+  position: relative;
+  display: block;
+  flex: none;
+  width: 32.119px;
+  height: 32.119px;
+}
+
+.irp-obj__blob {
+  position: absolute;
+  inset: 0;
+  display: block;
+  filter: blur(2.519px);
+  overflow: clip;
+}
+
+.irp-obj__blob img {
+  position: absolute;
+  left: -31.53%;
+  top: -29.6%;
+  width: 163.06%;
+  height: 159.5%;
+  max-width: none;
+}
+
+.irp-obj__num {
+  position: absolute;
+  left: 11.04px;
+  top: 4.01px;
+  font-family: var(--font-mono-doc);
+  font-size: 16.059px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.irp-obj__text {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 5.019px;
+  min-width: 1px;
+}
+
+.irp-obj__text h4 {
+  margin: 0;
+  font-family: var(--font-mono-doc);
+  font-weight: 400;
+  font-size: 12.044px;
+  line-height: 1.5;
+  letter-spacing: -0.4818px;
+  opacity: 0.8;
+}
+
+.irp-obj__text p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 9.033px;
+  line-height: 1.5;
+  color: #494949;
+}
+
+/* =========================================== Key-insights (1804:75365) === */
+
+.irp-paper--insights {
+  left: 50%;
+  top: 16.056px;
+  width: 939.467px;
+  height: 461.704px;
+  transform: translateX(-50%);
+}
+
+.irp-chip--insights {
+  left: 32.119px;
+  top: 72.117px;
+  display: block;
+  padding: 0 4.015px;
+  line-height: 1.2;
+  white-space: normal;
+}
+
+/* Count (1804:75387) — the deck's page marker, tucked over the
+   heading's top edge. */
+.irp-chip__count {
+  position: absolute;
+  left: 0;
+  top: -12.55px;
+  padding: 4.015px 8.03px 0.502px;
+  background: #c4d2c3;
+  font-size: 7.026px;
+  line-height: 1.2;
+  letter-spacing: -0.3443px;
+}
+
+.irp-insights__blurb {
+  position: absolute;
+  right: 15.56px;
+  top: 60.72px;
+  width: 304.122px;
+  margin: 0;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 10.037px;
+  line-height: 1.5;
+  letter-spacing: -0.0903px;
+  text-align: right;
+}
+
+/* Four columns of two, on a 190.7 x 148.55 pitch. */
+.irp-sticky--insight {
+  position: absolute;
+  left: calc(32.119px + var(--col) * 190.704px);
+  top: calc(166.039px + var(--row) * 148.551px);
+  height: var(--h, 120.444px);
+  padding: 10.037px 10.037px 18.067px;
+}
+
+.irp-sticky--snug {
+  padding: 8.03px;
+}
+
+.irp-sticky--insight .irp-sticky__body p {
+  color: #1a1a1a;
+}
+
+/* Screenshot 2025-05-27 (1804:75416) — pinned on at an angle. */
+.irp-insights__shot {
+  position: absolute;
+  left: 368.78px;
+  top: 418.83px;
+  display: grid;
+  place-items: center;
+  width: 225.485px;
+  height: 209.202px;
+}
+
+.irp-insights__shot img {
+  width: 181.169px;
+  height: 150.551px;
+  object-fit: cover;
+  filter: blur(5.019px);
+  transform: rotate(22.91deg);
+}
+
+/* ================================================== Quote (1804:75419) === */
+
+/* The one page whose ground is a photograph rather than the report's
+   blue-grey. Its punch holes stay #eaeef6 all the same — Figma fills
+   them with the paper stock, not with what is behind the sheet. */
+.irp--quote {
+  background: none;
+}
+
+/* The page is a photograph, darkened twice over: a radial fall-off
+   plus a flat 20% wash, both on the plate and on the blur above it. */
+.irp-quote__bg,
+.irp-quote__photo {
+  position: absolute;
+  overflow: clip;
+}
+
+.irp-quote__bg::after,
+.irp-quote__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      120% 120% at 50% 50%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    rgba(0, 0, 0, 0.2);
+}
+
+.irp-quote__bg {
+  inset: 0;
+  border-radius: 12px;
+}
+
+.irp-quote__bg img {
+  position: absolute;
+  left: -4.49%;
+  top: -104.57%;
+  width: 111.4%;
+  height: 251.81%;
+  max-width: none;
+}
+
+.irp-quote__photo {
+  left: 0;
+  top: 0;
+  width: 963.856px;
+  height: 708.113px;
+  filter: blur(5.019px);
+}
+
+.irp-quote__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.irp-paper--quote {
+  left: 50%;
+  top: 50%;
+  width: 602.222px;
+  height: 301.111px;
+  transform: translate(-50%, -50%);
+}
+
+/* Main-content (1804:75440) — the quote fills the sheet and its
+   attribution sits under it, right-aligned. */
+.irp-paper--quote .irp-paper__main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12.044px;
+  padding: 40.148px 32.119px;
+}
+
+.irp-quote__text {
+  flex: 1 0 0;
+  min-height: 1px;
+  width: 100%;
+  margin: 0;
+  font-size: 16.059px;
+  line-height: 1.5;
+  color: #606060;
+  filter: blur(2px);
+}
+
+.irp-chip--quote {
+  flex: none;
+  filter: blur(3px);
+}
+
+/* ================================================ Persona (1804:75465) === */
+
+.irp-paper--persona {
+  left: 40.148px;
+  top: 16.056px;
+  width: 940.47px;
+  height: 461.704px;
+}
+
+/* Divider (1804:75514) — the rule between the photo and the profile. */
+.irp-persona__rule {
+  position: absolute;
+  left: 250.93px;
+  top: 16.056px;
+  width: 1px;
+  height: 429.585px;
+  background: #eee;
+}
+
+.irp-persona__grid {
+  position: absolute;
+  left: 301.111px;
+  top: 50.185px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 23px 40.148px;
+  width: 514.9px;
+}
+
+.irp-persona__section {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8.03px;
+  min-width: 236.372px;
+  height: var(--h);
+}
+
+.irp-persona__section p,
+.irp-persona__section ul {
+  margin: 0;
+  width: 100%;
+  font-weight: 500;
+  font-size: 9.033px;
+  line-height: 1.5;
+  letter-spacing: -0.0903px;
+}
+
+.irp-persona__section ul {
+  padding-left: 13.55px;
+  list-style: disc;
+}
+
+/* About (1804:75502) — the name overlaps the details it heads. */
+.irp-persona__about {
+  position: absolute;
+  left: 25.593px;
+  top: 302.119px;
+  width: 199.737px;
+}
+
+/* Figma pulls the details 19px up under the name, which works
+   because Departure Mono sits high in its line box. The fallback
+   face fills more of it, so the pull is eased to keep the two off
+   each other. */
+.irp-persona__about h4 {
+  margin: 0 0 -8px;
+  font-family: var(--font-mono-doc);
+  font-weight: 400;
+  font-size: 28.104px;
+  line-height: 1.2;
+  letter-spacing: -1.4052px;
+  color: #606060;
+}
+
+.irp-persona__about dl {
+  display: flex;
+  flex-direction: column;
+  gap: 4.015px;
+  margin: 0;
+  font-size: 9.033px;
+  line-height: 1.5;
+}
+
+.irp-persona__about dl > div {
+  display: flex;
+  align-items: center;
+  gap: 2.007px;
+}
+
+.irp-persona__about dt {
+  flex: none;
+  width: 41.152px;
+  font-family: var(--font-mono-doc);
+  color: #606060;
+}
+
+.irp-persona__about dd {
+  flex: 1 0 0;
+  min-width: 1px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.irp-persona__picks {
+  position: absolute;
+  left: 301.111px;
+  top: 322.119px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15.056px;
+  width: 534.974px;
+}
+
+.irp-persona__notes {
+  display: flex;
+  align-items: center;
+  gap: 20.074px;
+  width: 100%;
+}
+
+.irp-sticky--pick {
+  flex: none;
+  width: var(--w);
+  height: 68.252px;
+  padding: 10.037px 10.037px 18.067px;
+}
+
+.irp-sticky--pick .irp-sticky__body p {
+  color: #1a1a1a;
+}
+
+/* Card (1804:75539) — the participant photo, softened and pinned. */
+.irp-persona__card {
+  position: absolute;
+  left: 97.359px;
+  top: 16.056px;
+  width: 210.778px;
+  height: 281.037px;
+  overflow: clip;
+}
+
+.irp-persona__photo {
+  position: absolute;
+  inset: 0;
+  background: #c4d2c3;
+  filter: blur(5.019px);
+  overflow: clip;
+}
+
+.irp-persona__photo img {
+  position: absolute;
+  max-width: none;
+}
+
+.irp-persona__photo-a {
+  left: 0;
+  top: -2.99%;
+  width: 100%;
+  height: 128.3%;
+}
+
+.irp-persona__photo-b {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.irp-persona__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(6.273px);
+}
+
+.irp-persona__caption {
+  position: absolute;
+  left: 12.044px;
+  bottom: 10.037px;
+  width: 186.689px;
+  color: #fff;
+}
+
+.irp-persona__name,
+.irp-persona__role {
+  margin: 0;
+}
+
+.irp-persona__name {
+  font-family: var(--font-mono-doc);
+  font-size: 15.056px;
+  line-height: 1.5;
+  letter-spacing: -0.2861px;
+}
+
+.irp-persona__role {
+  font-weight: 500;
+  font-size: 9.033px;
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+.irp-persona__pin {
+  position: absolute;
+  left: 195.13px;
+  top: 11.04px;
+  display: grid;
+  place-items: center;
+  width: 15.739px;
+  height: 33.857px;
+}
+
+.irp-persona__pin img {
+  width: 11.543px;
+  height: 32.62px;
+  transform: rotate(7.57deg);
+}
+
+/* ============================================ photo board (1804:75549) === */
+
+.irp-board__paper {
+  position: absolute;
+  left: calc(50% - 2.55px);
+  top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  height: 467px;
+  transform: translateX(-50%);
+}
+
+.irp-board__paper .irp-paper__strip {
+  height: 461.704px;
+}
+
+.irp-board__sheet {
+  flex: none;
+  width: 865.193px;
+  height: 461.704px;
+  background: #fff;
+}
+
+.irp-board__frame-a,
+.irp-board__frame-b {
+  position: absolute;
+}
+
+.irp-board__frame-a {
+  left: 15.056px;
+  top: 0;
+  width: 933.446px;
+  height: 542px;
+}
+
+.irp-board__frame-b {
+  left: 0;
+  top: 15.56px;
+  width: 963.556px;
+  height: 511.889px;
+}
+
+.irp-board__dot {
+  position: absolute;
+  right: 0.45px;
+  top: 480.27px;
+  width: 4.015px;
+  height: 4.015px;
+  background: #b8aba2;
+}
+
+/* Top slideshow (1804:75691) — five photographs, centred and wrapped. */
+.irp-board__shots {
+  position: absolute;
+  left: 50%;
+  top: 91px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 16.795px;
+  width: 807px;
+  transform: translateX(-50%);
+}
+
+.irp-board__shot {
+  position: relative;
+  flex: none;
+  width: var(--w);
+  height: var(--h);
+  border-radius: 8.398px;
+  /* Shows only in the slot whose fill Figma will not export. */
+  background: #e9e9e9;
+  overflow: clip;
+}
+
+.irp-board__shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.irp-board__shot--bottom img {
+  object-position: center bottom;
+}
+
+/* Two of them are scaled up inside their frame rather than cropped
+   to fit, so they keep Figma's zoom. */
+.irp-board__shot--b img {
+  inset: auto;
+  left: -91.22%;
+  top: -189.77%;
+  width: 421.51%;
+  height: 387.79%;
+  object-fit: fill;
+}
+
+.irp-board__shot--d img {
+  inset: auto;
+  left: 0;
+  top: 0;
+  width: 135.02%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* ========================================== In Conclusion (1804:75699) === */
+
+.irp-paper--conclusion {
+  left: -12.044px;
+  top: 24.09px;
+  width: 503.859px;
+  height: 461.704px;
+}
+
+.irp-chip--conclusion {
+  left: 32.119px;
+  top: 80.178px;
+}
+
+.irp-concl__lead,
+.irp-concl__body {
+  position: absolute;
+  left: 32.119px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.irp-concl__lead {
+  top: 168.505px;
+  width: 264.978px;
+  font-weight: 700;
+  font-size: 12.044px;
+  color: #202020;
+}
+
+.irp-concl__body {
+  top: 196.607px;
+  width: 297.598px;
+  font-size: 10.037px;
+  color: #606060;
+}
+
+.irp-sticky--takeaway {
+  position: absolute;
+  left: 32.119px;
+  top: 291.07px;
+}
+
+.irp-sticky--takeaway .irp-sticky__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4.015px;
+}
+
+.irp-concl__kicker {
+  margin: 0;
+  font-family: var(--font-mono-doc);
+  font-size: 5.04px;
+  line-height: 1.5;
+  letter-spacing: -0.1008px;
+  color: #606060;
+  white-space: nowrap;
+}
+
+.irp-concl__note {
+  margin: 0;
+  font-weight: 500;
+  font-size: 8.03px;
+  line-height: 1.5;
+  color: #3f3e3e;
+}
+
+/* The priority ladder, on the page ground beside the sheet. */
+.irp-concl__tier {
+  position: absolute;
+  right: var(--right);
+  top: var(--top);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.irp-concl__tier-title,
+.irp-concl__tier-count {
+  margin: 0;
+  font-size: 12.044px;
+  line-height: 1.5;
+  color: #202020;
+}
+
+.irp-concl__tier-title {
+  font-weight: 700;
+}
+
+.irp-sticky--pillar {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 110.407px;
+  height: var(--h);
+  padding: 10.037px 10.037px 18.067px;
+}
+
+.irp-sticky--pillar .irp-sticky__body p {
+  font-weight: 700;
+  font-size: 6.04px;
+  letter-spacing: -0.0604px;
+  color: #1a1a1a;
+}
