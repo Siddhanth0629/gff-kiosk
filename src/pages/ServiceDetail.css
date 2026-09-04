@@ -93,6 +93,13 @@
   color: #000;
 }
 
+/* Product Visual Design is the one title Figma sets on a single
+   line instead of in the shared 509px box (43:40011). */
+.svd__heading--wide {
+  width: auto;
+  white-space: nowrap;
+}
+
 /* Each service sets its own measure (43:38850 / 43:39182 / 43:39016),
    and the audit's lead is broken over two lines rather than wrapped. */
 .svd__lead {
@@ -552,8 +559,12 @@
 }
 
 /* --fw / --fh are the fill size Figma draws the photo at; the card
-   crops it from the top left. */
+   crops it from the top left, or from --fx / --fy when Figma slides
+   the fill under the card to pick a different window. */
 .svd-shot__img {
+  position: relative;
+  left: var(--fx, 0);
+  top: var(--fy, 0);
   width: var(--fw, 100%);
   height: var(--fh, 100%);
   object-fit: cover;

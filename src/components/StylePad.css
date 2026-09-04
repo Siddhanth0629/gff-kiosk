@@ -1,0 +1,281 @@
+/* =================================================================
+   Style Pad deliverable — Figma "The Concept" 1804:89895 and the
+   four spreads beside it in the Product Visual Design strip.
+
+   The document is drawn at its own 963.556px scale, so the sizes
+   here are Figma's fractional px. Each page fills the strip card
+   (.svd-shot, 963x542) and places everything inside it.
+   ================================================================= */
+
+.pad {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  overflow: clip;
+}
+
+/* ------------------------------------------------------- footer ---
+   1804:89897 — the hairline byline strip every page carries.
+   ------------------------------------------------------------- */
+.pad__footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 963.556px;
+  height: 55.204px;
+  border-top: 0.502px solid #000;
+  overflow: clip;
+}
+
+.pad__footer-row {
+  position: absolute;
+  left: 569.1px;
+  top: 9.53px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 38.643px;
+  width: 344.772px;
+}
+
+/* Figma stacks both lines in one grid cell and nudges them by hand,
+   so they are placed rather than laid out. */
+.pad__byline {
+  position: relative;
+  flex: none;
+  width: max-content;
+  height: 29.06px;
+  font-size: 10.037px;
+  line-height: normal;
+  color: #000;
+}
+
+.pad__byline-name,
+.pad__byline-site {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  font-family: var(--font-pad);
+  white-space: nowrap;
+}
+
+.pad__byline-name {
+  left: 12.55px;
+  font-weight: 700;
+}
+
+.pad__byline-site {
+  left: 0;
+  top: 17.06px;
+  font-weight: 400;
+}
+
+.pad__logo {
+  flex: none;
+  width: 35.13px;
+  height: 35.13px;
+}
+
+/* -------------------------------------------------- the concept ---
+   1804:89895
+   ------------------------------------------------------------- */
+.pad__title {
+  position: absolute;
+  left: 50.19px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32.119px;
+  white-space: nowrap;
+}
+
+.pad__title--concept {
+  top: 90.22px;
+  line-height: 1.2;
+  color: #136ed7;
+}
+
+.pad__lede {
+  position: absolute;
+  left: 50.19px;
+  top: 165.5px;
+  width: 344.772px;
+  height: 92.843px;
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 16.059px;
+  line-height: 1.5;
+  letter-spacing: -0.3051px;
+  color: #858383;
+}
+
+/* Tiffin_01 2 (1804:89909) — a 845x4096 sheet shown from the top,
+   so the fill runs to 838% of the window it sits in. */
+.pad__tiffin {
+  position: absolute;
+  left: 394.96px;
+  top: 98.86px;
+  width: 521.926px;
+  height: 302.115px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pad__tiffin img {
+  position: absolute;
+  left: 0;
+  top: -0.53%;
+  width: 100%;
+  height: 837.99%;
+}
+
+/* --------------------------------------------------- typography ---
+   1804:89912
+   ------------------------------------------------------------- */
+.pad__title--type {
+  top: 60.22px;
+  line-height: 1.5;
+  color: #3a91e1;
+}
+
+.pad__specimen {
+  position: absolute;
+  left: 47.68px;
+  top: 170.13px;
+  width: 442.633px;
+  height: 79.794px;
+  margin: 0;
+  font-family: var(--font-deva);
+  font-weight: 700;
+  font-size: 64.237px;
+  line-height: 1.5;
+  letter-spacing: -1.2205px;
+  color: #2263f1;
+  font-variation-settings: 'wdth' 100;
+}
+
+.pad__label {
+  position: absolute;
+  left: 50.19px;
+  top: 311.15px;
+  width: 348.787px;
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 16.059px;
+  line-height: 1.5;
+  letter-spacing: -0.3051px;
+  color: #858383;
+}
+
+/* Both notes hang off the same 71.43% column. */
+.pad__note {
+  position: absolute;
+  left: calc(71.43% - 28.42px);
+  width: 236.874px;
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12.044px;
+  line-height: 1.5;
+  letter-spacing: -0.2288px;
+  color: #858383;
+}
+
+.pad__note--face {
+  top: 192.71px;
+}
+
+.pad__note--use {
+  top: 351.3px;
+}
+
+/* Screenshot 2024-12-17 (1804:89925) — a band cropped out of a
+   wider grab, so the fill overhangs the window on three sides. */
+.pad__type-shot {
+  position: absolute;
+  left: 50.19px;
+  top: 356.31px;
+  width: 498.841px;
+  height: 64.237px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pad__type-shot img {
+  position: absolute;
+  left: -0.05%;
+  top: -116.89%;
+  width: 100.09%;
+  height: 360.81%;
+}
+
+/* ------------------------------------------- contact sheet pages ---
+   Visual style (1804:89930) and Tiffin style (1804:89956) — tiles
+   butted together under a wash that carries the title.
+   ------------------------------------------------------------- */
+.pad__tile {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: var(--h);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.pad__wash {
+  position: absolute;
+  left: 0;
+  top: 263.47px;
+  width: 963.556px;
+  height: 223.826px;
+  background: linear-gradient(
+    to bottom,
+    rgba(19, 110, 215, 0) 31.223%,
+    #114395 100%
+  );
+  pointer-events: none;
+}
+
+.pad__sheet-title {
+  position: absolute;
+  left: 30.11px;
+  top: 418.04px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32.119px;
+  line-height: 1.2;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------- iconography ---
+   Top slideshow (1804:89988) — three stills on a white plate. The
+   row runs 909px inside an 883px plate, so the last still is cut,
+   which is how Figma leaves it.
+   ------------------------------------------------------------- */
+.pad__strip {
+  position: absolute;
+  left: 50%;
+  top: 151px;
+  display: flex;
+  align-items: center;
+  gap: 17.58px;
+  width: 883px;
+  border-radius: 10.548px;
+  background: #fff;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+
+.pad__strip-shot {
+  flex: none;
+  width: var(--w);
+  height: 239.092px;
+  border-radius: var(--r);
+  object-fit: cover;
+  pointer-events: none;
+}

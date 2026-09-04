@@ -1,0 +1,34 @@
+/* =================================================================
+   AI screens deliverable — Figma "image" 1804:89672.
+
+   Sizes are Figma's fractional px, like the other deliverables:
+   the card itself is the 1981x542 .svd-shot, and everything here
+   is positioned inside it.
+   ================================================================= */
+
+.aisc {
+  position: absolute;
+  inset: 0;
+  background: #d3d3d3;
+}
+
+/* Frame 2147228731 (1804:89673) — the row of screens, sitting a
+   hair left of centre and 29px down. */
+.aisc__row {
+  position: absolute;
+  left: 48.836px;
+  top: 29px;
+  width: 1882.678px;
+  height: 483.303px;
+}
+
+.aisc__shot {
+  position: absolute;
+  left: var(--x);
+  top: 0;
+  width: var(--w);
+  height: 100%;
+  border-radius: var(--r, 0);
+  object-fit: cover;
+  pointer-events: none;
+}

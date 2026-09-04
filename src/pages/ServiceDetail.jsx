@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AiScreens } from '../components/AiScreens.jsx'
 import {
   ReportAuditBasics,
   ReportAuditForex,
@@ -18,6 +19,13 @@ import {
 } from '../components/InterviewReport.jsx'
 import { RoadmapDoc, RoadmapGoals } from '../components/RoadmapDeliverable.jsx'
 import {
+  PadConcept,
+  PadForm,
+  PadIconography,
+  PadTypography,
+  PadVisualStyle,
+} from '../components/StylePad.jsx'
+import {
   ReportUsabilityBoard,
   ReportUsabilityFinding,
   ReportUsabilityObjectives,
@@ -31,7 +39,7 @@ import backArrow from '../assets/cs-list/back-arrow.svg'
 import iconHome from '../assets/cs-list/icon-home.svg'
 import scrollArrow from '../assets/services-detail/scroll-arrow.svg'
 import sectionToggle from '../assets/services-detail/section-toggle.svg'
-import { SERVICE_CHIPS, SERVICE_DETAILS } from './serviceDetailData.js'
+import { SERVICE_DETAILS } from './serviceDetailData.js'
 import './ServiceDetail.css'
 
 /* =================================================================
@@ -152,6 +160,12 @@ const DELIVERABLES = {
   'usability-task': ReportUsabilityTask,
   'usability-finding': ReportUsabilityFinding,
   'usability-recommendations': ReportUsabilityRecommendations,
+  'ai-screens': AiScreens,
+  'pad-concept': PadConcept,
+  'pad-typography': PadTypography,
+  'pad-visual-style': PadVisualStyle,
+  'pad-form': PadForm,
+  'pad-iconography': PadIconography,
 }
 
 /* One card in the deliverables strip: either a page of a client
@@ -167,6 +181,8 @@ function Deliverable({ shot }) {
         '--w': `${shot.width}px`,
         '--fw': shot.fill ? `${shot.fill[0]}px` : undefined,
         '--fh': shot.fill ? `${shot.fill[1]}px` : undefined,
+        '--fx': shot.offset ? `${shot.offset[0]}px` : undefined,
+        '--fy': shot.offset ? `${shot.offset[1]}px` : undefined,
       }}
     >
       {Page ? (
@@ -201,7 +217,11 @@ function ServiceDetail({
       <div className="svd__card">
         <div className="svd__hero">
           <div className="svd__title">
-            <h1 className="svd__heading">{detail.title}</h1>
+            <h1
+              className={`svd__heading${detail.wideHeading ? ' svd__heading--wide' : ''}`}
+            >
+              {detail.title}
+            </h1>
             <p
               className="svd__lead"
               style={{ '--lead-w': `${detail.leadWidth ?? 746}px` }}
@@ -245,7 +265,7 @@ function ServiceDetail({
               </div>
 
               <div className="svd__chips">
-                {SERVICE_CHIPS.map((chip) => {
+                {detail.chips.map((chip) => {
                   const active = chip.key === service
                   return (
                     <button
