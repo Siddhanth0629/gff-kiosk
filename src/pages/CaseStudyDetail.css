@@ -65,12 +65,16 @@
    sit 24px up and to the left of it. The bezel therefore comes in
    with the artwork; nothing here draws it.
    ------------------------------------------------------------- */
+/* The phone's own size comes from the study (caseStudyDetailData),
+   since each case study is shot on a different mockup. Whatever that
+   size, it is centred in ArthaOne's 611 x 1266 slot at (234, 451), so
+   the head, panel and footer never move between studies. */
 .csd__phone {
   position: absolute;
-  left: 234px;
-  top: 451px;
-  width: 611px;
-  height: 1266px;
+  left: calc(234px + (611px - var(--pw)) / 2);
+  top: calc(451px + (1266px - var(--ph)) / 2);
+  width: var(--pw);
+  height: var(--ph);
   padding: 0;
   border: 0;
   background: none;
@@ -81,7 +85,7 @@
 .csd__phone:focus-visible {
   outline: 3px solid #ffd600;
   outline-offset: 8px;
-  border-radius: 60px;
+  border-radius: calc(var(--pr) + 8px);
 }
 
 /* Frames are cut, not crossfaded. A fade would put two 50%-opaque
@@ -92,8 +96,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 611px;
-  height: 1266px;
+  width: 100%;
+  height: 100%;
   opacity: 0;
 }
 
@@ -103,31 +107,29 @@
 
 /* The stills are exported with the device around them; the
    recordings are the bare screen, so the bezel is drawn here and
-   they are inset into it. Measured off the artwork rather than
-   guessed: the frame is a flat #3a3a3a ring exactly 24px thick, with
-   a 52px outer and 36px inner radius (Figma's outside stroke grows
-   the radius by less than the stroke width, so the two are not 24
-   apart). It sits under the stills, whose own bezel covers it
-   pixel for pixel. */
+   they are inset into it. A flat #3a3a3a ring at the study's own
+   thickness and radii, measured off the artwork rather than guessed.
+   It sits under the stills, whose own bezel covers it pixel for
+   pixel. */
 .csd__bezel {
   position: absolute;
   left: 0;
   top: 0;
-  width: 611px;
-  height: 1266px;
-  border-radius: 52px;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--pr);
   background: #3a3a3a;
 }
 
-/* Inset into that ring. The recordings are 0.4606 where the screen
-   is 0.4622, a ~4px difference over the full height, so cover trims
-   it rather than letterboxing. */
+/* Inset into that ring. A recording's aspect is a hair off its own
+   screen's — ArthaOne's is 0.4606 where the screen is 0.4622, ~4px
+   over the full height — so cover trims it rather than letterboxing. */
 .csd__screen--video {
-  left: 24px;
-  top: 24px;
-  width: 563px;
-  height: 1218px;
-  border-radius: 36px;
+  left: var(--pb);
+  top: var(--pb);
+  width: calc(100% - var(--pb) * 2);
+  height: calc(100% - var(--pb) * 2);
+  border-radius: var(--pir);
   object-fit: cover;
 }
 

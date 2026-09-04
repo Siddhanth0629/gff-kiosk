@@ -40,12 +40,13 @@ import './CaseStudyDetail.css'
 const AHEAD = 2
 const BEHIND = 1
 
-/* The mark + wordmark pair, placed inside Figma's 272 x 35 box. */
+/* The lockup, placed inside Figma's 272 x 35 box. ArthaOne splits
+   it into a mark and a wordmark; Fintoo is a single export. */
 function BrandLogo({ logo, brand }) {
   return (
     <span className="csd__logo">
       <span className="csd__logo-art">
-        {[logo.mark, logo.word].map((part) => (
+        {logo.parts.map((part) => (
           <img
             key={part.src}
             src={part.src}
@@ -67,9 +68,8 @@ function BrandLogo({ logo, brand }) {
 /* Frame 2147226739 — the arrows flanking the brand. Figma stacks
    rotate(180deg) on scaleY(-1) for the left one, which composes to a
    plain horizontal flip of the same glyph. They step between case
-   studies, and ArthaOne is the only one with a detail page, so both
-   render exactly as designed and are disabled. Wire onPrev/onNext
-   when a second one lands. */
+   studies; App does not hand them a destination yet, so both render
+   exactly as designed and are disabled. */
 function BrandArrow({ dir, onClick }) {
   return (
     <button
@@ -181,14 +181,21 @@ function CaseStudyDetail({
       <button
         type="button"
         className="csd__phone"
+        style={{
+          '--pw': `${study.phone.width}px`,
+          '--ph': `${study.phone.height}px`,
+          '--pb': `${study.phone.bezel}px`,
+          '--pr': `${study.phone.radius}px`,
+          '--pir': `${study.phone.innerRadius}px`,
+        }}
         onClick={next}
         onKeyDown={onKeyDown}
         aria-label={`Screen ${at + 1} of ${count}: ${screens[at].name}. Tap for the next screen.`}
       >
-        {/* The recordings are the 563 x 1218 screen with no device
-            around it, so the bezel the stills carry in their own
-            artwork has to be drawn for them. Same geometry, so it
-            sits under the stills unnoticed. */}
+        {/* The recordings are the bare screen with no device around
+            it, so the bezel the stills carry in their own artwork has
+            to be drawn for them. Same geometry, so it sits under the
+            stills unnoticed. */}
         <span className="csd__bezel" aria-hidden="true" />
 
         {screens.map((s, i) =>
@@ -263,7 +270,7 @@ function CaseStudyDetail({
             <span
               className="csd__chip"
               key={chip.label}
-              style={{ width: `${chip.width}px` }}
+              style={{ width: chip.width ? `${chip.width}px` : undefined }}
             >
               {chip.label}
             </span>

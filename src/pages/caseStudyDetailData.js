@@ -24,6 +24,42 @@
 
 import mark from '../assets/cs-detail/arthaone-mark.svg'
 import word from '../assets/cs-detail/arthaone-word.svg'
+import fintooLogo from '../assets/cs-list/lg-fintoo.svg'
+import f01 from '../assets/cs-detail/fintoo/fintoo1.mp4'
+import f02 from '../assets/cs-detail/fintoo/fintoo2.mp4'
+import f03 from '../assets/cs-detail/fintoo/fintoo3.png'
+import f04 from '../assets/cs-detail/fintoo/fintoo4.png'
+import f05 from '../assets/cs-detail/fintoo/fintoo5.png'
+import f06 from '../assets/cs-detail/fintoo/fintoo6.png'
+import f07 from '../assets/cs-detail/fintoo/fintoo7.png'
+import f08 from '../assets/cs-detail/fintoo/fintoo8.png'
+import f09 from '../assets/cs-detail/fintoo/fintoo9.png'
+import f10 from '../assets/cs-detail/fintoo/fintoo10.png'
+import f11 from '../assets/cs-detail/fintoo/fintoo11.png'
+import f12 from '../assets/cs-detail/fintoo/fintoo12.png'
+import f13 from '../assets/cs-detail/fintoo/fintoo13.png'
+import f14 from '../assets/cs-detail/fintoo/fintoo14.png'
+import f15 from '../assets/cs-detail/fintoo/fintoo15.png'
+import f16 from '../assets/cs-detail/fintoo/fintoo16.png'
+import f17 from '../assets/cs-detail/fintoo/fintoo17.png'
+import f18 from '../assets/cs-detail/fintoo/fintoo18.png'
+import f19 from '../assets/cs-detail/fintoo/fintoo19.png'
+import f20 from '../assets/cs-detail/fintoo/fintoo20.png'
+import f21 from '../assets/cs-detail/fintoo/fintoo21.png'
+import f22 from '../assets/cs-detail/fintoo/fintoo22.png'
+import f23 from '../assets/cs-detail/fintoo/fintoo23.png'
+import f24 from '../assets/cs-detail/fintoo/fintoo24.png'
+import f25 from '../assets/cs-detail/fintoo/fintoo25.png'
+import f26 from '../assets/cs-detail/fintoo/fintoo26.png'
+import f27 from '../assets/cs-detail/fintoo/fintoo27.png'
+import f28 from '../assets/cs-detail/fintoo/fintoo28.png'
+import f29 from '../assets/cs-detail/fintoo/fintoo29.png'
+import f30 from '../assets/cs-detail/fintoo/fintoo30.png'
+import f31 from '../assets/cs-detail/fintoo/fintoo31.png'
+import f32 from '../assets/cs-detail/fintoo/fintoo32.png'
+import f33 from '../assets/cs-detail/fintoo/fintoo33.png'
+import f34 from '../assets/cs-detail/fintoo/fintoo34.png'
+import f35 from '../assets/cs-detail/fintoo/fintoo35.png'
 
 import s01 from '../assets/cs-detail/arthaonenew/arthaone1.mp4'
 import s02 from '../assets/cs-detail/arthaonenew/arthaone2.mp4'
@@ -95,6 +131,79 @@ const ARTHAONE_SCREENS = [
   { src: s33, type: 'image', frame: 'ArthaOne 59', node: '3:32559', name: 'space - dashboard' },
 ]
 
+/* Each case study is shot on its own device mockup, so the phone is
+   part of the study rather than a constant. `width`/`height` are the
+   still's own pixel size, bezel included; `bezel` is the ring's
+   thickness and `radius`/`innerRadius` its two corner radii, all
+   measured off the artwork. The player centres the phone in the same
+   slot whatever its size, and draws the ring behind the recordings,
+   which arrive as the bare screen.
+
+   Figma's outside stroke grows the radius by less than the stroke
+   width, which is why the two radii are not one bezel apart. */
+const ARTHAONE_PHONE = {
+  width: 611,
+  height: 1266,
+  bezel: 24,
+  radius: 52,
+  innerRadius: 36,
+}
+
+const FINTOO_PHONE = {
+  width: 587,
+  height: 1247,
+  bezel: 23.5,
+  radius: 49,
+  innerRadius: 34,
+}
+
+/* Thirty-five screens in the folder's own order, which is the order
+   of the flow: two recordings, then the chat-led onboarding that
+   signs the visitor in, then the dashboard the app opens on.
+
+   The stills are 587 x 1247 with the device already around them, a
+   smaller mockup than ArthaOne's; the recordings are the bare
+   540 x 1200 screen, so the player draws the ring for them. The two
+   recordings carry no screen name because, unlike the stills, there
+   is nothing to read off a single frame of them. */
+const FINTOO_SCREENS = [
+  { src: f01, type: 'video', name: 'intro recording' },
+  { src: f02, type: 'video', name: 'onboarding recording' },
+  { src: f03, type: 'image', name: 'secure conversation intro' },
+  { src: f04, type: 'image', name: 'AI CFO arrives' },
+  { src: f05, type: 'image', name: 'AI CFO typing' },
+  { src: f06, type: 'image', name: 'AI CFO greeting' },
+  { src: f07, type: 'image', name: 'greeting - typing' },
+  { src: f08, type: 'image', name: 'sign up - choose a method' },
+  { src: f09, type: 'image', name: 'sign up - email typed' },
+  { src: f10, type: 'image', name: 'sign up - email prompt' },
+  { src: f11, type: 'image', name: 'sign up - terms and conditions' },
+  { src: f12, type: 'image', name: 'sign up - agree and continue' },
+  { src: f13, type: 'image', name: 'sign up - agreed' },
+  { src: f14, type: 'image', name: 'verify email - code sent' },
+  { src: f15, type: 'image', name: 'verify email - request a new code' },
+  { src: f16, type: 'image', name: 'verify email - code entered' },
+  { src: f17, type: 'image', name: 'verify email - terms accepted' },
+  { src: f18, type: 'image', name: 'verify email - code resent' },
+  { src: f19, type: 'image', name: 'verify email - code filled' },
+  { src: f20, type: 'image', name: 'verify mobile - number linked' },
+  { src: f21, type: 'image', name: 'verify mobile - number saved' },
+  { src: f22, type: 'image', name: 'create FinPIN - pin entered' },
+  { src: f23, type: 'image', name: 'create FinPIN - verified' },
+  { src: f24, type: 'image', name: 'create FinPIN - re-enter pin' },
+  { src: f25, type: 'image', name: 'biometric - enable Face ID' },
+  { src: f26, type: 'image', name: 'onboarding - continue or explore' },
+  { src: f27, type: 'image', name: 'splash - Fintoo' },
+  { src: f28, type: 'image', name: 'dashboard - net worth' },
+  { src: f29, type: 'image', name: 'Fintoo Score - score breakdown' },
+  { src: f30, type: 'image', name: 'my money - money overview' },
+  { src: f31, type: 'image', name: 'my spends - spend breakdown' },
+  { src: f32, type: 'image', name: 'my assets - asset breakdown' },
+  { src: f33, type: 'image', name: 'mutual funds - portfolio' },
+  { src: f34, type: 'image', name: 'mutual funds - my funds' },
+  { src: f35, type: 'image', name: 'mutual funds - explore' },
+]
+
 /* Keyed by the `brand` on the listing card (caseStudyData.js), which
    is what CaseStudyList hands to onOpen. */
 export const CASE_STUDY_DETAILS = {
@@ -103,9 +212,12 @@ export const CASE_STUDY_DETAILS = {
     /* Two exported groups inside one 272 x 35 box (3:2622 "Personal
        Finance", variant ArthaOne): the mark, then the wordmark. */
     logo: {
-      mark: { src: mark, left: 0, top: 1.274, width: 50.253, height: 33.727 },
-      word: { src: word, left: 64, top: 0, width: 207.999, height: 33.542 },
+      parts: [
+        { src: mark, left: 0, top: 1.274, width: 50.253, height: 33.727 },
+        { src: word, left: 64, top: 0, width: 207.999, height: 33.542 },
+      ],
     },
+    phone: ARTHAONE_PHONE,
     /* Figma sets the lede as two hard-wrapped lines (732:64227). */
     lede: [
       'Crafted brand identity and an engaging app for',
@@ -120,5 +232,34 @@ export const CASE_STUDY_DETAILS = {
       { label: 'App Design', width: 150 },
     ],
     screens: ARTHAONE_SCREENS,
+  },
+
+  Fintoo: {
+    brand: 'Fintoo',
+    /* The listing's logo (cs-list/lg-fintoo.svg) is the only Fintoo
+       artwork in the file: one 117 x 47.769 lockup rather than the
+       mark-and-wordmark pair ArthaOne splits into. Set to the art
+       box's height and centred in it, so it reads at the same cap
+       height as ArthaOne's. */
+    logo: {
+      parts: [
+        { src: fintooLogo, left: 93.14, top: 0, width: 85.72, height: 35 },
+      ],
+    },
+    /* No detail frame exists for Fintoo yet, so the lede and chips are
+       the listing's own copy (caseStudyData.js), hard-wrapped onto two
+       lines the way ArthaOne's is. The chips size to their text rather
+       than to pinned Figma widths, for the same reason. */
+    lede: [
+      'Redesigned finance advisory app into an AI-enabled',
+      'one-stop platform for personal financial planning.',
+    ],
+    chips: [
+      { label: 'User Research' },
+      { label: 'Competition Analysis' },
+      { label: 'SaaS Design' },
+    ],
+    phone: FINTOO_PHONE,
+    screens: FINTOO_SCREENS,
   },
 }
